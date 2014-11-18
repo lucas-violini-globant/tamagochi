@@ -9,7 +9,7 @@
 #import "TamagochiSelectNameViewController.h"
 
 @interface TamagochiSelectNameViewController ()
-
+@property NSString petName;
 @end
 
 @implementation TamagochiSelectNameViewController
@@ -23,6 +23,18 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil petName:(NSString *)aString
+{
+    
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        [self setPetName:aString];
+    }
+    return self;
+}
+
 
 /*
 #pragma mark - Navigation

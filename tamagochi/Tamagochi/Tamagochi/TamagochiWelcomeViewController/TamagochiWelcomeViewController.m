@@ -7,6 +7,8 @@
 //
 
 #import "TamagochiWelcomeViewController.h"
+#import "TamagochiSelectNameViewController.h"
+#import "AppDelegate.h"
 
 @interface TamagochiWelcomeViewController ()
 
@@ -23,6 +25,23 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)switchToSelectImageScreen:(id)sender
+{
+    /*
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    TamagochiWelcomeViewController* home = [[TamagochiWelcomeViewController alloc] initWithNibName:@"TamagochiWelcomeViewController" bundle:nil];
+    UINavigationController* navControllerHome = [[UINavigationController alloc] initWithRootViewController:home];
+    
+    [self.window setRootViewController:navControllerHome];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    */
+}
+
+
+
 
 /*
 #pragma mark - Navigation
