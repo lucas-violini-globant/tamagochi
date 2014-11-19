@@ -10,4 +10,6 @@
 
 @interface TamagochiSelectNameViewController : UIViewController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil petName:(NSString *)aString;
+
 @end

@@ -10,12 +10,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tamagochi/TamagochiSelectNameViewController/TamagochiSelectNameViewController.m"
-            timestampString = "438034572.32491"
+            timestampString = "438106926.650274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "-initWithNibName:bundle:petName:"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "-clickImagen:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tamagochi/TamagochiSelectNameViewController/TamagochiSelectNameViewController.m"
+            timestampString = "438107416.630601"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "-getImageNameByTag:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

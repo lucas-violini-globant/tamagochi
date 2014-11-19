@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TamagochiWelcomeViewController">
             <connections>
+                <outlet property="textFieldName" destination="gvL-bB-1i3" id="Y5B-3p-c5V"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

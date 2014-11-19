@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FA18AD6E-E63B-4456-9478-CB112B95D9D3</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Tamagochi</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>297FEC79CCC86734106DC86151BEFDDE33CCAAF3</key>
+		<string>https://github.com/lucas-violini-globant/tamagochi.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>tamagochi/Tamagochi/Tamagochi.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>297FEC79CCC86734106DC86151BEFDDE33CCAAF3</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/lucas-violini-globant/tamagochi.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>297FEC79CCC86734106DC86151BEFDDE33CCAAF3</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>297FEC79CCC86734106DC86151BEFDDE33CCAAF3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>tamagochi</string>
+		</dict>
+	</array>
+</dict>
+</plist>

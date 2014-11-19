@@ -9,13 +9,29 @@
 #import "TamagochiSelectNameViewController.h"
 
 @interface TamagochiSelectNameViewController ()
-@property NSString petName;
+@property (nonatomic)NSString *petName;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (strong, nonatomic) IBOutlet UIButton *btnCiervo;
+
+@property (strong, nonatomic) IBOutlet UIButton *btnGato;
+
+@property (strong, nonatomic) IBOutlet UIButton *btnJirafa;
+
+@property (strong, nonatomic) IBOutlet UIButton *btnLeon;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+
+@property (strong, nonatomic) IBOutlet UILabel *petNameTextField;
+
 @end
 
 @implementation TamagochiSelectNameViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.scrollView.contentSize = CGSizeMake(700, 200);
+    self.petNameTextField.text = self.petName;    
+ 
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -34,6 +50,43 @@
     }
     return self;
 }
+
+- (IBAction)clickImagen:(id)sender {
+    
+    NSString *imageName = [self getImageNameByTag:[sender tag]];
+    self.imageView.image = [UIImage imageNamed:imageName];
+    
+}
+
+
+
+
+
+-(NSString *)getImageNameByTag:(long)tag
+{
+    NSString *imageName = @"";
+    
+    switch (tag) {
+        case 0:
+            imageName = @"ciervo_comiendo_1";
+            break;
+        case 1:
+            imageName = @"gato_comiendo_1";
+            break;
+        case 2:
+            imageName = @"jirafa_comiendo_1";
+            break;
+        case 3:
+            imageName = @"leon_comiendo_1";
+            break;
+        default:
+            imageName = @"";
+            break;
+    }
+   return imageName;
+    
+}
+
 
 
 /*

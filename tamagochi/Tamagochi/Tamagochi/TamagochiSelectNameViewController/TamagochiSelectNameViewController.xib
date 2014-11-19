@@ -6,6 +6,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TamagochiSelectNameViewController">
             <connections>
+                <outlet property="btnCiervo" destination="PYZ-aN-pag" id="CCz-r6-RfW"/>
+                <outlet property="btnGato" destination="boj-nN-egF" id="c7c-Te-a65"/>
+                <outlet property="btnJirafa" destination="AWW-1H-Qac" id="a2e-s2-Cht"/>
+                <outlet property="btnLeon" destination="B7R-WW-AHM" id="GvI-XS-KR8"/>
+                <outlet property="imageView" destination="atE-fk-r8v" id="Alr-6o-ANb"/>
+                <outlet property="petNameTextField" destination="pVe-na-uNp" id="72q-ZN-OeL"/>
+                <outlet property="scrollView" destination="oMl-8Y-L1q" id="DLB-hc-L8x"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,33 +31,45 @@
                     <rect key="frame" x="6" y="358" width="400" height="200"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PYZ-aN-pag">
-                            <rect key="frame" x="-76" y="3" width="146" height="178"/>
+                            <rect key="frame" x="0.0" y="14" width="116" height="178"/>
                             <state key="normal" backgroundImage="ciervo_comiendo_1.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="clickImagen:" destination="-1" eventType="touchUpInside" id="gSP-H6-Uu9"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="boj-nN-egF">
-                            <rect key="frame" x="78" y="13" width="116" height="173"/>
-                            <state key="normal" backgroundImage="gato_comiendo_1.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWW-1H-Qac">
-                            <rect key="frame" x="202" y="30" width="128" height="124"/>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWW-1H-Qac">
+                            <rect key="frame" x="248" y="19" width="116" height="173"/>
                             <state key="normal" backgroundImage="jirafa_comiendo_1.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="clickImagen:" destination="-1" eventType="touchUpInside" id="RHY-sq-ZCK"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B7R-WW-AHM">
-                            <rect key="frame" x="338" y="0.0" width="113" height="178"/>
+                        <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B7R-WW-AHM">
+                            <rect key="frame" x="357" y="1" width="116" height="178"/>
                             <state key="normal" backgroundImage="leon_comiendo_1.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="clickImagen:" destination="-1" eventType="touchUpInside" id="ilo-a4-27b"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="boj-nN-egF">
+                            <rect key="frame" x="124" y="8" width="116" height="173"/>
+                            <state key="normal" backgroundImage="gato_comiendo_1.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickImagen:" destination="-1" eventType="touchUpInside" id="6fR-Fg-Tnr"/>
+                            </connections>
                         </button>
                     </subviews>
                 </scrollView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="atE-fk-r8v">
-                    <rect key="frame" x="100" y="200" width="250" height="150"/>
+                    <rect key="frame" x="100" y="200" width="150" height="150"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

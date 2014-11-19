@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TamagochiWelcomeViewController : UIViewController
+@interface TamagochiWelcomeViewController : UIViewController<UITextFieldDelegate>
+
+
 
 @end

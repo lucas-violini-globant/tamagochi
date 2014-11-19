@@ -8,10 +8,11 @@
 
 #import "TamagochiWelcomeViewController.h"
 #import "TamagochiSelectNameViewController.h"
-#import "AppDelegate.h"
+
 
 @interface TamagochiWelcomeViewController ()
 
+@property (strong, nonatomic) IBOutlet UITextField *textFieldName;
 @end
 
 @implementation TamagochiWelcomeViewController
@@ -19,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.textFieldName.delegate = self;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,20 +31,25 @@
 
 - (IBAction)switchToSelectImageScreen:(id)sender
 {
-    /*
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    TamagochiWelcomeViewController* home = [[TamagochiWelcomeViewController alloc] initWithNibName:@"TamagochiWelcomeViewController" bundle:nil];
-    UINavigationController* navControllerHome = [[UINavigationController alloc] initWithRootViewController:home];
+    TamagochiSelectNameViewController* home = [[TamagochiSelectNameViewController alloc] initWithNibName:@"TamagochiSelectNameViewController" bundle:nil petName:[self.textFieldName text]];
+
+    [self.navigationController pushViewController:home animated:YES];
     
-    [self.window setRootViewController:navControllerHome];
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    */
+    
+    
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
 
-
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    return YES;
+}
 
 /*
 #pragma mark - Navigation
