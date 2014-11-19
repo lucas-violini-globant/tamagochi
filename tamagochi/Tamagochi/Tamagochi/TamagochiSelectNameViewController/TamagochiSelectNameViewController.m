@@ -7,9 +7,11 @@
 //
 
 #import "TamagochiSelectNameViewController.h"
+#import "TamagochiStatusViewController.h"
 
 @interface TamagochiSelectNameViewController ()
 @property (nonatomic)NSString *petName;
+@property int petTag;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (strong, nonatomic) IBOutlet UIButton *btnCiervo;
@@ -23,6 +25,9 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *petNameTextField;
 
+@property (strong, nonatomic) IBOutlet UILabel *animalTypeLabel;
+
+
 @end
 
 @implementation TamagochiSelectNameViewController
@@ -30,7 +35,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.scrollView.contentSize = CGSizeMake(700, 200);
-    self.petNameTextField.text = self.petName;    
+    self.petNameTextField.text = self.petName;
+
  
     // Do any additional setup after loading the view from its nib.
 }
@@ -38,6 +44,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)switchToStatusScreen:(id)sender {
+    
+    TamagochiStatusViewController *home = [[TamagochiStatusViewController alloc] initWithNibName:@"TamagochiStatusViewController" bundle:nil petName:self.petName tagSelected:self.petTag];
+    [self.navigationController pushViewController:home animated:YES];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil petName:(NSString *)aString
@@ -55,8 +66,9 @@
     
     NSString *imageName = [self getImageNameByTag:[sender tag]];
     self.imageView.image = [UIImage imageNamed:imageName];
+    self.petTag = [sender tag];
     
-}
+    self.animalTypeLabel.text = [self getAnimalTypeByTag:self.petTag];}
 
 
 
@@ -86,6 +98,34 @@
    return imageName;
     
 }
+
+
+
+-(NSString *)getAnimalTypeByTag:(long)tag
+{
+    NSString *imageName = @"";
+    
+    switch (tag) {
+        case 0:
+            imageName = @"Ciervo";
+            break;
+        case 1:
+            imageName = @"Gato";
+            break;
+        case 2:
+            imageName = @"Jirafa";
+            break;
+        case 3:
+            imageName = @"Leon";
+            break;
+        default:
+            imageName = @"";
+            break;
+    }
+    return imageName;
+    
+}
+
 
 
 

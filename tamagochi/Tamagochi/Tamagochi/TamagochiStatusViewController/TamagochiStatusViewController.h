@@ -10,4 +10,6 @@
 
 @interface TamagochiStatusViewController : UIViewController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil petName:(NSString *)aString tagSelected:(int)anInt;
+
 @end

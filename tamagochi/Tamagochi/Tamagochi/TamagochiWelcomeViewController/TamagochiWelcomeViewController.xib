@@ -27,11 +27,6 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingrese Nombre" textAlignment="center" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="gvL-bB-1i3">
-                    <rect key="frame" x="15" y="201" width="385" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPx-1J-Uga">
                     <rect key="frame" x="147" y="302" width="121" height="51"/>
                     <state key="normal" title="Continuar">
@@ -41,6 +36,15 @@
                         <action selector="switchToSelectImageScreen:" destination="-1" eventType="touchUpInside" id="O1y-Jq-5FU"/>
                     </connections>
                 </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingrese Nombre" textAlignment="center" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="gvL-bB-1i3">
+                    <rect key="frame" x="15" y="206" width="385" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="nameChanged:" destination="-1" eventType="editingChanged" id="bsl-Xn-G7s"/>
+                        <action selector="nameChanged:" destination="-1" eventType="valueChanged" id="ijF-BT-m8B"/>
+                    </connections>
+                </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>

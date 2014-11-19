@@ -13,6 +13,10 @@
 @property (nonatomic,strong) NSString *petName;
 @property int imageTag;
 
+@property (strong, nonatomic) IBOutlet UIImageView *petImage;
+
+@property (strong, nonatomic) IBOutlet UILabel *petNameLabel;
+
 @end
 
 @implementation TamagochiStatusViewController
@@ -20,6 +24,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    NSString *imageName = [self getImageNameByTag:self.imageTag];
+    self.petImage.image = [UIImage imageNamed:imageName];
+    self.petNameLabel.text = aString;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,8 +42,11 @@
     {
         [self setPetName:aString];
         self.imageTag = anInt;
+        
     }
+    
     return self;
+    
 }
 
 
