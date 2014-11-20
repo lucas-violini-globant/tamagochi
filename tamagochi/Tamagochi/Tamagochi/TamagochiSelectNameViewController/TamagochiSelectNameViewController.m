@@ -107,19 +107,19 @@
     
     switch (tag) {
         case 0:
-            imageName = @"Ciervo";
+            imageName = @"Deer";
             break;
         case 1:
-            imageName = @"Gato";
+            imageName = @"Cat";
             break;
         case 2:
-            imageName = @"Jirafa";
+            imageName = @"Jiraph";
             break;
         case 3:
-            imageName = @"Leon";
+            imageName = @"Lion";
             break;
         default:
-            imageName = @"";
+            imageName = @"Select";
             break;
     }
     return imageName;

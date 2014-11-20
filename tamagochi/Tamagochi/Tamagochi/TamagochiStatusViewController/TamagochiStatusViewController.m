@@ -26,7 +26,7 @@
     // Do any additional setup after loading the view from its nib.
     NSString *imageName = [self getImageNameByTag:self.imageTag];
     self.petImage.image = [UIImage imageNamed:imageName];
-    self.petNameLabel.text = aString;
+    self.petNameLabel.text = self.petName;
 }
 
 - (void)didReceiveMemoryWarning {
