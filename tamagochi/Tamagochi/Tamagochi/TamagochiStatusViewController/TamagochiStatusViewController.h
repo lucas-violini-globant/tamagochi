@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TamagochiFoodSelectionViewController.h"
 
-@interface TamagochiStatusViewController : UIViewController
+@interface TamagochiStatusViewController : UIViewController<FoodProtocol>
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil petName:(NSString *)aString tagSelected:(int)anInt;
 

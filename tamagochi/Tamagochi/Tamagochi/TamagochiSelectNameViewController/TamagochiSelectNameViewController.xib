@@ -26,7 +26,7 @@
                     <rect key="frame" x="6" y="358" width="400" height="200"/>
                     <subviews>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="boj-nN-egF">
-                            <rect key="frame" x="110" y="25" width="120" height="150"/>
+                            <rect key="frame" x="110" y="25" width="120" height="116"/>
                             <state key="normal" backgroundImage="gato_comiendo_1.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -35,7 +35,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWW-1H-Qac">
-                            <rect key="frame" x="238" y="1" width="116" height="150"/>
+                            <rect key="frame" x="238" y="1" width="116" height="116"/>
                             <state key="normal" backgroundImage="jirafa_comiendo_1.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -44,7 +44,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B7R-WW-AHM">
-                            <rect key="frame" x="342" y="8" width="116" height="150"/>
+                            <rect key="frame" x="342" y="8" width="116" height="116"/>
                             <state key="normal" backgroundImage="leon_comiendo_1.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -53,7 +53,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PYZ-aN-pag">
-                            <rect key="frame" x="0.0" y="17" width="116" height="150"/>
+                            <rect key="frame" x="0.0" y="17" width="116" height="116"/>
                             <state key="normal" backgroundImage="ciervo_comiendo_1.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -62,6 +62,7 @@
                             </connections>
                         </button>
                     </subviews>
+                    <inset key="scrollIndicatorInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                 </scrollView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="atE-fk-r8v">
                     <rect key="frame" x="131" y="161" width="150" height="150"/>
@@ -107,7 +108,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="0.90561549736364089" blue="0.52590239599807687" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
             <point key="canvasLocation" x="280" y="457"/>
         </view>

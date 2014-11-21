@@ -143,6 +143,12 @@
 		A0C2D5F31A1BD5F70013C95F /* leon_exhausto_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0C2D5751A1BD5F70013C95F /* leon_exhausto_3@2x.png */; };
 		A0C2D5F41A1BD5F70013C95F /* leon_exhausto_4.png in Resources */ = {isa = PBXBuildFile; fileRef = A0C2D5761A1BD5F70013C95F /* leon_exhausto_4.png */; };
 		A0C2D5F51A1BD5F70013C95F /* leon_exhausto_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0C2D5771A1BD5F70013C95F /* leon_exhausto_4@2x.png */; };
+		A0C2D6031A1E53B00013C95F /* TamagochiFoodSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2D6011A1E53B00013C95F /* TamagochiFoodSelectionViewController.m */; };
+		A0C2D6041A1E53B00013C95F /* TamagochiFoodSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0C2D6021A1E53B00013C95F /* TamagochiFoodSelectionViewController.xib */; };
+		A0C2D6061A1E5C2F0013C95F /* TamagochiFood.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2D6051A1E5C2F0013C95F /* TamagochiFood.m */; };
+		A0C2D60A1A1E63ED0013C95F /* TamagochiFoodCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2D6091A1E63ED0013C95F /* TamagochiFoodCollection.m */; };
+		A0C2D6131A1E6BE20013C95F /* TamagochiUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2D6111A1E6BE20013C95F /* TamagochiUITableViewCell.m */; };
+		A0C2D6141A1E6BE20013C95F /* TamagochiUITableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0C2D6121A1E6BE20013C95F /* TamagochiUITableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -300,6 +306,16 @@
 		A0C2D5751A1BD5F70013C95F /* leon_exhausto_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leon_exhausto_3@2x.png"; sourceTree = "<group>"; };
 		A0C2D5761A1BD5F70013C95F /* leon_exhausto_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leon_exhausto_4.png; sourceTree = "<group>"; };
 		A0C2D5771A1BD5F70013C95F /* leon_exhausto_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leon_exhausto_4@2x.png"; sourceTree = "<group>"; };
+		A0C2D6001A1E53B00013C95F /* TamagochiFoodSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TamagochiFoodSelectionViewController.h; sourceTree = "<group>"; };
+		A0C2D6011A1E53B00013C95F /* TamagochiFoodSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TamagochiFoodSelectionViewController.m; sourceTree = "<group>"; };
+		A0C2D6021A1E53B00013C95F /* TamagochiFoodSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TamagochiFoodSelectionViewController.xib; sourceTree = "<group>"; };
+		A0C2D6051A1E5C2F0013C95F /* TamagochiFood.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TamagochiFood.m; sourceTree = "<group>"; };
+		A0C2D6071A1E5CB60013C95F /* TamagochiFood.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TamagochiFood.h; sourceTree = "<group>"; };
+		A0C2D6081A1E63C10013C95F /* TamagochiFoodCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TamagochiFoodCollection.h; sourceTree = "<group>"; };
+		A0C2D6091A1E63ED0013C95F /* TamagochiFoodCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TamagochiFoodCollection.m; sourceTree = "<group>"; };
+		A0C2D6101A1E6BE20013C95F /* TamagochiUITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TamagochiUITableViewCell.h; sourceTree = "<group>"; };
+		A0C2D6111A1E6BE20013C95F /* TamagochiUITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TamagochiUITableViewCell.m; sourceTree = "<group>"; };
+		A0C2D6121A1E6BE20013C95F /* TamagochiUITableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TamagochiUITableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,6 +342,7 @@
 				A0C2D4AB1A1BCA770013C95F /* Tamagochi */,
 				A0C2D4C51A1BCA780013C95F /* TamagochiTests */,
 				A0C2D4AA1A1BCA770013C95F /* Products */,
+				A0C2D4EA1A1BD5F70013C95F /* AppIcon.appiconset */,
 			);
 			sourceTree = "<group>";
 		};
@@ -341,23 +358,15 @@
 		A0C2D4AB1A1BCA770013C95F /* Tamagochi */ = {
 			isa = PBXGroup;
 			children = (
-				A0C2D4E11A1BD2BA0013C95F /* TamagochiStatusViewController.h */,
-				A0C2D4E21A1BD2BA0013C95F /* TamagochiStatusViewController.m */,
-				A0C2D4E31A1BD2BA0013C95F /* TamagochiStatusViewController.xib */,
 				A0C2D4B01A1BCA770013C95F /* AppDelegate.h */,
 				A0C2D4B11A1BCA770013C95F /* AppDelegate.m */,
+				A0C2D6161A1E6C310013C95F /* BasicComponents */,
+				A0C2D6151A1E6BF20013C95F /* Screens */,
 				A0C2D4B91A1BCA770013C95F /* Images.xcassets */,
 				A0C2D4E61A1BD5F70013C95F /* AppIcon */,
-				A0C2D4EA1A1BD5F70013C95F /* AppIcon.appiconset */,
 				A0C2D4EC1A1BD5F70013C95F /* Comida */,
 				A0C2D4FF1A1BD5F70013C95F /* Mascota */,
 				A0C2D4AC1A1BCA770013C95F /* Supporting Files */,
-				A0C2D4D71A1BCE580013C95F /* TamagochiWelcomeViewController.h */,
-				A0C2D4D81A1BCE580013C95F /* TamagochiWelcomeViewController.m */,
-				A0C2D4D91A1BCE580013C95F /* TamagochiWelcomeViewController.xib */,
-				A0C2D4DC1A1BCFD90013C95F /* TamagochiSelectNameViewController.h */,
-				A0C2D4DD1A1BCFD90013C95F /* TamagochiSelectNameViewController.m */,
-				A0C2D4DE1A1BCFD90013C95F /* TamagochiSelectNameViewController.xib */,
 			);
 			path = Tamagochi;
 			sourceTree = "<group>";
@@ -405,7 +414,7 @@
 				A0C2D4EB1A1BD5F70013C95F /* Contents.json */,
 			);
 			name = AppIcon.appiconset;
-			path = Images.xcassets/AppIcon.appiconset;
+			path = Tamagochi/Images.xcassets/AppIcon.appiconset;
 			sourceTree = "<group>";
 		};
 		A0C2D4EC1A1BD5F70013C95F /* Comida */ = {
@@ -674,6 +683,39 @@
 			path = Exhausto;
 			sourceTree = "<group>";
 		};
+		A0C2D6151A1E6BF20013C95F /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				A0C2D4E11A1BD2BA0013C95F /* TamagochiStatusViewController.h */,
+				A0C2D4E21A1BD2BA0013C95F /* TamagochiStatusViewController.m */,
+				A0C2D4E31A1BD2BA0013C95F /* TamagochiStatusViewController.xib */,
+				A0C2D4D71A1BCE580013C95F /* TamagochiWelcomeViewController.h */,
+				A0C2D4D81A1BCE580013C95F /* TamagochiWelcomeViewController.m */,
+				A0C2D4D91A1BCE580013C95F /* TamagochiWelcomeViewController.xib */,
+				A0C2D4DC1A1BCFD90013C95F /* TamagochiSelectNameViewController.h */,
+				A0C2D4DD1A1BCFD90013C95F /* TamagochiSelectNameViewController.m */,
+				A0C2D4DE1A1BCFD90013C95F /* TamagochiSelectNameViewController.xib */,
+				A0C2D6001A1E53B00013C95F /* TamagochiFoodSelectionViewController.h */,
+				A0C2D6011A1E53B00013C95F /* TamagochiFoodSelectionViewController.m */,
+				A0C2D6021A1E53B00013C95F /* TamagochiFoodSelectionViewController.xib */,
+			);
+			name = Screens;
+			sourceTree = "<group>";
+		};
+		A0C2D6161A1E6C310013C95F /* BasicComponents */ = {
+			isa = PBXGroup;
+			children = (
+				A0C2D6081A1E63C10013C95F /* TamagochiFoodCollection.h */,
+				A0C2D6091A1E63ED0013C95F /* TamagochiFoodCollection.m */,
+				A0C2D6051A1E5C2F0013C95F /* TamagochiFood.m */,
+				A0C2D6071A1E5CB60013C95F /* TamagochiFood.h */,
+				A0C2D6101A1E6BE20013C95F /* TamagochiUITableViewCell.h */,
+				A0C2D6111A1E6BE20013C95F /* TamagochiUITableViewCell.m */,
+				A0C2D6121A1E6BE20013C95F /* TamagochiUITableViewCell.xib */,
+			);
+			name = BasicComponents;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -761,6 +803,7 @@
 				A0C2D58C1A1BD5F70013C95F /* comida_8.png in Resources */,
 				A0C2D5E81A1BD5F70013C95F /* leon_ejercicio_3.png in Resources */,
 				A0C2D5991A1BD5F70013C95F /* ciervo_ejercicio_2@2x.png in Resources */,
+				A0C2D6141A1E6BE20013C95F /* TamagochiUITableViewCell.xib in Resources */,
 				A0C2D5B41A1BD5F70013C95F /* gato_ejercicio_3.png in Resources */,
 				A0C2D5B51A1BD5F70013C95F /* gato_ejercicio_3@2x.png in Resources */,
 				A0C2D5DB1A1BD5F70013C95F /* jirafa_exhausto_4@2x.png in Resources */,
@@ -859,6 +902,7 @@
 				A0C2D5C21A1BD5F70013C95F /* jirafa_comiendo_1.png in Resources */,
 				A0C2D5AB1A1BD5F70013C95F /* gato_comiendo_2@2x.png in Resources */,
 				A0C2D5B81A1BD5F70013C95F /* gato_ejercicio_5.png in Resources */,
+				A0C2D6041A1E53B00013C95F /* TamagochiFoodSelectionViewController.xib in Resources */,
 				A0C2D5E91A1BD5F70013C95F /* leon_ejercicio_3@2x.png in Resources */,
 				A0C2D5CB1A1BD5F70013C95F /* jirafa_ejercicio_1@2x.png in Resources */,
 				A0C2D5BD1A1BD5F70013C95F /* gato_exhausto_2@2x.png in Resources */,
@@ -901,9 +945,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0C2D6131A1E6BE20013C95F /* TamagochiUITableViewCell.m in Sources */,
 				A0C2D4B21A1BCA770013C95F /* AppDelegate.m in Sources */,
+				A0C2D6061A1E5C2F0013C95F /* TamagochiFood.m in Sources */,
 				A0C2D4DA1A1BCE580013C95F /* TamagochiWelcomeViewController.m in Sources */,
 				A0C2D4E41A1BD2BA0013C95F /* TamagochiStatusViewController.m in Sources */,
+				A0C2D6031A1E53B00013C95F /* TamagochiFoodSelectionViewController.m in Sources */,
+				A0C2D60A1A1E63ED0013C95F /* TamagochiFoodCollection.m in Sources */,
 				A0C2D4AF1A1BCA770013C95F /* main.m in Sources */,
 				A0C2D4DF1A1BCFD90013C95F /* TamagochiSelectNameViewController.m in Sources */,
 			);

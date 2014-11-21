@@ -7,6 +7,9 @@
 //
 
 #import "TamagochiStatusViewController.h"
+#import "TamagochiFoodSelectionViewController.h"
+
+
 
 @interface TamagochiStatusViewController ()
 
@@ -17,9 +20,12 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *petNameLabel;
 
+@property (strong, nonatomic) IBOutlet UIImageView *foodImage;
 @end
 
 @implementation TamagochiStatusViewController
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,10 +35,14 @@
     self.petNameLabel.text = self.petName;
 }
 
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil petName:(NSString *)aString tagSelected:(int)anInt
 {
@@ -76,6 +86,24 @@
 }
 
 
+
+//Pasa a la pantalla de seleccion de comida
+- (IBAction)switchToFoodSelection:(id)sender {
+    TamagochiFoodSelectionViewController *home = [[TamagochiFoodSelectionViewController alloc] initWithNibName:@"TamagochiFoodSelectionViewController" bundle:nil];
+    [home setDelegate:self];
+    [self.navigationController pushViewController:home animated:YES];
+    
+}
+
+
+
+//Delegate: Implemento el metodo del protocolo FoodProtocol
+//Se invoca cuando se ha seleccionado una comida
+-(id)foodSelected:(TamagochiFood *)foodObject
+{
+    self.foodImage.image = [UIImage imageNamed:[foodObject getImageName]];
+    return self;
+}
 
 /*
 #pragma mark - Navigation
