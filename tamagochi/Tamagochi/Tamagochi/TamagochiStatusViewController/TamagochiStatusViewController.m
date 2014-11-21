@@ -27,6 +27,7 @@
 @property (strong, nonatomic) IBOutlet UIProgressView *energyBar;
 
 
+
 @end
 
 @implementation TamagochiStatusViewController
