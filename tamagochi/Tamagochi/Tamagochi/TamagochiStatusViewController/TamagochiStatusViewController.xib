@@ -6,9 +6,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TamagochiStatusViewController">
             <connections>
+                <outlet property="energyBar" destination="h5A-lO-0CZ" id="qwC-1P-Q8T"/>
                 <outlet property="foodImage" destination="ptG-Ud-39Y" id="Ps9-Kg-5UH"/>
                 <outlet property="petImage" destination="JaJ-Sg-ucr" id="GZv-rD-pg6"/>
                 <outlet property="petNameLabel" destination="YoR-wj-imU" id="d0i-ri-MEZ"/>
+                <outlet property="tapGesture" destination="BH3-c5-ETX" id="jUc-7J-004"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,26 +20,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JaJ-Sg-ucr">
-                    <rect key="frame" x="107" y="132" width="200" height="200"/>
+                    <rect key="frame" x="107" y="132" width="250" height="250"/>
                 </imageView>
                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="h5A-lO-0CZ">
                     <rect key="frame" x="87" y="460" width="241" height="2"/>
                 </progressView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Energy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yxQ-5v-b0s">
-                    <rect key="frame" x="140" y="492" width="134" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your pet's name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YoR-wj-imU">
-                    <rect key="frame" x="113" y="103" width="189" height="21"/>
+                    <rect key="frame" x="113" y="70" width="189" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ptG-Ud-39Y">
-                    <rect key="frame" x="157" y="346" width="100" height="100"/>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqe-1h-fRP">
                     <rect key="frame" x="323" y="94" width="63" height="30"/>
                     <state key="normal" title="Feed">
@@ -47,9 +40,27 @@
                         <action selector="switchToFoodSelection:" destination="-1" eventType="touchUpInside" id="qjo-2X-BaS"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ptG-Ud-39Y">
+                    <rect key="frame" x="23" y="382" width="70" height="70"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Energy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yxQ-5v-b0s">
+                    <rect key="frame" x="140" y="470" width="134" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="0.90561549740000002" blue="0.52590239599999999" alpha="1" colorSpace="calibratedRGB"/>
+            <gestureRecognizers/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="BH3-c5-ETX" appends="YES" id="odY-Md-lf5"/>
+            </connections>
         </view>
+        <tapGestureRecognizer id="BH3-c5-ETX">
+            <connections>
+                <action selector="moverComida:" destination="-1" id="aP2-Gp-Ry1"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>
