@@ -8,6 +8,7 @@
 
 #import "TamagochiWelcomeViewController.h"
 #import "TamagochiSelectNameViewController.h"
+#import "TamagochiPet.h"
 
 
 @interface TamagochiWelcomeViewController ()
@@ -54,7 +55,7 @@
     else
     {
         TamagochiSelectNameViewController* home = [[TamagochiSelectNameViewController alloc] initWithNibName:@"TamagochiSelectNameViewController" bundle:nil petName:[self.textFieldName text]];
-
+        
         [self.navigationController pushViewController:home animated:YES];
         [self.navigationController setTitle:@"Choose an Image"];
     }
@@ -89,11 +90,6 @@
     {
         self.oldName = self.textFieldName.text;
     }
-    
-
-    
-
-    
 
 }
 

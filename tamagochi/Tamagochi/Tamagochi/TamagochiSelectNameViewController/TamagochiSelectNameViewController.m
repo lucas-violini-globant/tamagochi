@@ -8,6 +8,7 @@
 
 #import "TamagochiSelectNameViewController.h"
 #import "TamagochiStatusViewController.h"
+#import "TamagochiPet.h"
 
 @interface TamagochiSelectNameViewController ()
 @property (nonatomic)NSString *petName;
@@ -46,6 +47,11 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)switchToStatusScreen:(id)sender {
+    
+    //Singleton: Obtengo la instancia de TamagochiPet y le paso el tag, para que se setee solo
+    [[TamagochiPet sharedInstance] setTag:self.petTag];
+    
+    [[TamagochiPet sharedInstance] setName:self.petName];
     
     TamagochiStatusViewController *home = [[TamagochiStatusViewController alloc] initWithNibName:@"TamagochiStatusViewController" bundle:nil petName:self.petName tagSelected:self.petTag];
     [self.navigationController pushViewController:home animated:YES];

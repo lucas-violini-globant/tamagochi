@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TamagochiStatusViewController">
             <connections>
+                <outlet property="btnExercise" destination="Bjb-r1-Dw6" id="TGY-mA-RT9"/>
                 <outlet property="energyBar" destination="h5A-lO-0CZ" id="qwC-1P-Q8T"/>
                 <outlet property="foodImage" destination="ptG-Ud-39Y" id="Ps9-Kg-5UH"/>
                 <outlet property="petImage" destination="JaJ-Sg-ucr" id="GZv-rD-pg6"/>
@@ -49,6 +50,15 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bjb-r1-Dw6">
+                    <rect key="frame" x="157" y="402" width="150" height="30"/>
+                    <state key="normal" title="Start Exercise">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="clickExercising:" destination="-1" eventType="touchUpInside" id="th6-s0-BJh"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="0.90561549740000002" blue="0.52590239599999999" alpha="1" colorSpace="calibratedRGB"/>
             <gestureRecognizers/>

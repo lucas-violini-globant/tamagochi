@@ -11,3 +11,35 @@
 
 
 #endif
+
+@interface TamagochiPet
+
+-(TamagochiPet *) setTag:(int)someTag;
+
+-(void) setName:(NSString *)someName;
+
+-(NSString *)getPetName;
+
+-(NSString *)getPetType;
+
+-(NSArray *)getFeedingImagesArray;
+
+-(NSArray *)getExercisingImagesArray;
+
++ (instancetype) sharedInstance;
+
+-(BOOL) startEating;
+
+-(BOOL) stopEating;
+
+-(BOOL) isEating;
+
+-(BOOL) startExercising;
+
+-(BOOL) stopExercising;
+
+-(BOOL) isExercising;
+
+-(int)getEnergy;
+
+@end

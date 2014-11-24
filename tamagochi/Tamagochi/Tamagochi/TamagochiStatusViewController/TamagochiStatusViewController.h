@@ -14,6 +14,8 @@
 
 -(IBAction)sendEmail:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UIButton *btnExercise;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil petName:(NSString *)aString tagSelected:(int)anInt;
 
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapGesture;
