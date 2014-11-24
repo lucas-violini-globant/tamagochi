@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A08340FF1A2377EE00F65082 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A08340FE1A2377ED00F65082 /* MessageUI.framework */; };
 		A0C2D4AF1A1BCA770013C95F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2D4AE1A1BCA770013C95F /* main.m */; };
 		A0C2D4B21A1BCA770013C95F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2D4B11A1BCA770013C95F /* AppDelegate.m */; };
 		A0C2D4BA1A1BCA770013C95F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0C2D4B91A1BCA770013C95F /* Images.xcassets */; };
@@ -162,6 +163,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A08340FE1A2377ED00F65082 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A0C2D4A91A1BCA770013C95F /* Tamagochi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tamagochi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C2D4AD1A1BCA770013C95F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0C2D4AE1A1BCA770013C95F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A08340FF1A2377EE00F65082 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +342,7 @@
 		A0C2D4A01A1BCA770013C95F = {
 			isa = PBXGroup;
 			children = (
+				A08340FE1A2377ED00F65082 /* MessageUI.framework */,
 				A0C2D4AB1A1BCA770013C95F /* Tamagochi */,
 				A0C2D4C51A1BCA780013C95F /* TamagochiTests */,
 				A0C2D4AA1A1BCA770013C95F /* Products */,
