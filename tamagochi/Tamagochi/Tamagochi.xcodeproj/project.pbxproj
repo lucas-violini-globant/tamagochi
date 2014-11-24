@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A08340FF1A2377EE00F65082 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A08340FE1A2377ED00F65082 /* MessageUI.framework */; };
+		A08341011A23904B00F65082 /* TamagochiPet.m in Sources */ = {isa = PBXBuildFile; fileRef = A08341001A23904B00F65082 /* TamagochiPet.m */; };
 		A0C2D4AF1A1BCA770013C95F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2D4AE1A1BCA770013C95F /* main.m */; };
 		A0C2D4B21A1BCA770013C95F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2D4B11A1BCA770013C95F /* AppDelegate.m */; };
 		A0C2D4BA1A1BCA770013C95F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0C2D4B91A1BCA770013C95F /* Images.xcassets */; };
@@ -164,6 +165,8 @@
 
 /* Begin PBXFileReference section */
 		A08340FE1A2377ED00F65082 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		A08341001A23904B00F65082 /* TamagochiPet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TamagochiPet.m; sourceTree = "<group>"; };
+		A08341021A23907C00F65082 /* TamagochiPet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TamagochiPet.h; sourceTree = "<group>"; };
 		A0C2D4A91A1BCA770013C95F /* Tamagochi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tamagochi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C2D4AD1A1BCA770013C95F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0C2D4AE1A1BCA770013C95F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -716,6 +719,8 @@
 				A0C2D6101A1E6BE20013C95F /* TamagochiUITableViewCell.h */,
 				A0C2D6111A1E6BE20013C95F /* TamagochiUITableViewCell.m */,
 				A0C2D6121A1E6BE20013C95F /* TamagochiUITableViewCell.xib */,
+				A08341001A23904B00F65082 /* TamagochiPet.m */,
+				A08341021A23907C00F65082 /* TamagochiPet.h */,
 			);
 			name = BasicComponents;
 			sourceTree = "<group>";
@@ -958,6 +963,7 @@
 				A0C2D60A1A1E63ED0013C95F /* TamagochiFoodCollection.m in Sources */,
 				A0C2D4AF1A1BCA770013C95F /* main.m in Sources */,
 				A0C2D4DF1A1BCFD90013C95F /* TamagochiSelectNameViewController.m in Sources */,
+				A08341011A23904B00F65082 /* TamagochiPet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
