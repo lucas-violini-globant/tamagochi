@@ -32,6 +32,48 @@
 
 @implementation TamagochiStatusViewController
 
+- (IBAction)sendEmail:(id)sender {
+    
+    NSString *subject = @"Titulo del email";
+    NSString *message = @"Mensaje del email";
+    NSArray *recipients = [[NSArray alloc] initWithObjects:@"lucas.violini@globant.com", nil];
+    MFMailComposeViewController *composer = [[MFMailComposeViewController alloc] init];
+    composer.mailComposeDelegate = self;
+    [composer setSubject:subject];
+    [composer setMessageBody:message isHTML:NO];
+    [composer setToRecipients:recipients] ;
+    [self presentViewController:composer animated:NO completion:nil];
+    
+    
+}
+
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    
+    NSString *mensaje;
+    switch (result) {
+        case MFMailComposeResultCancelled:
+            mensaje = @"Envio cancelado";
+            break;
+        case MFMailComposeResultFailed:
+            mensaje = @"Envio fallido";
+            break;
+        case MFMailComposeResultSaved:
+            mensaje = @"Email guardado en borradores";
+            break;
+            
+        case MFMailComposeResultSent:
+            mensaje = @"Email enviado exitosamente!";
+            break;
+        default:
+            mensaje = @"Estado indefinido";
+            break;
+    }
+    UIAlertView *alerta = [[UIAlertView alloc] initWithTitle:@"Alert" message:mensaje delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
+    [alerta show];
+    [self dismissViewControllerAnimated:YES completion:NULL];
+    
+}
 
 
 - (void)viewDidLoad {
@@ -40,9 +82,18 @@
     NSString *imageName = [self getImageNameByTag:self.imageTag];
     self.petImage.image = [UIImage imageNamed:imageName];
     self.petNameLabel.text = self.petName;
+
+
+    
 }
 
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    UIBarButtonItem *emailButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(sendEmail:)];
+    self.navigationItem.rightBarButtonItem = emailButton;
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -127,15 +178,12 @@
         [self setPetName:aString];
         self.imageTag = anInt;
         self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moverComida:)];
+
     }
     
     return self;
     
 }
-
-
-
-
 
 
 

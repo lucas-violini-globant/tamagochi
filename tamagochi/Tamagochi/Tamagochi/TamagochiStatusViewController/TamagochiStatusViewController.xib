@@ -11,7 +11,7 @@
                 <outlet property="petImage" destination="JaJ-Sg-ucr" id="GZv-rD-pg6"/>
                 <outlet property="petNameLabel" destination="YoR-wj-imU" id="d0i-ri-MEZ"/>
                 <outlet property="tapGesture" destination="BH3-c5-ETX" id="jUc-7J-004"/>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="Yo9-Qv-mqh"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

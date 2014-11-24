@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 #import "TamagochiFoodSelectionViewController.h"
 
-@interface TamagochiStatusViewController : UIViewController<FoodProtocol>
+@interface TamagochiStatusViewController : UIViewController<FoodProtocol, MFMailComposeViewControllerDelegate>
+
+-(IBAction)sendEmail:(id)sender;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil petName:(NSString *)aString tagSelected:(int)anInt;
 
