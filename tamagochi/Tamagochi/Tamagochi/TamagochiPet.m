@@ -22,8 +22,9 @@
 @property float energy;
 @property float exerciseEnergyCost;
 @property int level;
-@property BOOL stateIsExercising;
-@property BOOL stateIsEating;
+@property float experience;
+//@property BOOL stateIsExercising;
+//@property BOOL stateIsEating;
 @property (nonatomic, strong) NSString *imageNameNormal;
 @property (nonatomic, strong) NSString *imageNameExhausted;
 @property (nonatomic, strong) NSString *imageNameCurrent;
@@ -44,10 +45,11 @@
     _imageNameExhausted = [instancia getExhaustedImageNameByTag:someTag];
     _imageNameCurrent = _imageNameNormal;
     _typeName = [instancia getPetTypeByTag:someTag];
-    _stateIsEating = NO;
-    _stateIsExercising = NO;
+    //_stateIsEating = NO;
+    //_stateIsExercising = NO;
     _level = 0;
     _energy = 50.0;
+    _experience = 0.0;
     _exerciseEnergyCost = 30.0;
     if (_name == nil)
     {
@@ -86,6 +88,31 @@
 }
 
 
+-(float)experienceRequiredForNextLevel
+{
+    return (_level * _level * 100);
+}
+
+-(BOOL)addExperience:(float) aFloat
+{
+    _experience = _experience + aFloat;
+    if (_experience <= [self experienceRequiredForNextLevel])
+    {
+        [self didPassLevel];
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
+
+-(void)didPassLevel
+{
+    //sin implementar
+    _level = _level + 1;
+}
+
 -(NSString *)getNormalImageNameByTag:(long)tag
 {
     NSString *imageName = @"";
@@ -119,16 +146,16 @@
     
     switch (tag) {
         case 0:
-            imageName = @"ciervo_exhausto_1";
+            imageName = @"ciervo_exhausto_4";
             break;
         case 1:
-            imageName = @"gato_exhausto_1";
+            imageName = @"gato_exhausto_4";
             break;
         case 2:
-            imageName = @"jirafa_exhausto_1";
+            imageName = @"jirafa_exhausto_4";
             break;
         case 3:
-            imageName = @"leon_exhausto_1";
+            imageName = @"leon_exhausto_4";
             break;
         default:
             imageName = @"";
@@ -330,15 +357,19 @@
 -(BOOL)switchStateToExhausted
 {
     _imageNameCurrent = _imageNameExhausted;
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PET_STATUS_CHANGED" object:nil];
+
     return YES;
 }
 
 -(BOOL) eatFood:(TamagochiFood *) someFood
+//Returns YES if it was able to eat the food, otherwise return NO
 {
     if ([self canBeFed])
     {
         _energy = _energy + [someFood getEnergy];
-        _stateIsEating = YES;
+
         return YES;
     }
     else
@@ -346,35 +377,44 @@
         return NO;
     }
     
-    //Por ahora empieza y termina de comer en el mismo metodo
-    _stateIsEating = NO;
+    //Por ahora empieza y termina de comer en el mismo momento
+
 }
 
 -(BOOL)doneEating
 {
-    _stateIsEating = NO;
+    //_stateIsEating = NO;
     return YES;
 }
 
 -(BOOL) isEating
 {
-    return _stateIsEating;
+    //return _stateIsEating;
+    return NO;
 }
 
 
 
 -(BOOL) exercise
+//Returns YES if it was able to exercise, otherwise return NO
 {
+    
     if ([self canBeExercised])
     {
-        _energy = _energy - _exerciseEnergyCost;
-        _stateIsExercising = YES;
+        _energy = _energy - _exerciseEnergyCost; //Reduce the amount of energy
+        //_stateIsExercising = YES;
+        [self addExperience:15.0f];
+        if (![self canBeExercised])
+        {
+            [self switchStateToExhausted];
+        }
         return YES;
     }
     else
     {
         return NO;
     }
+    //_stateIsExercising = NO; //Asumimos que internamente termina de comer en el momento
 }
 
 -(BOOL) canBeExercised
@@ -393,20 +433,21 @@
 
 -(BOOL) doneExercising
 {
-    _stateIsExercising = NO;
+    //_stateIsExercising = NO;
     return YES;
 }
 
 
 -(BOOL) isExercising
 {
-    return _stateIsExercising;
+    //return _stateIsExercising;
+    return NO;
 }
 
 
 -(BOOL) isExhausted
 {
-    return (_energy < 1);
+    return (_energy < 0);
 }
 
 

@@ -14,7 +14,7 @@
 
 @interface TamagochiStatusViewController ()
 
-@property (nonatomic,strong) NSString *petName;
+//@property (nonatomic,strong) NSString *petName;
 @property int imageTag;
 
 @property (strong, nonatomic) IBOutlet UIImageView *petImage;
@@ -85,11 +85,7 @@
 
     NSString *imageName = [[TamagochiPet sharedInstance] getImage];
     self.petImage.image = [UIImage imageNamed:imageName];
-    self.petNameLabel.text = self.petName;
-    
-    
-
-
+    self.petNameLabel.text = [[TamagochiPet sharedInstance] getName];
     
 }
 
@@ -98,7 +94,15 @@
     [super viewWillAppear:animated];
     UIBarButtonItem *emailButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(sendEmail:)];
     self.navigationItem.rightBarButtonItem = emailButton;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(petStatusChanged)
+                                                 name:@"PET_STATUS_CHANGED" object:nil];
     
+}
+
+-(void)petStatusChanged
+{
+    NSLog(@"Method inoked: TamagochiStatusViewController -> petStatusChanged");
+    self.petImage.image = [UIImage imageNamed:[[TamagochiPet sharedInstance] getImage ] ];
 }
 
 
@@ -110,6 +114,7 @@
     
     if ([pet canBeExercised])
         {
+            NSLog(@"Can Be Exercised");
             //Se puede ejercitar, entonces que empiece
             self.exerciseTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target: self selector: @selector(tick:) userInfo: nil repeats: YES];
             [self.btnExercise setTitle:@"Stop Exercise" forState:UIControlStateNormal];
@@ -117,6 +122,7 @@
     
         else
         {
+            NSLog(@"Can NOT Be Exercised");
             //Ya estaba ejercitando, asi que lo que corresponde hacer es dejar de ejercitar, y detener el timer.
             [[TamagochiPet sharedInstance] doneExercising];
             if(self.exerciseTimer && [self.exerciseTimer isValid])
@@ -127,18 +133,16 @@
             [self.btnExercise setTitle:@"Start Exercise" forState:UIControlStateNormal];
          }
 
-    
-
-
-
-
 }
+
+
 
 -(void)tick:(NSTimer *)timer
 {
     TamagochiPet *pet =[TamagochiPet sharedInstance];
-    if ([ pet exercise])
+    if ([ pet canBeExercised])
     {
+        [pet exercise];
         [self animateExercisingPet];
         self.energyBar.progress = [pet getEnergy] / 100 ;
         //NSString *msg = [NSString stringWithFormat:@"%0.0f",[pet getEnergy]];
@@ -146,6 +150,7 @@
     }
     else
     {
+        //No se puede ejercitar mas, detengo el timer
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Your pet is exhausted!" delegate:self cancelButtonTitle:@"Okay"otherButtonTitles:nil];
         [alert show];
         
@@ -156,6 +161,7 @@
         }
     }
 }
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -221,8 +227,11 @@
                                         {
                                             TamagochiPet *pet = [TamagochiPet sharedInstance];
                                             if ([pet canBeFed])
-                                            {                                                
+                                            {
+                                                NSLog([NSString stringWithFormat:@"Energia antes de comida con energia %f: %f",[self.foodSelected getEnergy],[pet getEnergy]]);
+
                                                 [pet eatFood:self.foodSelected];
+                                                NSLog([NSString stringWithFormat:@"Energia despues de comida con energia %f: %f",[self.foodSelected getEnergy],[pet getEnergy]]);
                                                     [UIView animateWithDuration:0.5
                                                                           delay:0.0
                                                                         options:UIViewAnimationOptionBeginFromCurrentState
@@ -261,7 +270,7 @@
         TamagochiPet *pet = [TamagochiPet sharedInstance];
         [pet setName:aString];
         [pet setTag:anInt];
-        [self setPetName:aString];
+        [pet setName:aString];
         self.imageTag = anInt;
         self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moverComida:)];
 
@@ -367,6 +376,7 @@
 {
     self.foodImage.image = [UIImage imageNamed:[foodObject getImageName]];
     [self.foodImage setAlpha:1.0];
+    self.foodSelected = foodObject;
     return self;
 }
 

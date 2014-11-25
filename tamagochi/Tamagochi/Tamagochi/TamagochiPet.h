@@ -22,6 +22,8 @@
 
 -(NSString *)getPetName;
 
+-(NSString *)getName;
+
 -(NSString *)getPetType;
 
 -(NSArray *)getFeedingImagesArray;
