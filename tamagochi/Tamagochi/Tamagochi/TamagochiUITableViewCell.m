@@ -34,6 +34,9 @@
     
     self.labelName.text = [comida getName];
     
+
+    self.labelEnergy.text = [NSString stringWithFormat:@"%0.0f",[comida getEnergy]];
+    
     self.foodObject = comida;
     
     return self;

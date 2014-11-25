@@ -19,4 +19,6 @@
 
 -(NSString *)getImageName;
 
+-(float) getEnergy;
+
 @end

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "TamagochiFood.h"
 
 
 @interface TamagochiPet : NSObject
@@ -17,12 +18,15 @@
 @property int tagId;
 @property (nonatomic, strong) NSArray *feedingImages;
 @property (nonatomic, strong) NSArray *exercisingImages;
-@property int energy;
-@property int energyStep;
+@property (nonatomic, strong) NSArray *exhaustedImages;
+@property float energy;
+@property float exerciseEnergyCost;
 @property int level;
 @property BOOL stateIsExercising;
 @property BOOL stateIsEating;
-@property (nonatomic, weak) NSString *imageName;
+@property (nonatomic, strong) NSString *imageNameNormal;
+@property (nonatomic, strong) NSString *imageNameExhausted;
+@property (nonatomic, strong) NSString *imageNameCurrent;
 
 
 @end
@@ -35,13 +39,16 @@
     TamagochiPet *instancia = [TamagochiPet sharedInstance];
     _feedingImages = [instancia getFeedingImagesArrayByTag:someTag];
     _exercisingImages = [instancia getExercisingImagesArrayByTag:someTag];
-    _imageName = [instancia getImageNameByTag:someTag];
+    _exhaustedImages = [instancia getExhaustedImagesArrayByTag:someTag];
+    _imageNameNormal = [instancia getNormalImageNameByTag:someTag];
+    _imageNameExhausted = [instancia getExhaustedImageNameByTag:someTag];
+    _imageNameCurrent = _imageNameNormal;
     _typeName = [instancia getPetTypeByTag:someTag];
     _stateIsEating = NO;
     _stateIsExercising = NO;
     _level = 0;
-    _energy = 50;
-    _energyStep = 10;
+    _energy = 50.0;
+    _exerciseEnergyCost = 30.0;
     if (_name == nil)
     {
         _name = @"";
@@ -56,36 +63,6 @@
 }
 
 
--(BOOL)increaseEnergyLevel
-{
-//Intenta aumentar su nivel energia, si sale todo bien devuelve YES
-    BOOL result = YES;
-    _energy = _energy + _energyStep;
-    if (_energy > 100)
-    {
-        _energy = 100;
-        result = NO;
-    }
-    
-    return result;
-    
-}
-
--(BOOL)decreaseEnergyLevel
-//Intenta reducir su nivel energia, si sale todo bien devuelve YES
-{
-    BOOL result = YES;
-    _energy = _energy - _energyStep;
-    if (_energy < 0)
-    {
-        _energy = 0;
-        result = NO;
-    }
-    
-    return result;
-}
-
-
 -(NSArray *)getFeedingImagesArray
 {
     return _feedingImages;
@@ -97,9 +74,19 @@
     return _exercisingImages;
 }
 
+-(NSArray *)getExhaustedImagesArray
+{
+    return _exhaustedImages;
+}
 
 
--(NSString *)getImageNameByTag:(long)tag
+-(NSString *)getImage
+{
+    return _imageNameCurrent;
+}
+
+
+-(NSString *)getNormalImageNameByTag:(long)tag
 {
     NSString *imageName = @"";
     
@@ -115,6 +102,33 @@
             break;
         case 3:
             imageName = @"leon_comiendo_1";
+            break;
+        default:
+            imageName = @"";
+            break;
+    }
+    return imageName;
+    
+}
+
+
+
+-(NSString *)getExhaustedImageNameByTag:(long)tag
+{
+    NSString *imageName = @"";
+    
+    switch (tag) {
+        case 0:
+            imageName = @"ciervo_exhausto_1";
+            break;
+        case 1:
+            imageName = @"gato_exhausto_1";
+            break;
+        case 2:
+            imageName = @"jirafa_exhausto_1";
+            break;
+        case 3:
+            imageName = @"leon_exhausto_1";
             break;
         default:
             imageName = @"";
@@ -214,6 +228,56 @@
 
 
 
+
+-(NSArray *)getExhaustedImagesArrayByTag:(long)tag
+{
+    NSArray * arreglo;
+    
+    switch (tag) {
+        case 0:
+            //Ciervo
+            arreglo = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"ciervo_exhausto_1"],
+                       [UIImage imageNamed:@"ciervo_exhausto_2"],
+                       [UIImage imageNamed:@"ciervo_exhausto_3"],
+                       [UIImage imageNamed:@"ciervo_exhausto_4"],
+                       nil];
+            break;
+        case 1:
+            //Gato
+            arreglo = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"gato_ejercicio_1"],
+                       [UIImage imageNamed:@"gato_exhausto_2"],
+                       [UIImage imageNamed:@"gato_exhausto_3"],
+                       [UIImage imageNamed:@"gato_exhausto_4"],
+                       nil];
+            break;
+        case 2:
+            //Jirafa
+            arreglo = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"jirafa_ejercicio_1"],
+                       [UIImage imageNamed:@"jirafa_exhausto_2"],
+                       [UIImage imageNamed:@"jirafa_exhausto_3"],
+                       [UIImage imageNamed:@"jirafa_exhausto_4"],
+                       nil];
+            break;
+        case 3:
+            //Leon
+            arreglo = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"leon_ejercicio_1"],
+                       [UIImage imageNamed:@"leon_exhausto_2"],
+                       [UIImage imageNamed:@"leon_exhausto_3"],
+                       [UIImage imageNamed:@"leon_exhausto_4"],
+                       nil];
+            break;
+        default:
+            arreglo = [[NSArray alloc] initWithObjects:nil];
+            break;
+    }
+    return arreglo;
+    
+}
+
+
+
+
+
 -(NSString *)getPetTypeByTag:(long)tag
 {
     NSString *resultado;
@@ -258,16 +322,22 @@
 }
 
 
--(int)getEnergy
+-(float)getEnergy
 {
     return _energy;
 }
 
-
--(BOOL) startEating
+-(BOOL)switchStateToExhausted
 {
-    if ([self increaseEnergyLevel])
+    _imageNameCurrent = _imageNameExhausted;
+    return YES;
+}
+
+-(BOOL) eatFood:(TamagochiFood *) someFood
+{
+    if ([self canBeFed])
     {
+        _energy = _energy + [someFood getEnergy];
         _stateIsEating = YES;
         return YES;
     }
@@ -280,11 +350,11 @@
     _stateIsEating = NO;
 }
 
--(void) stopEating
+-(BOOL)doneEating
 {
     _stateIsEating = NO;
+    return YES;
 }
-
 
 -(BOOL) isEating
 {
@@ -293,10 +363,11 @@
 
 
 
--(BOOL) startExercising
+-(BOOL) exercise
 {
-    if ([self decreaseEnergyLevel])
+    if ([self canBeExercised])
     {
+        _energy = _energy - _exerciseEnergyCost;
         _stateIsExercising = YES;
         return YES;
     }
@@ -308,16 +379,19 @@
 
 -(BOOL) canBeExercised
 {
-    return (_energy - _energyStep > 0);
+    return ((_energy - _exerciseEnergyCost > 0) && (![self isEating]));
 }
+
+
 
 -(BOOL) canBeFed
 {
-    return (_energy < 100);
+    return ((_energy < 100) && (![self isExercising]));
 }
 
 
--(BOOL) stopExercising
+
+-(BOOL) doneExercising
 {
     _stateIsExercising = NO;
     return YES;
@@ -329,6 +403,11 @@
     return _stateIsExercising;
 }
 
+
+-(BOOL) isExhausted
+{
+    return (_energy < 1);
+}
 
 
 + (instancetype) sharedInstance

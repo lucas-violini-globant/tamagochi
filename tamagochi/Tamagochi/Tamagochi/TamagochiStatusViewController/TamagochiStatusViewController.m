@@ -25,9 +25,9 @@
 
 @property (strong, strong) NSTimer *exerciseTimer;
 
--(void)animateFeedingPet;
-
 @property (strong, nonatomic) IBOutlet UIProgressView *energyBar;
+
+@property (strong , nonatomic) TamagochiFood* foodSelected;
 
 
 
@@ -83,7 +83,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
-    NSString *imageName = [self getImageNameByTag:self.imageTag];
+    NSString *imageName = [[TamagochiPet sharedInstance] getImage];
     self.petImage.image = [UIImage imageNamed:imageName];
     self.petNameLabel.text = self.petName;
     
@@ -104,28 +104,31 @@
 
 - (IBAction)clickExercising:(id)sender
 {
-    if ([[TamagochiPet sharedInstance] canBeExercised])
-    {
-        
-    }
-    if ([[TamagochiPet sharedInstance] isExercising] && ![[TamagochiPet sharedInstance] canBeExercised])
-    {
-        //Ya estaba ejercitando, asi que lo que corresponde hacer es dejar de ejercitar, y detener el timer.
-        [[TamagochiPet sharedInstance] stopExercising];
-        if(self.exerciseTimer && [self.exerciseTimer isValid])
+    TamagochiPet *pet =[TamagochiPet sharedInstance];
+    NSString *msg = [NSString stringWithFormat:@"%0.0f",[pet getEnergy]];
+    NSLog(msg);
+    
+    if ([pet canBeExercised])
         {
-            [self.exerciseTimer invalidate];
-            self.exerciseTimer = nil;
+            //Se puede ejercitar, entonces que empiece
+            self.exerciseTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target: self selector: @selector(tick:) userInfo: nil repeats: YES];
+            [self.btnExercise setTitle:@"Stop Exercise" forState:UIControlStateNormal];
         }
-        [self.btnExercise setTitle:@"Stop Exercise" forState:UIControlStateNormal];
-        
-    }
-    else
-    {
-        //No se esta ejercitando, entonces que empiece a ejercitar
-        self.exerciseTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target: self selector: @selector(tick:) userInfo: nil repeats: YES];
-        [self.btnExercise setTitle:@"Start Exercise" forState:UIControlStateNormal];
-    }
+    
+        else
+        {
+            //Ya estaba ejercitando, asi que lo que corresponde hacer es dejar de ejercitar, y detener el timer.
+            [[TamagochiPet sharedInstance] doneExercising];
+            if(self.exerciseTimer && [self.exerciseTimer isValid])
+            {
+                [self.exerciseTimer invalidate];
+                self.exerciseTimer = nil;
+            }
+            [self.btnExercise setTitle:@"Start Exercise" forState:UIControlStateNormal];
+         }
+
+    
+
 
 
 
@@ -134,13 +137,12 @@
 -(void)tick:(NSTimer *)timer
 {
     TamagochiPet *pet =[TamagochiPet sharedInstance];
-    if ([ pet startExercising])
+    if ([ pet exercise])
     {
         [self animateExercisingPet];
         self.energyBar.progress = [pet getEnergy] / 100 ;
-        NSString *msg = [NSString stringWithFormat:@"Energia: %d",pet.getEnergy];
-        
-        NSLog(msg);
+        //NSString *msg = [NSString stringWithFormat:@"%0.0f",[pet getEnergy]];
+        //NSLog(msg);
     }
     else
     {
@@ -173,6 +175,10 @@
 }
 
 
+-(void)switchToExhausted
+{
+    self.petImage.image = [UIImage imageNamed:[[TamagochiPet sharedInstance] getImage ]  ];
+}
 
 
 
@@ -213,8 +219,10 @@
                          
                                         if(puntoNuevo.x > 110.0f && puntoNuevo.x < 255.0f && puntoNuevo.y > 200.0f && puntoNuevo.y < 350.0f)
                                         {
-                                            if ([[TamagochiPet sharedInstance] startEating])
-                                            {
+                                            TamagochiPet *pet = [TamagochiPet sharedInstance];
+                                            if ([pet canBeFed])
+                                            {                                                
+                                                [pet eatFood:self.foodSelected];
                                                     [UIView animateWithDuration:0.5
                                                                           delay:0.0
                                                                         options:UIViewAnimationOptionBeginFromCurrentState
@@ -222,7 +230,7 @@
                                                      {
                                                          self.foodImage.alpha = 0.0;
                                                          [self animateFeedingPet];
-                                                         [self changeEnergyBarTo:1.0];
+                                                         [self changeEnergyBarTo:([pet getEnergy] / 100)];
                                                      }
                                                               completion:^(BOOL finished)
                                                                         {

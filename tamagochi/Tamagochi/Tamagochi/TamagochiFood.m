@@ -12,7 +12,9 @@
 
 @property (nonatomic, strong) NSString *foodImageName;
 @property (nonatomic, strong) NSString *foodName;
+@property float foodEnergy;
 @property int foodId;
+
 
 @end
 
@@ -26,14 +28,15 @@
     if (self)
     {
         self.foodId = foodId;
-        self.foodName = [self setFoodNameById:foodId];
-        self.foodImageName = [self setFoodImageNameById:foodId];
+        self.foodName = [self getFoodNameById:foodId];
+        self.foodImageName = [self getFoodImageNameById:foodId];
+        self.foodEnergy = [self getFoodEnergyById:foodId];
     }
     return self;
 }
 
 
--(NSString *)setFoodImageNameById:(int)aFoodId
+-(NSString *)getFoodImageNameById:(int)aFoodId
 {
     NSString *name = @"";
     switch (aFoodId) {
@@ -72,7 +75,7 @@
 }
 
 
--(NSString *)setFoodNameById:(int)aFoodId
+-(NSString *)getFoodNameById:(int)aFoodId
 {
     NSString *name = @"";
     switch (aFoodId) {
@@ -111,6 +114,46 @@
 }
 
 
+-(float)getFoodEnergyById:(int)aFoodId
+{
+    float energy = 0.0f;
+    switch (aFoodId) {
+        case 0:
+            energy = 40.0f;
+            break;
+        case 1:
+            energy = 50.0f;
+            break;
+        case 2:
+            energy = 30.0f;
+            break;
+        case 3:
+            energy = 40.0f;
+            break;
+        case 4:
+            energy = 20.0f;
+            break;
+        case 5:
+            energy = 20.0f;
+            break;
+        case 6:
+            energy = 10.0f;
+            break;
+        case 7:
+            energy = 45.0f;
+            break;
+        case 8:
+            energy = 30.0f;
+            break;
+        default:
+            energy = 0.0f;
+            break;
+    }
+    return energy;
+}
+
+
+
 -(NSString *)getName
 {
     return _foodName;
@@ -120,6 +163,14 @@
 {
     return _foodImageName;
 }
+
+-(float) getEnergy
+{
+    return _foodEnergy;
+}
+
+
+
 
 
 @end
