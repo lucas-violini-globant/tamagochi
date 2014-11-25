@@ -42,4 +42,8 @@
 
 -(int)getEnergy;
 
+-(BOOL) canBeExercised;
+
+-(BOOL) canBeFed;
+
 @end

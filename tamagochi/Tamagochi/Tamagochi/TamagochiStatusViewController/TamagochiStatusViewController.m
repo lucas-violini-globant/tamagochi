@@ -104,7 +104,11 @@
 
 - (IBAction)clickExercising:(id)sender
 {
-    if ([[TamagochiPet sharedInstance] isExercising])
+    if ([[TamagochiPet sharedInstance] canBeExercised])
+    {
+        
+    }
+    if ([[TamagochiPet sharedInstance] isExercising] && ![[TamagochiPet sharedInstance] canBeExercised])
     {
         //Ya estaba ejercitando, asi que lo que corresponde hacer es dejar de ejercitar, y detener el timer.
         [[TamagochiPet sharedInstance] stopExercising];
@@ -237,13 +241,6 @@
      
      }
     
-        
-    
-    /*
-    CGPoint translation = [recognizer translationInView:self.view];
-    recognizer.view.center = CGPointMake(recognizer.view.center.x + translation.x,recognizer.view.center.y + translation.y);
-    [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
-     */
 }
 
 

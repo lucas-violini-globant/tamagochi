@@ -306,6 +306,15 @@
     }
 }
 
+-(BOOL) canBeExercised
+{
+    return (_energy - _energyStep > 0);
+}
+
+-(BOOL) canBeFed
+{
+    return (_energy < 100);
+}
 
 
 -(BOOL) stopExercising
