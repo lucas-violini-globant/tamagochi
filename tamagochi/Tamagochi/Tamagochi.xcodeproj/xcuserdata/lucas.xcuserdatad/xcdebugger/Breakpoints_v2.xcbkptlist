@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tamagochi/TamagochiStatusViewController/TamagochiStatusViewController.m"
-            timestampString = "438638818.81782"
+            timestampString = "438642523.734228"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
+            startingLineNumber = "284"
+            endingLineNumber = "284"
             landmarkName = "-moverComida:"
             landmarkType = "5">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tamagochi/TamagochiStatusViewController/TamagochiStatusViewController.m"
-            timestampString = "438638818.81782"
+            timestampString = "438642523.734228"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
             landmarkName = "-animateExercisingPet"
             landmarkType = "5">
          </BreakpointContent>
@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tamagochi/TamagochiStatusViewController/TamagochiStatusViewController.m"
-            timestampString = "438638818.81782"
+            timestampString = "438642523.734228"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
             landmarkName = "-animateExercisingPet"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tamagochi/TamagochiStatusViewController/TamagochiStatusViewController.m"
-            timestampString = "438638818.81782"
+            timestampString = "438642523.734228"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
             landmarkName = "-animateExercisingPet"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tamagochi/TamagochiPet.m"
-            timestampString = "438636788.254293"
+            timestampString = "438642367.281749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
             landmarkName = "-getExercisingImagesArrayByTag:"
             landmarkType = "5">
          </BreakpointContent>
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tamagochi/TamagochiPet.m"
-            timestampString = "438639576.831256"
+            timestampString = "438642367.281749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
+            startingLineNumber = "380"
+            endingLineNumber = "380"
             landmarkName = "-eatFood:"
             landmarkType = "5">
          </BreakpointContent>
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tamagochi/TamagochiStatusViewController/TamagochiStatusViewController.m"
-            timestampString = "438638818.81782"
+            timestampString = "438642367.281749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
             landmarkName = "-clickExercising:"
             landmarkType = "5">
          </BreakpointContent>
@@ -362,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tamagochi/TamagochiPet.m"
-            timestampString = "438636788.254293"
+            timestampString = "438642367.281749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
             landmarkName = "-getExercisingImagesArrayByTag:"
             landmarkType = "5">
          </BreakpointContent>

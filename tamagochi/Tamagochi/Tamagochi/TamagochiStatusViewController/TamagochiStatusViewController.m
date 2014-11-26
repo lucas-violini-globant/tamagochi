@@ -96,15 +96,35 @@
     self.navigationItem.rightBarButtonItem = emailButton;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(petStatusChanged)
                                                  name:@"PET_STATUS_CHANGED" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(petStatusChangedToNormal)
+                                                 name:@"PET_STATUS_CHANGED_NORMAL" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(petStatusChanged)
+                                                 name:@"LEVEL_PASSED" object:nil];
 }
 
 -(void)petStatusChanged
 {
     NSLog(@"Method inoked: TamagochiStatusViewController -> petStatusChanged");
-    self.petImage.image = [UIImage imageNamed:[[TamagochiPet sharedInstance] getImage ] ];
+    TamagochiPet *pet = [TamagochiPet sharedInstance];
+    if([pet isExhausted])
+    {
+         [self animateExhaustedPet];
+    }
+    self.petImage.image = [UIImage imageNamed:[pet getImage ] ];
 }
 
+
+-(void)petStatusChangedToNormal
+{
+    NSLog(@"Method inoked: TamagochiStatusViewController -> petStatusChanged TO NORMAL");
+    TamagochiPet *pet = [TamagochiPet sharedInstance];
+    if([pet isExhausted])
+    {
+        [self animateExhaustedPet];
+    }
+    self.petImage.image = [UIImage imageNamed:[pet getImage ] ];
+}
 
 - (IBAction)clickExercising:(id)sender
 {
@@ -151,8 +171,7 @@
     else
     {
         //No se puede ejercitar mas, detengo el timer
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Your pet is exhausted!" delegate:self cancelButtonTitle:@"Okay"otherButtonTitles:nil];
-        [alert show];
+        NSLog(@"The pet is exhausted!!");
         
         if(self.exerciseTimer && [self.exerciseTimer isValid])
         {
@@ -172,7 +191,9 @@
 
 -(void)animateFeedingPet
 {
-    [self.petImage setAnimationImages:[self getFeedingImageArrayForCurrentPet]];
+    TamagochiPet *pet = [TamagochiPet sharedInstance];
+    [self.petImage setAnimationImages:[pet getFeedingImagesArray]];
+    //[self.petImage setAnimationImages:[self getFeedingImageArrayForCurrentPet]];
 
     [self.petImage setAnimationRepeatCount:3];
     [self.petImage setAnimationDuration:0.3];
@@ -181,12 +202,28 @@
 }
 
 
+-(void)animateExhaustedPet
+{
+    TamagochiPet *pet = [TamagochiPet sharedInstance];
+    [self.petImage setAnimationImages:[pet getExhaustedImagesArray]];
+    //[self.petImage setAnimationImages:[self getFeedingImageArrayForCurrentPet]];
+    
+    [self.petImage setAnimationRepeatCount:3];
+    [self.petImage setAnimationDuration:0.3];
+    [self.petImage startAnimating];
+    
+}
+
 -(void)switchToExhausted
 {
     self.petImage.image = [UIImage imageNamed:[[TamagochiPet sharedInstance] getImage ]  ];
 }
 
-
+-(void)levelPassed
+{
+    UIAlertView *alerta = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Level passed!!" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
+    [alerta show];
+}
 
 
 -(void)animateExercisingPet

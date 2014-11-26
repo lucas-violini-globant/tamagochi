@@ -55,4 +55,6 @@
 
 -(BOOL) canBeFed;
 
+-(BOOL) isExhausted;
+
 @end

@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSArray *feedingImages;
 @property (nonatomic, strong) NSArray *exercisingImages;
 @property (nonatomic, strong) NSArray *exhaustedImages;
+@property (nonatomic, strong) NSArray *exhaustedToNormalImages;
 @property float energy;
 @property float exerciseEnergyCost;
 @property int level;
@@ -41,6 +42,7 @@
     _feedingImages = [instancia getFeedingImagesArrayByTag:someTag];
     _exercisingImages = [instancia getExercisingImagesArrayByTag:someTag];
     _exhaustedImages = [instancia getExhaustedImagesArrayByTag:someTag];
+    _exhaustedToNormalImages = [instancia getExhaustedToNormalImagesArrayByTag:someTag];
     _imageNameNormal = [instancia getNormalImageNameByTag:someTag];
     _imageNameExhausted = [instancia getExhaustedImageNameByTag:someTag];
     _imageNameCurrent = _imageNameNormal;
@@ -50,11 +52,12 @@
     _level = 0;
     _energy = 50.0;
     _experience = 0.0;
-    _exerciseEnergyCost = 30.0;
+    _exerciseEnergyCost = 10.0;
     if (_name == nil)
     {
         _name = @"";
     }
+
     return instancia;
 }
 
@@ -79,6 +82,12 @@
 -(NSArray *)getExhaustedImagesArray
 {
     return _exhaustedImages;
+}
+
+
+-(NSArray *)getExhaustedToNormalImagesArray
+{
+    return _exhaustedToNormalImages;
 }
 
 
@@ -111,6 +120,7 @@
 {
     //sin implementar
     _level = _level + 1;
+
 }
 
 -(NSString *)getNormalImageNameByTag:(long)tag
@@ -302,6 +312,50 @@
 }
 
 
+-(NSArray *)getExhaustedToNormalImagesArrayByTag:(long)tag
+{
+    NSArray * arreglo;
+    
+    switch (tag) {
+        case 0:
+            //Ciervo
+            arreglo = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"ciervo_exhausto_4"],
+                       [UIImage imageNamed:@"ciervo_exhausto_3"],
+                       [UIImage imageNamed:@"ciervo_exhausto_2"],
+                       [UIImage imageNamed:@"ciervo_exhausto_1"],
+                       nil];
+            break;
+        case 1:
+            //Gato
+            arreglo = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"gato_ejercicio_4"],
+                       [UIImage imageNamed:@"gato_exhausto_3"],
+                       [UIImage imageNamed:@"gato_exhausto_2"],
+                       [UIImage imageNamed:@"gato_exhausto_1"],
+                       nil];
+            break;
+        case 2:
+            //Jirafa
+            arreglo = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"jirafa_ejercicio_4"],
+                       [UIImage imageNamed:@"jirafa_exhausto_3"],
+                       [UIImage imageNamed:@"jirafa_exhausto_2"],
+                       [UIImage imageNamed:@"jirafa_exhausto_1"],
+                       nil];
+            break;
+        case 3:
+            //Leon
+            arreglo = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"leon_ejercicio_4"],
+                       [UIImage imageNamed:@"leon_exhausto_3"],
+                       [UIImage imageNamed:@"leon_exhausto_2"],
+                       [UIImage imageNamed:@"leon_exhausto_1"],
+                       nil];
+            break;
+        default:
+            arreglo = [[NSArray alloc] initWithObjects:nil];
+            break;
+    }
+    return arreglo;
+    
+}
 
 
 
@@ -363,12 +417,28 @@
     return YES;
 }
 
+
+-(BOOL)switchStateToNormal
+{
+    _imageNameCurrent = _imageNameNormal;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PET_STATUS_CHANGED_NORMAL" object:nil];
+    
+    return YES;
+}
+
+
+
 -(BOOL) eatFood:(TamagochiFood *) someFood
 //Returns YES if it was able to eat the food, otherwise return NO
 {
     if ([self canBeFed])
     {
         _energy = _energy + [someFood getEnergy];
+        if ([self canBeExercised])
+        {
+            [self switchStateToNormal];
+        }
 
         return YES;
     }
@@ -384,12 +454,14 @@
 -(BOOL)doneEating
 {
     //_stateIsEating = NO;
+    //Sin uso, ya que el estado no esta implementado
     return YES;
 }
 
 -(BOOL) isEating
 {
     //return _stateIsEating;
+    //Sin uso, ya que el estado no esta implementado
     return NO;
 }
 
@@ -404,6 +476,7 @@
         _energy = _energy - _exerciseEnergyCost; //Reduce the amount of energy
         //_stateIsExercising = YES;
         [self addExperience:15.0f];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"LEVEL_PASSED" object:nil];
         if (![self canBeExercised])
         {
             [self switchStateToExhausted];
@@ -441,13 +514,14 @@
 -(BOOL) isExercising
 {
     //return _stateIsExercising;
+    //Sin uso, ya que el estado no esta implementado
     return NO;
 }
 
 
 -(BOOL) isExhausted
 {
-    return (_energy < 0);
+    return (_energy < 25);
 }
 
 
