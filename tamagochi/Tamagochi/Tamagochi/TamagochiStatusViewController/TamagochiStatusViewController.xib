@@ -21,10 +21,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JaJ-Sg-ucr">
-                    <rect key="frame" x="107" y="132" width="250" height="250"/>
+                    <rect key="frame" x="82" y="132" width="250" height="250"/>
                 </imageView>
                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="h5A-lO-0CZ">
-                    <rect key="frame" x="87" y="460" width="241" height="2"/>
+                    <rect key="frame" x="82" y="460" width="250" height="2"/>
                 </progressView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your pet's name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YoR-wj-imU">
                     <rect key="frame" x="113" y="70" width="189" height="21"/>
@@ -32,17 +32,8 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqe-1h-fRP">
-                    <rect key="frame" x="323" y="94" width="63" height="30"/>
-                    <state key="normal" title="Feed">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="switchToFoodSelection:" destination="-1" eventType="touchUpInside" id="qjo-2X-BaS"/>
-                    </connections>
-                </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ptG-Ud-39Y">
-                    <rect key="frame" x="23" y="382" width="70" height="70"/>
+                    <rect key="frame" x="13" y="312" width="70" height="70"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Energy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yxQ-5v-b0s">
                     <rect key="frame" x="140" y="470" width="134" height="21"/>
@@ -51,12 +42,21 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bjb-r1-Dw6">
-                    <rect key="frame" x="157" y="402" width="150" height="30"/>
+                    <rect key="frame" x="132" y="402" width="150" height="30"/>
                     <state key="normal" title="Start Exercise">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="clickExercising:" destination="-1" eventType="touchUpInside" id="th6-s0-BJh"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqe-1h-fRP">
+                    <rect key="frame" x="325" y="66" width="63" height="30"/>
+                    <state key="normal" title="Feed">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="switchToFoodSelection:" destination="-1" eventType="touchUpInside" id="qjo-2X-BaS"/>
                     </connections>
                 </button>
             </subviews>

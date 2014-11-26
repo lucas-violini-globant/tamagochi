@@ -15,6 +15,7 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *foodImage;
 
+@property (strong, nonatomic) IBOutlet UILabel *labelEnergy;
 @property (strong, nonatomic) TamagochiFood *foodObject;
 
 -(id)configurarParaComida:(int)foodId enColeccionDeComida:(TamagochiFoodCollection *) foodCollection;

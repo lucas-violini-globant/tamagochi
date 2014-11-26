@@ -12,6 +12,8 @@
 
 #endif
 
+#import "TamagochiFood.h"
+
 @interface TamagochiPet
 
 -(TamagochiPet *) setTag:(int)someTag;
@@ -20,30 +22,39 @@
 
 -(NSString *)getPetName;
 
+-(NSString *)getName;
+
 -(NSString *)getPetType;
 
 -(NSArray *)getFeedingImagesArray;
 
 -(NSArray *)getExercisingImagesArray;
 
+-(NSArray *)getExhaustedImagesArray;
+
+-(NSString *)getImage;
+
 + (instancetype) sharedInstance;
 
--(BOOL) startEating;
+-(BOOL) eatFood:(TamagochiFood *) someFood;
 
--(BOOL) stopEating;
+
+-(BOOL) doneEating;
 
 -(BOOL) isEating;
 
--(BOOL) startExercising;
+-(BOOL) exercise;
 
--(BOOL) stopExercising;
+-(BOOL) doneExercising;
 
 -(BOOL) isExercising;
 
--(int)getEnergy;
+-(float)getEnergy;
 
 -(BOOL) canBeExercised;
 
 -(BOOL) canBeFed;
+
+-(BOOL) isExhausted;
 
 @end
