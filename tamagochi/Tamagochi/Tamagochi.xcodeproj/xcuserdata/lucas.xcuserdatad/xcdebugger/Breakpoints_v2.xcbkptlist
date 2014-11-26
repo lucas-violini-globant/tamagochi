@@ -90,12 +90,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tamagochi/TamagochiStatusViewController/TamagochiStatusViewController.m"
-            timestampString = "438558709.050915"
+            timestampString = "438642523.734228"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
-            landmarkName = "-clickExercising:"
+            startingLineNumber = "284"
+            endingLineNumber = "284"
+            landmarkName = "-getImageNameByTag:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tamagochi/TamagochiFood.m"
-            timestampString = "438198919.398407"
+            timestampString = "438633207.759496"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "-initWithFoodId:"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,13 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tamagochi/TamagochiFood.m"
-            timestampString = "438207356.032037"
+            timestampString = "438633207.759496"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "-getName"
-            landmarkType = "5">
+            startingLineNumber = "159"
+            endingLineNumber = "159">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -186,13 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tamagochi/TamagochiFood.m"
-            timestampString = "438207385.535355"
+            timestampString = "438633207.759496"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "-getName"
-            landmarkType = "5">
+            startingLineNumber = "157"
+            endingLineNumber = "157">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -234,12 +230,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tamagochi/TamagochiStatusViewController/TamagochiStatusViewController.m"
-            timestampString = "438558709.050915"
+            timestampString = "438642523.734228"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
-            landmarkName = "-clickExercising:"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
+            landmarkName = "-moverComida:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -250,12 +246,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tamagochi/TamagochiStatusViewController/TamagochiStatusViewController.m"
-            timestampString = "438558709.050915"
+            timestampString = "438642523.734228"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
-            landmarkName = "-clickExercising:"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
+            landmarkName = "-moverComida:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -266,12 +262,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tamagochi/TamagochiStatusViewController/TamagochiStatusViewController.m"
-            timestampString = "438558709.050915"
+            timestampString = "438642523.734228"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
-            landmarkName = "-clickExercising:"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "-moverComida:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -282,12 +278,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tamagochi/TamagochiPet.m"
-            timestampString = "438557040.991366"
+            timestampString = "438642367.281749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
-            landmarkName = "-getExercisingImagesArrayByTag:"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
+            landmarkName = "-getType"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -298,13 +294,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tamagochi/TamagochiPet.m"
-            timestampString = "438557040.991366"
+            timestampString = "438642367.281749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "267"
-            endingLineNumber = "267"
-            landmarkName = "-startEating"
-            landmarkType = "5">
+            startingLineNumber = "380"
+            endingLineNumber = "380">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -321,6 +315,86 @@
             endingLineNumber = "26"
             landmarkName = "@interface TamagochiStatusViewController"
             landmarkType = "2">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tamagochi/TamagochiStatusViewController/TamagochiStatusViewController.m"
+            timestampString = "438642367.281749"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "-tick:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tamagochi/TamagochiStatusViewController/TamagochiStatusViewController.m"
+            timestampString = "438634764.471364"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tamagochi/TamagochiPet.m"
+            timestampString = "438642367.281749"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
+            landmarkName = "-getType"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tamagochi/TamagochiPet.h"
+            timestampString = "438634764.471364"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "-stopExercising"
+            landmarkType = "4">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tamagochi/TamagochiStatusViewController/TamagochiStatusViewController.m"
+            timestampString = "438637908.50838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "-viewWillAppear:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
