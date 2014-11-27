@@ -9,6 +9,16 @@
 /* Begin PBXBuildFile section */
 		A08340FF1A2377EE00F65082 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A08340FE1A2377ED00F65082 /* MessageUI.framework */; };
 		A08341011A23904B00F65082 /* TamagochiPet.m in Sources */ = {isa = PBXBuildFile; fileRef = A08341001A23904B00F65082 /* TamagochiPet.m */; };
+		A08341631A26273200F65082 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A08341511A26273200F65082 /* AFHTTPRequestOperation.m */; };
+		A08341641A26273200F65082 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A08341531A26273200F65082 /* AFHTTPRequestOperationManager.m */; };
+		A08341651A26273200F65082 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A08341551A26273200F65082 /* AFHTTPSessionManager.m */; };
+		A08341661A26273200F65082 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A08341581A26273200F65082 /* AFNetworkReachabilityManager.m */; };
+		A08341671A26273200F65082 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A083415A1A26273200F65082 /* AFSecurityPolicy.m */; };
+		A08341681A26273200F65082 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A083415C1A26273200F65082 /* AFURLConnectionOperation.m */; };
+		A08341691A26273200F65082 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = A083415E1A26273200F65082 /* AFURLRequestSerialization.m */; };
+		A083416A1A26273200F65082 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = A08341601A26273200F65082 /* AFURLResponseSerialization.m */; };
+		A083416B1A26273200F65082 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A08341621A26273200F65082 /* AFURLSessionManager.m */; };
+		A08341701A26667600F65082 /* TamagochiNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A083416F1A26667600F65082 /* TamagochiNetworking.m */; };
 		A0C2D4AF1A1BCA770013C95F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2D4AE1A1BCA770013C95F /* main.m */; };
 		A0C2D4B21A1BCA770013C95F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2D4B11A1BCA770013C95F /* AppDelegate.m */; };
 		A0C2D4BA1A1BCA770013C95F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0C2D4B91A1BCA770013C95F /* Images.xcassets */; };
@@ -167,6 +177,27 @@
 		A08340FE1A2377ED00F65082 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A08341001A23904B00F65082 /* TamagochiPet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TamagochiPet.m; sourceTree = "<group>"; };
 		A08341021A23907C00F65082 /* TamagochiPet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TamagochiPet.h; sourceTree = "<group>"; };
+		A08341501A26273200F65082 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		A08341511A26273200F65082 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		A08341521A26273200F65082 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
+		A08341531A26273200F65082 /* AFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
+		A08341541A26273200F65082 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		A08341551A26273200F65082 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		A08341561A26273200F65082 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		A08341571A26273200F65082 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		A08341581A26273200F65082 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		A08341591A26273200F65082 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		A083415A1A26273200F65082 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		A083415B1A26273200F65082 /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		A083415C1A26273200F65082 /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		A083415D1A26273200F65082 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		A083415E1A26273200F65082 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		A083415F1A26273200F65082 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		A08341601A26273200F65082 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		A08341611A26273200F65082 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		A08341621A26273200F65082 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		A083416F1A26667600F65082 /* TamagochiNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TamagochiNetworking.m; sourceTree = "<group>"; };
+		A08341711A26668500F65082 /* TamagochiNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TamagochiNetworking.h; sourceTree = "<group>"; };
 		A0C2D4A91A1BCA770013C95F /* Tamagochi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tamagochi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C2D4AD1A1BCA770013C95F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0C2D4AE1A1BCA770013C95F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -342,9 +373,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A083414F1A26273200F65082 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				A08341501A26273200F65082 /* AFHTTPRequestOperation.h */,
+				A08341511A26273200F65082 /* AFHTTPRequestOperation.m */,
+				A08341521A26273200F65082 /* AFHTTPRequestOperationManager.h */,
+				A08341531A26273200F65082 /* AFHTTPRequestOperationManager.m */,
+				A08341541A26273200F65082 /* AFHTTPSessionManager.h */,
+				A08341551A26273200F65082 /* AFHTTPSessionManager.m */,
+				A08341561A26273200F65082 /* AFNetworking.h */,
+				A08341571A26273200F65082 /* AFNetworkReachabilityManager.h */,
+				A08341581A26273200F65082 /* AFNetworkReachabilityManager.m */,
+				A08341591A26273200F65082 /* AFSecurityPolicy.h */,
+				A083415A1A26273200F65082 /* AFSecurityPolicy.m */,
+				A083415B1A26273200F65082 /* AFURLConnectionOperation.h */,
+				A083415C1A26273200F65082 /* AFURLConnectionOperation.m */,
+				A083415D1A26273200F65082 /* AFURLRequestSerialization.h */,
+				A083415E1A26273200F65082 /* AFURLRequestSerialization.m */,
+				A083415F1A26273200F65082 /* AFURLResponseSerialization.h */,
+				A08341601A26273200F65082 /* AFURLResponseSerialization.m */,
+				A08341611A26273200F65082 /* AFURLSessionManager.h */,
+				A08341621A26273200F65082 /* AFURLSessionManager.m */,
+			);
+			name = AFNetworking;
+			path = Tamagochi/AFNetworking;
+			sourceTree = "<group>";
+		};
 		A0C2D4A01A1BCA770013C95F = {
 			isa = PBXGroup;
 			children = (
+				A083414F1A26273200F65082 /* AFNetworking */,
 				A08340FE1A2377ED00F65082 /* MessageUI.framework */,
 				A0C2D4AB1A1BCA770013C95F /* Tamagochi */,
 				A0C2D4C51A1BCA780013C95F /* TamagochiTests */,
@@ -721,6 +780,8 @@
 				A0C2D6121A1E6BE20013C95F /* TamagochiUITableViewCell.xib */,
 				A08341001A23904B00F65082 /* TamagochiPet.m */,
 				A08341021A23907C00F65082 /* TamagochiPet.h */,
+				A083416F1A26667600F65082 /* TamagochiNetworking.m */,
+				A08341711A26668500F65082 /* TamagochiNetworking.h */,
 			);
 			name = BasicComponents;
 			sourceTree = "<group>";
@@ -954,16 +1015,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A08341681A26273200F65082 /* AFURLConnectionOperation.m in Sources */,
 				A0C2D6131A1E6BE20013C95F /* TamagochiUITableViewCell.m in Sources */,
+				A08341671A26273200F65082 /* AFSecurityPolicy.m in Sources */,
 				A0C2D4B21A1BCA770013C95F /* AppDelegate.m in Sources */,
+				A08341641A26273200F65082 /* AFHTTPRequestOperationManager.m in Sources */,
 				A0C2D6061A1E5C2F0013C95F /* TamagochiFood.m in Sources */,
 				A0C2D4DA1A1BCE580013C95F /* TamagochiWelcomeViewController.m in Sources */,
 				A0C2D4E41A1BD2BA0013C95F /* TamagochiStatusViewController.m in Sources */,
 				A0C2D6031A1E53B00013C95F /* TamagochiFoodSelectionViewController.m in Sources */,
 				A0C2D60A1A1E63ED0013C95F /* TamagochiFoodCollection.m in Sources */,
+				A083416B1A26273200F65082 /* AFURLSessionManager.m in Sources */,
+				A083416A1A26273200F65082 /* AFURLResponseSerialization.m in Sources */,
 				A0C2D4AF1A1BCA770013C95F /* main.m in Sources */,
 				A0C2D4DF1A1BCFD90013C95F /* TamagochiSelectNameViewController.m in Sources */,
+				A08341691A26273200F65082 /* AFURLRequestSerialization.m in Sources */,
+				A08341661A26273200F65082 /* AFNetworkReachabilityManager.m in Sources */,
 				A08341011A23904B00F65082 /* TamagochiPet.m in Sources */,
+				A08341631A26273200F65082 /* AFHTTPRequestOperation.m in Sources */,
+				A08341701A26667600F65082 /* TamagochiNetworking.m in Sources */,
+				A08341651A26273200F65082 /* AFHTTPSessionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1070,8 +1141,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Tamagochi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1081,8 +1154,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Tamagochi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
@@ -22,80 +23,41 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oMl-8Y-L1q">
-                    <rect key="frame" x="6" y="358" width="400" height="200"/>
-                    <subviews>
-                        <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="boj-nN-egF">
-                            <rect key="frame" x="110" y="25" width="120" height="116"/>
-                            <state key="normal" backgroundImage="gato_comiendo_1.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="clickImagen:" destination="-1" eventType="touchUpInside" id="6fR-Fg-Tnr"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWW-1H-Qac">
-                            <rect key="frame" x="238" y="1" width="116" height="116"/>
-                            <state key="normal" backgroundImage="jirafa_comiendo_1.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="clickImagen:" destination="-1" eventType="touchUpInside" id="RHY-sq-ZCK"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B7R-WW-AHM">
-                            <rect key="frame" x="342" y="8" width="116" height="116"/>
-                            <state key="normal" backgroundImage="leon_comiendo_1.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="clickImagen:" destination="-1" eventType="touchUpInside" id="ilo-a4-27b"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PYZ-aN-pag">
-                            <rect key="frame" x="0.0" y="17" width="116" height="116"/>
-                            <state key="normal" backgroundImage="ciervo_comiendo_1.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="clickImagen:" destination="-1" eventType="touchUpInside" id="gSP-H6-Uu9"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <inset key="scrollIndicatorInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                </scrollView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="atE-fk-r8v">
-                    <rect key="frame" x="131" y="161" width="150" height="150"/>
+                <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="100" verticalHuggingPriority="100" horizontalCompressionResistancePriority="100" verticalCompressionResistancePriority="100" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="atE-fk-r8v">
+                    <rect key="frame" x="147" y="199" width="120" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="Z1d-x4-n1v"/>
+                        <constraint firstAttribute="width" constant="120" id="lFe-Oh-Pny"/>
+                    </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select an animal:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VcP-jv-ozW">
-                    <rect key="frame" x="136" y="132" width="142" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select an animal:" lineBreakMode="wordWrap" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VcP-jv-ozW">
+                    <rect key="frame" x="141" y="81" width="132" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your Pet's Name:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ih7-tW-Sj4">
-                    <rect key="frame" x="136" y="59" width="142" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Pet's Name:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ih7-tW-Sj4">
+                    <rect key="frame" x="136" y="23" width="142" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="eCc-KI-rjL"/>
+                        <constraint firstAttribute="width" constant="142" id="sFy-6e-7Ph"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJ5-tr-yGk">
-                    <rect key="frame" x="169" y="566" width="76" height="30"/>
-                    <state key="normal" title="Continue">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="switchToStatusScreen:" destination="-1" eventType="touchUpInside" id="tyj-Ik-Kpm"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TcT-gs-1SR">
-                    <rect key="frame" x="156" y="319" width="100" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="63" translatesAutoresizingMaskIntoConstraints="NO" id="TcT-gs-1SR">
+                    <rect key="frame" x="183" y="164" width="48" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVe-na-uNp">
-                    <rect key="frame" x="104" y="82" width="206" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVe-na-uNp">
+                    <rect key="frame" x="104" y="47" width="206" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="206" id="M2f-XP-y6Z"/>
+                        <constraint firstAttribute="height" constant="21" id="hAC-da-kgD"/>
+                    </constraints>
                     <attributedString key="attributedText">
                         <fragment content="Your Pet's Name">
                             <attributes>
@@ -107,8 +69,79 @@
                     </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
+                <button contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z0z-cI-WmX">
+                    <rect key="frame" x="171" y="115" width="73" height="34"/>
+                    <state key="normal" title="Continue">
+                        <color key="titleColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="switchToStatusScreen:" destination="-1" eventType="touchUpInside" id="0s3-Ch-8y5"/>
+                    </connections>
+                </button>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" verticalHuggingPriority="350" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oMl-8Y-L1q">
+                    <rect key="frame" x="72" y="379" width="300" height="152"/>
+                    <subviews>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWW-1H-Qac">
+                            <rect key="frame" x="238" y="1" width="116" height="152"/>
+                            <state key="normal" backgroundImage="jirafa_comiendo_1.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickImagen:" destination="-1" eventType="touchUpInside" id="RHY-sq-ZCK"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B7R-WW-AHM">
+                            <rect key="frame" x="342" y="3" width="116" height="152"/>
+                            <state key="normal" backgroundImage="leon_comiendo_1.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickImagen:" destination="-1" eventType="touchUpInside" id="ilo-a4-27b"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PYZ-aN-pag">
+                            <rect key="frame" x="0.0" y="3" width="116" height="152"/>
+                            <state key="normal" backgroundImage="ciervo_comiendo_1.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickImagen:" destination="-1" eventType="touchUpInside" id="gSP-H6-Uu9"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="boj-nN-egF">
+                            <rect key="frame" x="110" y="1" width="120" height="152"/>
+                            <state key="normal" backgroundImage="gato_comiendo_1.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickImagen:" destination="-1" eventType="touchUpInside" id="6fR-Fg-Tnr"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <inset key="scrollIndicatorInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" red="1" green="0.90561549736364089" blue="0.52590239599807687" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="VcP-jv-ozW" secondAttribute="centerX" id="1nC-mx-6cb"/>
+                <constraint firstAttribute="centerX" secondItem="oMl-8Y-L1q" secondAttribute="centerX" id="5pl-SS-76H"/>
+                <constraint firstAttribute="centerX" secondItem="z0z-cI-WmX" secondAttribute="centerX" id="76D-FD-pek"/>
+                <constraint firstAttribute="centerX" secondItem="atE-fk-r8v" secondAttribute="centerX" id="IbV-eT-cNP"/>
+                <constraint firstItem="pVe-na-uNp" firstAttribute="bottom" secondItem="VcP-jv-ozW" secondAttribute="bottom" constant="-34" id="JtI-kr-ANr"/>
+                <constraint firstItem="Ih7-tW-Sj4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="23" id="Pre-78-22q"/>
+                <constraint firstItem="z0z-cI-WmX" firstAttribute="bottom" secondItem="TcT-gs-1SR" secondAttribute="bottom" constant="-36" id="RLX-zv-QZv"/>
+                <constraint firstAttribute="centerX" secondItem="oMl-8Y-L1q" secondAttribute="centerX" id="Sui-t9-ssv"/>
+                <constraint firstAttribute="centerX" secondItem="Ih7-tW-Sj4" secondAttribute="centerX" id="Tod-r9-KiN"/>
+                <constraint firstAttribute="centerX" secondItem="oMl-8Y-L1q" secondAttribute="centerX" id="agg-i8-oTR"/>
+                <constraint firstItem="TcT-gs-1SR" firstAttribute="bottom" secondItem="atE-fk-r8v" secondAttribute="bottom" constant="-134" id="dYL-5r-XSY"/>
+                <constraint firstItem="oMl-8Y-L1q" firstAttribute="bottom" secondItem="atE-fk-r8v" secondAttribute="bottom" constant="209" id="iQI-cj-KX0"/>
+                <constraint firstItem="oMl-8Y-L1q" firstAttribute="centerX" secondItem="atE-fk-r8v" secondAttribute="centerX" constant="15" id="jpc-F0-TUB"/>
+                <constraint firstAttribute="centerX" secondItem="TcT-gs-1SR" secondAttribute="centerX" id="swH-ff-GaB"/>
+                <constraint firstItem="VcP-jv-ozW" firstAttribute="bottom" secondItem="z0z-cI-WmX" secondAttribute="bottom" constant="-47" id="uqN-sW-Hge"/>
+                <constraint firstItem="pVe-na-uNp" firstAttribute="bottom" secondItem="Ih7-tW-Sj4" secondAttribute="bottom" constant="24" id="vLz-Ha-cBW"/>
+                <constraint firstAttribute="centerX" secondItem="pVe-na-uNp" secondAttribute="centerX" id="yQr-qi-fyg"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
             <point key="canvasLocation" x="280" y="457"/>
         </view>
@@ -119,4 +152,9 @@
         <image name="jirafa_comiendo_1.png" width="319" height="373"/>
         <image name="leon_comiendo_1.png" width="319" height="373"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

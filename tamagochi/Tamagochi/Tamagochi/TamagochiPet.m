@@ -49,7 +49,7 @@
     _typeName = [instancia getPetTypeByTag:someTag];
     //_stateIsEating = NO;
     //_stateIsExercising = NO;
-    _level = 0;
+    _level = 1;
     _energy = 50.0;
     _experience = 0.0;
     _exerciseEnergyCost = 10.0;
@@ -61,6 +61,10 @@
     return instancia;
 }
 
+-(int)getTag
+{
+    return _tagId;
+}
 
 -(void) setName:(NSString *)someName
 {
@@ -97,15 +101,29 @@
 }
 
 
+-(int)getLevel
+{
+    return _level;
+}
+
+-(float)getExperience
+{
+    return _experience;
+}
+
+
+
 -(float)experienceRequiredForNextLevel
 {
     return (_level * _level * 100);
+    //NSLog([NSString stringWithFormat:@"Experience required to pass level: %f",(_level * _level * 100)]);
 }
 
 -(BOOL)addExperience:(float) aFloat
 {
     _experience = _experience + aFloat;
-    if (_experience <= [self experienceRequiredForNextLevel])
+    //NSLog([NSString stringWithFormat:@"Experience: %f",_experience]);
+    if (_experience >= [self experienceRequiredForNextLevel])
     {
         [self didPassLevel];
         return YES;
@@ -119,6 +137,9 @@
 -(void)didPassLevel
 {
     //sin implementar
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"LEVEL_PASSED" object:nil];
+    //NSLog(@"*****LEVEL PASSED*****");
+    _experience = 0;
     _level = _level + 1;
 
 }
@@ -476,7 +497,6 @@
         _energy = _energy - _exerciseEnergyCost; //Reduce the amount of energy
         //_stateIsExercising = YES;
         [self addExperience:15.0f];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"LEVEL_PASSED" object:nil];
         if (![self canBeExercised])
         {
             [self switchStateToExhausted];
@@ -535,6 +555,28 @@
                            }
                   );
     return _sharedObject;
+}
+
+
+
+-(BOOL)setFromDictionary:(NSDictionary *) aDictionary
+{
+    //{"code":"lv3503","name":"okokokoko","_id":"547641321c7fc4020094cef8","__v":0,"experience":0,"last_update":"2014-11-26T21:35:08.386Z","level":1,"energy":50}
+    NSString *name = [aDictionary valueForKey:@"name"];
+    NSNumber *experience = [aDictionary valueForKey:@"experience"];
+    NSNumber *level = [aDictionary valueForKey:@"level"];
+    NSNumber *energy = [aDictionary valueForKey:@"energy"];
+    
+    NSLog(@"Updated values - Name: %@ , Experience: %@ , Level: %@ , Energy: %@",name,experience,level,energy);
+    
+    [self setTag:1];
+    _name = name;
+    _energy = [energy floatValue];
+    _experience = [experience floatValue];
+    _level = [level integerValue];
+    
+    
+    return YES;
 }
 
 

@@ -9,12 +9,23 @@
 #import "TamagochiWelcomeViewController.h"
 #import "TamagochiSelectNameViewController.h"
 #import "TamagochiPet.h"
+#import "TamagochiNetworking.h"
+#import "TamagochiStatusViewController.h"
 
 
 @interface TamagochiWelcomeViewController ()
 
 @property (strong, nonatomic) IBOutlet UITextField *textFieldName;
 @property (strong, nonatomic) NSString *oldName;
+
+@property (strong, nonatomic) IBOutlet UIImageView *imgBackgroundLoading;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorLoading;
+@property (strong, nonatomic) IBOutlet UIButton *DownloadPet;
+@property (strong, nonatomic) IBOutlet UIButton *btnContinue;
+
+@property (strong, nonatomic) IBOutlet UITextField *nameTextField;
+
+
 @end
 
 @implementation TamagochiWelcomeViewController
@@ -24,7 +35,15 @@
     // Do any additional setup after loading the view from its nib.
     self.textFieldName.delegate = self;
     self.oldName = @"";
+
+}
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(petDownloadSuccess) name:@"PET_DOWNLOAD_SUCCESS" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(petDownloadFailure) name:@"PET_DOWNLOAD_FAILURE" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,7 +51,70 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)petDownloadSuccess
+{
+    NSLog(@"SUCCESS Downloading Pet!! - ");
+    [self hideLoading];
+    TamagochiStatusViewController *home = [[TamagochiStatusViewController alloc] initWithNibName:@"TamagochiStatusViewController" bundle:nil];
+    [self.navigationController pushViewController:home animated:YES];
+}
 
+-(void)petDownloadFailure
+{
+    NSLog(@"FAILURE Downloading Pet!! - ");
+    UIAlertView *alerta = [[UIAlertView alloc] initWithTitle:@"Error" message:@"An error has ocurred while connecting to the server" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
+    [alerta show];
+    [self hideLoading];
+  
+}
+
+-(void)showLoading
+{
+    self.btnContinue.enabled = NO;
+    self.textFieldName.enabled = NO;
+    self.DownloadPet.enabled = NO;
+    self.imgBackgroundLoading.hidden = NO;
+    //self.imgBackgroundLoading.bounds = self.view.bounds;
+    //CGRect screenBound = [[UIScreen mainScreen] bounds];
+    //CGSize screenSize = screenBound.size;
+    //CGFloat screenWidth = screenSize.width;
+    //CGFloat screenHeight = screenSize.height;
+    //self.imgBackgroundLoading.bounds = screenBound;
+    //self.imgBackgroundLoading.view.width = screenWidth;
+    //self.imgBackgroundLoading.view.height = screenHeight;
+//    self.imgBackgroundLoading.
+    self.activityIndicatorLoading.hidden = NO;
+    [self.activityIndicatorLoading startAnimating ];
+}
+
+-(void)hideLoading
+{
+    self.btnContinue.enabled = YES;
+    self.textFieldName.enabled = YES;
+    self.DownloadPet.enabled = YES;
+    self.imgBackgroundLoading.hidden = YES;
+    self.imgBackgroundLoading.bounds = self.view.bounds;
+    self.activityIndicatorLoading.hidden = YES;
+    [self.activityIndicatorLoading stopAnimating ];
+
+}
+
+
+- (IBAction)updatePetFromServer:(id)sender
+{
+    NSLog(@"- (IBAction)updatePetFromServer:(id)sender");
+    [self showLoading];
+    TamagochiNetworking *tn = [[TamagochiNetworking alloc] init];
+    //BOOL result = [tn downloadPetFromServer];
+    
+    TamagochiWelcomeViewController * __weak weakerSelf = self;
+    
+    [tn downloadPetFromServerWithSuccess:^{[weakerSelf petDownloadSuccess];}
+                                 failure:^{[weakerSelf petDownloadFailure];}];
+
+    
+    
+}
 
 - (IBAction)switchToSelectImageScreen:(id)sender
 {

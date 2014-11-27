@@ -18,6 +18,8 @@
 
 -(TamagochiPet *) setTag:(int)someTag;
 
+-(int) getTag;
+
 -(void) setName:(NSString *)someName;
 
 -(NSString *)getPetName;
@@ -25,6 +27,10 @@
 -(NSString *)getName;
 
 -(NSString *)getPetType;
+
+-(int)getLevel;
+
+-(float)getExperience;
 
 -(NSArray *)getFeedingImagesArray;
 
@@ -37,7 +43,6 @@
 + (instancetype) sharedInstance;
 
 -(BOOL) eatFood:(TamagochiFood *) someFood;
-
 
 -(BOOL) doneEating;
 
@@ -56,5 +61,7 @@
 -(BOOL) canBeFed;
 
 -(BOOL) isExhausted;
+
+-(BOOL)setFromDictionary:(NSDictionary *) aDictionary;
 
 @end

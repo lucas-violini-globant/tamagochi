@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "TamagochiWelcomeViewController.h"
 #import "TamagochiSelectNameViewController.h"
+#import "TamagochiNetworking.h"
 
 @interface AppDelegate ()
 
