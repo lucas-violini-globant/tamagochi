@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TamagochiWelcomeViewController">
             <connections>
+                <outlet property="DownloadPet" destination="nJH-sE-17B" id="CNa-o5-PVP"/>
+                <outlet property="activityIndicatorLoading" destination="1Vt-rn-0yH" id="WOa-2o-UEx"/>
+                <outlet property="btnContinue" destination="lPx-1J-Uga" id="k86-8j-VvX"/>
+                <outlet property="imgBackgroundLoading" destination="uEe-Ip-l6S" id="ThX-qq-o6A"/>
+                <outlet property="nameTextField" destination="gvL-bB-1i3" id="mIR-w2-oqq"/>
                 <outlet property="textFieldName" destination="gvL-bB-1i3" id="Y5B-3p-c5V"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -15,20 +23,20 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bienvenido" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lo1-fM-Ppy">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Bienvenido" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lo1-fM-Ppy">
                     <rect key="frame" x="84" y="37" width="246" height="73"/>
                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Elija el nombre de su mascota" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="boE-f9-8fA">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Elija el nombre de su mascota" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="boE-f9-8fA">
                     <rect key="frame" x="-45" y="135" width="505" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPx-1J-Uga">
-                    <rect key="frame" x="147" y="302" width="121" height="51"/>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPx-1J-Uga">
+                    <rect key="frame" x="147" y="183" width="121" height="51"/>
                     <state key="normal" title="Continuar">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -36,8 +44,8 @@
                         <action selector="switchToSelectImageScreen:" destination="-1" eventType="touchUpInside" id="O1y-Jq-5FU"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingrese Nombre" textAlignment="center" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="gvL-bB-1i3">
-                    <rect key="frame" x="15" y="206" width="385" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingrese Nombre" textAlignment="center" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="gvL-bB-1i3">
+                    <rect key="frame" x="15" y="164" width="385" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
@@ -45,9 +53,57 @@
                         <action selector="nameChanged:" destination="-1" eventType="valueChanged" id="ijF-BT-m8B"/>
                     </connections>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nJH-sE-17B">
+                    <rect key="frame" x="15" y="247" width="143" height="30"/>
+                    <state key="normal" title="Recuperar Mascota">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="updatePetFromServer:" destination="-1" eventType="touchUpInside" id="swS-Og-2pb"/>
+                    </connections>
+                </button>
+                <activityIndicatorView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="1Vt-rn-0yH">
+                    <rect key="frame" x="197" y="252" width="20" height="20"/>
+                </activityIndicatorView>
+                <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.39999999999999963" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="736" translatesAutoresizingMaskIntoConstraints="NO" id="uEe-Ip-l6S">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="uEe-Ip-l6S" secondAttribute="height" multiplier="9:16" id="AZt-eD-pjM"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Gc-oP-e8e">
+                    <rect key="frame" x="8" y="277" width="111" height="30"/>
+                    <state key="normal" title="Push Local">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="testPushLocal:" destination="-1" eventType="touchUpInside" id="0PE-Lb-u9e"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="0.90561549740000002" blue="0.52590239599999999" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="lPx-1J-Uga" secondAttribute="trailing" constant="50" id="1ez-PD-6sR"/>
+                <constraint firstAttribute="trailing" secondItem="gvL-bB-1i3" secondAttribute="trailing" constant="10" id="8iY-c0-AqC"/>
+                <constraint firstAttribute="trailingMargin" secondItem="uEe-Ip-l6S" secondAttribute="trailing" constant="8" id="A4z-bI-ooW"/>
+                <constraint firstItem="1Vt-rn-0yH" firstAttribute="leading" secondItem="nJH-sE-17B" secondAttribute="trailing" constant="8" symbolic="YES" id="BTn-VS-IWo"/>
+                <constraint firstItem="lo1-fM-Ppy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="FaR-2A-hG4"/>
+                <constraint firstItem="nJH-sE-17B" firstAttribute="top" secondItem="lPx-1J-Uga" secondAttribute="bottom" constant="100" id="IV2-Xe-Ckw"/>
+                <constraint firstItem="gvL-bB-1i3" firstAttribute="top" secondItem="boE-f9-8fA" secondAttribute="bottom" constant="8" symbolic="YES" id="MXf-cl-f4l"/>
+                <constraint firstItem="boE-f9-8fA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="Pvv-kJ-zxG"/>
+                <constraint firstItem="uEe-Ip-l6S" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" constant="8" id="Umm-gF-AJc"/>
+                <constraint firstAttribute="trailing" secondItem="boE-f9-8fA" secondAttribute="trailing" constant="20" symbolic="YES" id="Zr0-mR-b1u"/>
+                <constraint firstItem="uEe-Ip-l6S" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" constant="8" id="bU7-VU-RKf"/>
+                <constraint firstAttribute="bottomMargin" secondItem="uEe-Ip-l6S" secondAttribute="bottom" constant="8" id="di5-LQ-vBa"/>
+                <constraint firstItem="boE-f9-8fA" firstAttribute="top" secondItem="lo1-fM-Ppy" secondAttribute="bottom" constant="10" id="nZc-yF-kWI"/>
+                <constraint firstItem="gvL-bB-1i3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="pse-lL-8wG"/>
+                <constraint firstItem="lPx-1J-Uga" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="tLM-Fr-3Nj"/>
+                <constraint firstItem="boE-f9-8fA" firstAttribute="top" secondItem="lo1-fM-Ppy" secondAttribute="bottom" constant="10" id="vcn-Pm-Nmf"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+            <point key="canvasLocation" x="140" y="159"/>
         </view>
     </objects>
 </document>

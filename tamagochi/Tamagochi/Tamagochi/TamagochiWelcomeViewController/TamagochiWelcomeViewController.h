@@ -10,6 +10,9 @@
 
 @interface TamagochiWelcomeViewController : UIViewController<UITextFieldDelegate>
 
+-(void)petDownloadSuccess;
+
+-(void)petDownloadFailure;
 
 
 @end

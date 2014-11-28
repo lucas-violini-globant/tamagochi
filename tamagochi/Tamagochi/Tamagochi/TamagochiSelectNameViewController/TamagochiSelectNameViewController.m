@@ -35,7 +35,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.scrollView.contentSize = CGSizeMake(700, 200);
+    //self.scrollView.contentOffset = CGPointMake(0.0f, 0.0f);
+    //self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width * 1.5f, self.scrollView.contentSize.height);
+    self.scrollView.contentSize = CGSizeMake(120,1700);
     self.petNameTextField.text = self.petName;
 
  
@@ -53,7 +55,8 @@
     
     [[TamagochiPet sharedInstance] setName:self.petName];
     
-    TamagochiStatusViewController *home = [[TamagochiStatusViewController alloc] initWithNibName:@"TamagochiStatusViewController" bundle:nil petName:self.petName tagSelected:self.petTag];
+    //TamagochiStatusViewController *home = [[TamagochiStatusViewController alloc] initWithNibName:@"TamagochiStatusViewController" bundle:nil petName:self.petName tagSelected:self.petTag];
+    TamagochiStatusViewController *home = [[TamagochiStatusViewController alloc] initWithNibName:@"TamagochiStatusViewController" bundle:nil];    
     [self.navigationController pushViewController:home animated:YES];
 }
 

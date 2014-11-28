@@ -9,7 +9,8 @@
 #import "TamagochiStatusViewController.h"
 #import "TamagochiFoodSelectionViewController.h"
 #import "TamagochiPet.h"
-
+#import "TamagochiNetworking.h"
+#import <Parse/Parse.h>
 
 
 @interface TamagochiStatusViewController ()
@@ -48,6 +49,9 @@
     [self presentViewController:composer animated:NO completion:nil];
     
     
+}
+- (IBAction)btnTestUpdate:(id)sender {
+    [self uploadStatusToServer];
 }
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
@@ -99,13 +103,31 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(petStatusChangedToNormal)
                                                  name:@"PET_STATUS_CHANGED_NORMAL" object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(petStatusChanged)
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(levelPassed)
                                                  name:@"LEVEL_PASSED" object:nil];
+    
+
+}
+
+
+
+
+-(void)levelChanged
+{
+    [self popUpAlertWithMessage:@"Level passed!"];
+}
+
+
+
+-(void)uploadStatusToServer
+{
+    TamagochiNetworking *tn = [[TamagochiNetworking alloc] init];
+    [tn uploadServerWithPetInformation];
 }
 
 -(void)petStatusChanged
 {
-    NSLog(@"Method inoked: TamagochiStatusViewController -> petStatusChanged");
+    //NSLog(@"Method inoked: TamagochiStatusViewController -> petStatusChanged");
     TamagochiPet *pet = [TamagochiPet sharedInstance];
     if([pet isExhausted])
     {
@@ -117,7 +139,7 @@
 
 -(void)petStatusChangedToNormal
 {
-    NSLog(@"Method inoked: TamagochiStatusViewController -> petStatusChanged TO NORMAL");
+    //NSLog(@"Method inoked: TamagochiStatusViewController -> petStatusChanged TO NORMAL");
     TamagochiPet *pet = [TamagochiPet sharedInstance];
     if([pet isExhausted])
     {
@@ -130,11 +152,11 @@
 {
     TamagochiPet *pet =[TamagochiPet sharedInstance];
     NSString *msg = [NSString stringWithFormat:@"%0.0f",[pet getEnergy]];
-    NSLog(msg);
+    //NSLog(msg);
     
     if ([pet canBeExercised])
         {
-            NSLog(@"Can Be Exercised");
+            //NSLog(@"Can Be Exercised");
             //Se puede ejercitar, entonces que empiece
             self.exerciseTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target: self selector: @selector(tick:) userInfo: nil repeats: YES];
             [self.btnExercise setTitle:@"Stop Exercise" forState:UIControlStateNormal];
@@ -142,7 +164,7 @@
     
         else
         {
-            NSLog(@"Can NOT Be Exercised");
+            //NSLog(@"Can NOT Be Exercised");
             //Ya estaba ejercitando, asi que lo que corresponde hacer es dejar de ejercitar, y detener el timer.
             [[TamagochiPet sharedInstance] doneExercising];
             if(self.exerciseTimer && [self.exerciseTimer isValid])
@@ -171,7 +193,7 @@
     else
     {
         //No se puede ejercitar mas, detengo el timer
-        NSLog(@"The pet is exhausted!!");
+        //NSLog(@"The pet is exhausted!!");
         
         if(self.exerciseTimer && [self.exerciseTimer isValid])
         {
@@ -223,6 +245,22 @@
 {
     UIAlertView *alerta = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Level passed!!" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
     [alerta show];
+    
+    // Send a notification to all devices subscribed to the "Giants" channel.
+    PFPush *push = [[PFPush alloc] init];
+    [push setChannel:@"PeleaDeMascotas"];
+    TamagochiPet *pet= [TamagochiPet sharedInstance];
+    NSString *level = [NSString stringWithFormat:@"%d",[pet getLevel] ];
+    NSString *energy = [NSString stringWithFormat:@"%0.0f",[pet getEnergy] ];
+    NSString *experience = [NSString stringWithFormat:@"%0.0f",[pet getExperience] ];
+    NSString *name = [pet getName];
+    NSString *code = [pet getUniqueCode];
+    
+    NSDictionary *notif = [[NSDictionary alloc] initWithObjects:@[code,name,level,experience,energy]
+                                  forKeys:@[@"code",@"name",@"level",@"experience",@"energy"]];
+    
+    [push setData: notif];
+    [push sendPushInBackground];
 }
 
 
@@ -241,7 +279,11 @@
 }
 
 
-
+-(void)popUpAlertWithMessage:(NSString *)message
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:message delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+    [alert show];
+}
 
 
 - (IBAction)moverComida:(UITapGestureRecognizer *)recognizer
@@ -299,6 +341,7 @@
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil petName:(NSString *)aString tagSelected:(int)anInt
+//Obsolete implementation (init with parameters containing pet's data)
 {
 
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -318,6 +361,22 @@
     
 }
 
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        self.imageTag = [[TamagochiPet sharedInstance] getTag];
+        self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moverComida:)];
+        
+        
+    }
+    
+    return self;
+    
+}
 
 
 -(NSString *)getImageNameByTag:(long)tag
