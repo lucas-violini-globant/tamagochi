@@ -10,7 +10,7 @@
 #import "TamagochiFoodSelectionViewController.h"
 #import "TamagochiPet.h"
 #import "TamagochiNetworking.h"
-
+#import <Parse/Parse.h>
 
 
 @interface TamagochiStatusViewController ()
@@ -245,6 +245,22 @@
 {
     UIAlertView *alerta = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Level passed!!" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
     [alerta show];
+    
+    // Send a notification to all devices subscribed to the "Giants" channel.
+    PFPush *push = [[PFPush alloc] init];
+    [push setChannel:@"PeleaDeMascotas"];
+    TamagochiPet *pet= [TamagochiPet sharedInstance];
+    NSString *level = [NSString stringWithFormat:@"%d",[pet getLevel] ];
+    NSString *energy = [NSString stringWithFormat:@"%0.0f",[pet getEnergy] ];
+    NSString *experience = [NSString stringWithFormat:@"%0.0f",[pet getExperience] ];
+    NSString *name = [pet getName];
+    NSString *code = [pet getUniqueCode];
+    
+    NSDictionary *notif = [[NSDictionary alloc] initWithObjects:@[code,name,level,experience,energy]
+                                  forKeys:@[@"code",@"name",@"level",@"experience",@"energy"]];
+    
+    [push setData: notif];
+    [push sendPushInBackground];
 }
 
 

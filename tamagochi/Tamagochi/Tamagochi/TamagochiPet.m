@@ -29,6 +29,7 @@
 @property (nonatomic, strong) NSString *imageNameNormal;
 @property (nonatomic, strong) NSString *imageNameExhausted;
 @property (nonatomic, strong) NSString *imageNameCurrent;
+@property (nonatomic, strong) NSString *uniqueCode;
 
 
 @end
@@ -53,6 +54,7 @@
     _energy = 50.0;
     _experience = 0.0;
     _exerciseEnergyCost = 10.0;
+    _uniqueCode = @"lv3503";
     if (_name == nil)
     {
         _name = @"";
@@ -71,6 +73,10 @@
     _name = someName;
 }
 
+-(NSString *)getUniqueCode
+{
+    return _uniqueCode;
+}
 
 -(NSArray *)getFeedingImagesArray
 {

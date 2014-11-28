@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A06AF2B81A290A1D0063E09D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06AF2B71A290A1D0063E09D /* Parse.framework */; };
+		A06AF2BA1A290A370063E09D /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06AF2B91A290A370063E09D /* ParseUI.framework */; };
+		A06AF2C01A290A630063E09D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06AF2BF1A290A630063E09D /* Bolts.framework */; };
+		A06AF2C21A290C7C0063E09D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06AF2C11A290C7C0063E09D /* AudioToolbox.framework */; };
 		A08340FF1A2377EE00F65082 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A08340FE1A2377ED00F65082 /* MessageUI.framework */; };
 		A08341011A23904B00F65082 /* TamagochiPet.m in Sources */ = {isa = PBXBuildFile; fileRef = A08341001A23904B00F65082 /* TamagochiPet.m */; };
 		A08341631A26273200F65082 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A08341511A26273200F65082 /* AFHTTPRequestOperation.m */; };
@@ -174,6 +178,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A06AF2B71A290A1D0063E09D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../../../Documents/Parse/Parse.framework; sourceTree = "<group>"; };
+		A06AF2B91A290A370063E09D /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = ../../../Documents/Parse/ParseUI.framework; sourceTree = "<group>"; };
+		A06AF2BB1A290A520063E09D /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = ../../../Documents/Parse/ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		A06AF2BF1A290A630063E09D /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../../../Documents/Parse/Bolts.framework; sourceTree = "<group>"; };
+		A06AF2C11A290C7C0063E09D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A08340FE1A2377ED00F65082 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A08341001A23904B00F65082 /* TamagochiPet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TamagochiPet.m; sourceTree = "<group>"; };
 		A08341021A23907C00F65082 /* TamagochiPet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TamagochiPet.h; sourceTree = "<group>"; };
@@ -359,6 +368,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A06AF2C21A290C7C0063E09D /* AudioToolbox.framework in Frameworks */,
+				A06AF2C01A290A630063E09D /* Bolts.framework in Frameworks */,
+				A06AF2BA1A290A370063E09D /* ParseUI.framework in Frameworks */,
+				A06AF2B81A290A1D0063E09D /* Parse.framework in Frameworks */,
 				A08340FF1A2377EE00F65082 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,6 +416,11 @@
 		A0C2D4A01A1BCA770013C95F = {
 			isa = PBXGroup;
 			children = (
+				A06AF2C11A290C7C0063E09D /* AudioToolbox.framework */,
+				A06AF2BF1A290A630063E09D /* Bolts.framework */,
+				A06AF2BB1A290A520063E09D /* ParseFacebookUtils.framework */,
+				A06AF2B91A290A370063E09D /* ParseUI.framework */,
+				A06AF2B71A290A1D0063E09D /* Parse.framework */,
 				A083414F1A26273200F65082 /* AFNetworking */,
 				A08340FE1A2377ED00F65082 /* MessageUI.framework */,
 				A0C2D4AB1A1BCA770013C95F /* Tamagochi */,
@@ -835,6 +853,12 @@
 				TargetAttributes = {
 					A0C2D4A81A1BCA770013C95F = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 332N44E879;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					A0C2D4C11A1BCA780013C95F = {
 						CreatedOnToolsVersion = 6.1;
@@ -1139,11 +1163,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iOS Development: Lucas Violini (6VL323UDS4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/lucas/Documents/Parse,
+				);
 				INFOPLIST_FILE = Tamagochi/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "50f6aa4a-7d13-4042-8199-da736ae2508d";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1152,11 +1182,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iOS Development: Lucas Violini (6VL323UDS4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/lucas/Documents/Parse,
+				);
 				INFOPLIST_FILE = Tamagochi/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "50f6aa4a-7d13-4042-8199-da736ae2508d";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

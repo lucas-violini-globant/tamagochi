@@ -10,6 +10,7 @@
 #import "TamagochiWelcomeViewController.h"
 #import "TamagochiSelectNameViewController.h"
 #import "TamagochiNetworking.h"
+#import <Parse/Parse.h>
 
 @interface AppDelegate ()
 
@@ -29,7 +30,86 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+    #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+        {
+            [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes: (UIUserNotificationTypeAlert |UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil]];
+        }
+        else
+        {
+            
+            
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                                               UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+             
+ 
+        }
+    #else
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert |UIRemoteNotificationTypeSound)];
+    #endif
+    
+    /*
+    UILocalNotification *localNotif =
+    [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (localNotif)
+    {
+        NSString *itemName = [localNotif.userInfo objectForKey:@"UnaClave"];
+        // custom method here...
+        //[viewController displayItem:itemName];
+        application.applicationIconBadgeNumber = localNotif.applicationIconBadgeNumber-1;
+    }
+     */
+    
+    [Parse setApplicationId:@"guhchukKgURzzZVCHBFOxyD35VHeMQm3EUZEdJvD"
+                  clientKey:@"SnnbrQ9yOemJspA7LRt1MCACFFUYNkbQ1k2IM1vH"];
+    
+    
+    
     return YES;
+}
+
+
+
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSLog(@"Successfully got a push token: %@", deviceToken);
+    //Este token es el que utilizara nuestro servidor para enviarnos pushes remotas :).
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+
+    [currentInstallation saveInBackground];
+    
+    //PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation addUniqueObject:@"PeleaDeMascotas" forKey:@"channels"];
+    [currentInstallation saveInBackground];
+}
+
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    NSLog(@"Failed to register for push notifications! Error was: %@", [error localizedDescription]);
+}
+
+
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+
+    NSString *remoteCode = [userInfo objectForKey:@"code"];
+    if (remoteCode == nil) { remoteCode = @""; }
+    NSString *remoteName = [userInfo objectForKey:@"name"];
+    if (remoteName == nil) { remoteName = @""; }
+    NSString *remoteLevel = [userInfo objectForKey:@"name"];
+    if (remoteLevel == nil) { remoteLevel = @""; }
+    NSString *remoteEnergy = [userInfo objectForKey:@"name"];
+    if (remoteEnergy == nil) { remoteEnergy = @""; }
+    NSString *remoteExperience = [userInfo objectForKey:@"name"];
+    if (remoteExperience == nil) { remoteExperience = @""; }
+    
+    NSString *mensaje = [NSString stringWithFormat:@"La mascota %@ del usuario %@ esta ahora en nivel %@",remoteName,remoteCode,remoteLevel];
+    //Recepcion de notificacion remota en foreground
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alerta" message:mensaje delegate:self cancelButtonTitle:@"Esto es guerra!" otherButtonTitles: nil];
+    [alert show];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

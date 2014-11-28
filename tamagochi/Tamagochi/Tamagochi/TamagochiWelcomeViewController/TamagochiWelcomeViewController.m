@@ -38,6 +38,27 @@
 
 }
 
+- (IBAction)testPushLocal:(id)sender {
+    //Create a new local notification
+    UILocalNotification *localNotification =[[UILocalNotification alloc]init];
+    
+    // Notification details
+    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:20];
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.repeatCalendar = [NSCalendar currentCalendar];
+    localNotification.alertBody = @"Alerta";
+    localNotification.alertAction = @"Accion";
+    //localNotification.userInfo = [[NSDictionary alloc] initWithObjectsAndKeys:CHECK_IN_STRATEGY_USER_INFO_VALUE, CHECK_IN_STRATEGY_USER_INFO_KEY, nil];
+    localNotification.repeatInterval = 0;
+    localNotification.soundName = UILocalNotificationDefaultSoundName;
+    localNotification.applicationIconBadgeNumber = 1;
+    
+    // Schedule the notification
+    [[UIApplication sharedApplication]scheduleLocalNotification:localNotification];
+    
+}
+
+
 
 -(void)viewWillAppear:(BOOL)animated
 {

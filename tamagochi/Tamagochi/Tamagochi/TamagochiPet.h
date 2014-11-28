@@ -26,6 +26,8 @@
 
 -(NSString *)getName;
 
+-(NSString *)getUniqueCode;
+
 -(NSString *)getPetType;
 
 -(int)getLevel;
