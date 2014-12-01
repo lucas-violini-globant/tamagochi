@@ -44,6 +44,8 @@
 
 + (instancetype) sharedInstance;
 
++ (instancetype) newInstance;
+
 -(BOOL) eatFood:(TamagochiFood *) someFood;
 
 -(BOOL) doneEating;
@@ -65,5 +67,10 @@
 -(BOOL) isExhausted;
 
 -(BOOL)setFromDictionary:(NSDictionary *) aDictionary;
+
++(id)newInstanceAndInitWithDictionary:(NSDictionary *) aDictionary;
+
+- (NSComparisonResult)compareLevel:(TamagochiPet *)otherObject;
+
 
 @end

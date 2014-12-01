@@ -565,24 +565,56 @@
 
 
 
++ (instancetype) newInstance
+{
+    return [[TamagochiPet alloc] init];
+
+}
+
++(id)newInstanceAndInitWithDictionary:(NSDictionary *) aDictionary
+{
+    TamagochiPet *petObject = [self newInstance];
+    [petObject setFromDictionary:aDictionary];
+    return petObject;
+}
+
+
 -(BOOL)setFromDictionary:(NSDictionary *) aDictionary
 {
     //{"code":"lv3503","name":"okokokoko","_id":"547641321c7fc4020094cef8","__v":0,"experience":0,"last_update":"2014-11-26T21:35:08.386Z","level":1,"energy":50}
     NSString *name = [aDictionary valueForKey:@"name"];
+    NSString *code = [aDictionary valueForKey:@"code"];
     NSNumber *experience = [aDictionary valueForKey:@"experience"];
     NSNumber *level = [aDictionary valueForKey:@"level"];
     NSNumber *energy = [aDictionary valueForKey:@"energy"];
+    NSNumber *petType = [aDictionary valueForKey:@"pet_type"];
     
-    NSLog(@"Updated values - Name: %@ , Experience: %@ , Level: %@ , Energy: %@",name,experience,level,energy);
+    NSLog(@"Updated values - Name: %@ , Experience: %@ , Level: %@ , Energy: %@, Pet_Type: %@",name,experience,level,energy,petType);
     
-    [self setTag:1];
+    [self setTag:[petType integerValue]];
     _name = name;
     _energy = [energy floatValue];
     _experience = [experience floatValue];
     _level = [level integerValue];
+
+    _uniqueCode = code;
     
     
     return YES;
+}
+
+
+
+
+- (NSComparisonResult)compareLevel:(TamagochiPet *)otherObject
+{
+
+    if ([otherObject getLevel] == [self getLevel])
+            return NSOrderedSame;
+    if ([otherObject getLevel] < [self getLevel])
+            return NSOrderedAscending;
+    return NSOrderedDescending;
+            
 }
 
 

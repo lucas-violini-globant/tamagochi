@@ -24,4 +24,7 @@
 -(void)downloadPetFromServerWithSuccess:(void (^)())success
                                 failure:(void (^)())failure;
 
+-(void)downloadPetsArrayFromServerWithSuccess:(void (^)())success
+                                      failure:(void (^)())failure;
+
 @end

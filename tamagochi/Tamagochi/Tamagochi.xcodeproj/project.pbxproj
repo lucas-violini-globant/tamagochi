@@ -23,6 +23,11 @@
 		A083416A1A26273200F65082 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = A08341601A26273200F65082 /* AFURLResponseSerialization.m */; };
 		A083416B1A26273200F65082 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A08341621A26273200F65082 /* AFURLSessionManager.m */; };
 		A08341701A26667600F65082 /* TamagochiNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A083416F1A26667600F65082 /* TamagochiNetworking.m */; };
+		A0BB4C2F1A2A19E4007D5E04 /* PetRanking.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BB4C2E1A2A19E4007D5E04 /* PetRanking.m */; };
+		A0BB4C331A2A2D3E007D5E04 /* TamagochiRankingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BB4C311A2A2D3E007D5E04 /* TamagochiRankingViewController.m */; };
+		A0BB4C341A2A2D3E007D5E04 /* TamagochiRankingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0BB4C321A2A2D3E007D5E04 /* TamagochiRankingViewController.xib */; };
+		A0BB4C381A2CAE40007D5E04 /* TamagochiRankingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BB4C361A2CAE40007D5E04 /* TamagochiRankingTableViewCell.m */; };
+		A0BB4C391A2CAE40007D5E04 /* TamagochiRankingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0BB4C371A2CAE40007D5E04 /* TamagochiRankingTableViewCell.xib */; };
 		A0C2D4AF1A1BCA770013C95F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2D4AE1A1BCA770013C95F /* main.m */; };
 		A0C2D4B21A1BCA770013C95F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2D4B11A1BCA770013C95F /* AppDelegate.m */; };
 		A0C2D4BA1A1BCA770013C95F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0C2D4B91A1BCA770013C95F /* Images.xcassets */; };
@@ -207,6 +212,14 @@
 		A08341621A26273200F65082 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		A083416F1A26667600F65082 /* TamagochiNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TamagochiNetworking.m; sourceTree = "<group>"; };
 		A08341711A26668500F65082 /* TamagochiNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TamagochiNetworking.h; sourceTree = "<group>"; };
+		A0BB4C2D1A2A19CA007D5E04 /* PetRanking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PetRanking.h; sourceTree = "<group>"; };
+		A0BB4C2E1A2A19E4007D5E04 /* PetRanking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PetRanking.m; sourceTree = "<group>"; };
+		A0BB4C301A2A2D3E007D5E04 /* TamagochiRankingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TamagochiRankingViewController.h; sourceTree = "<group>"; };
+		A0BB4C311A2A2D3E007D5E04 /* TamagochiRankingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TamagochiRankingViewController.m; sourceTree = "<group>"; };
+		A0BB4C321A2A2D3E007D5E04 /* TamagochiRankingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TamagochiRankingViewController.xib; sourceTree = "<group>"; };
+		A0BB4C351A2CAE40007D5E04 /* TamagochiRankingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TamagochiRankingTableViewCell.h; sourceTree = "<group>"; };
+		A0BB4C361A2CAE40007D5E04 /* TamagochiRankingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TamagochiRankingTableViewCell.m; sourceTree = "<group>"; };
+		A0BB4C371A2CAE40007D5E04 /* TamagochiRankingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TamagochiRankingTableViewCell.xib; sourceTree = "<group>"; };
 		A0C2D4A91A1BCA770013C95F /* Tamagochi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tamagochi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C2D4AD1A1BCA770013C95F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0C2D4AE1A1BCA770013C95F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -782,6 +795,9 @@
 				A0C2D6001A1E53B00013C95F /* TamagochiFoodSelectionViewController.h */,
 				A0C2D6011A1E53B00013C95F /* TamagochiFoodSelectionViewController.m */,
 				A0C2D6021A1E53B00013C95F /* TamagochiFoodSelectionViewController.xib */,
+				A0BB4C301A2A2D3E007D5E04 /* TamagochiRankingViewController.h */,
+				A0BB4C311A2A2D3E007D5E04 /* TamagochiRankingViewController.m */,
+				A0BB4C321A2A2D3E007D5E04 /* TamagochiRankingViewController.xib */,
 			);
 			name = Screens;
 			sourceTree = "<group>";
@@ -800,6 +816,11 @@
 				A08341021A23907C00F65082 /* TamagochiPet.h */,
 				A083416F1A26667600F65082 /* TamagochiNetworking.m */,
 				A08341711A26668500F65082 /* TamagochiNetworking.h */,
+				A0BB4C2D1A2A19CA007D5E04 /* PetRanking.h */,
+				A0BB4C2E1A2A19E4007D5E04 /* PetRanking.m */,
+				A0BB4C351A2CAE40007D5E04 /* TamagochiRankingTableViewCell.h */,
+				A0BB4C361A2CAE40007D5E04 /* TamagochiRankingTableViewCell.m */,
+				A0BB4C371A2CAE40007D5E04 /* TamagochiRankingTableViewCell.xib */,
 			);
 			name = BasicComponents;
 			sourceTree = "<group>";
@@ -920,6 +941,7 @@
 				A0C2D5F01A1BD5F70013C95F /* leon_exhausto_2.png in Resources */,
 				A0C2D5C31A1BD5F70013C95F /* jirafa_comiendo_1@2x.png in Resources */,
 				A0C2D57D1A1BD5F70013C95F /* comida_0@2x.png in Resources */,
+				A0BB4C391A2CAE40007D5E04 /* TamagochiRankingTableViewCell.xib in Resources */,
 				A0C2D5921A1BD5F70013C95F /* ciervo_comiendo_3.png in Resources */,
 				A0C2D5C11A1BD5F70013C95F /* gato_exhausto_4@2x.png in Resources */,
 				A0C2D5D81A1BD5F70013C95F /* jirafa_exhausto_3.png in Resources */,
@@ -930,6 +952,7 @@
 				A0C2D4E01A1BCFD90013C95F /* TamagochiSelectNameViewController.xib in Resources */,
 				A0C2D5841A1BD5F70013C95F /* comida_4.png in Resources */,
 				A0C2D5851A1BD5F70013C95F /* comida_4@2x.png in Resources */,
+				A0BB4C341A2A2D3E007D5E04 /* TamagochiRankingViewController.xib in Resources */,
 				A0C2D5BB1A1BD5F70013C95F /* gato_exhausto_1@2x.png in Resources */,
 				A0C2D5E31A1BD5F70013C95F /* leon_comiendo_4@2x.png in Resources */,
 				A0C2D5AE1A1BD5F70013C95F /* gato_comiendo_4.png in Resources */,
@@ -1043,9 +1066,11 @@
 				A0C2D6131A1E6BE20013C95F /* TamagochiUITableViewCell.m in Sources */,
 				A08341671A26273200F65082 /* AFSecurityPolicy.m in Sources */,
 				A0C2D4B21A1BCA770013C95F /* AppDelegate.m in Sources */,
+				A0BB4C331A2A2D3E007D5E04 /* TamagochiRankingViewController.m in Sources */,
 				A08341641A26273200F65082 /* AFHTTPRequestOperationManager.m in Sources */,
 				A0C2D6061A1E5C2F0013C95F /* TamagochiFood.m in Sources */,
 				A0C2D4DA1A1BCE580013C95F /* TamagochiWelcomeViewController.m in Sources */,
+				A0BB4C2F1A2A19E4007D5E04 /* PetRanking.m in Sources */,
 				A0C2D4E41A1BD2BA0013C95F /* TamagochiStatusViewController.m in Sources */,
 				A0C2D6031A1E53B00013C95F /* TamagochiFoodSelectionViewController.m in Sources */,
 				A0C2D60A1A1E63ED0013C95F /* TamagochiFoodCollection.m in Sources */,
@@ -1059,6 +1084,7 @@
 				A08341631A26273200F65082 /* AFHTTPRequestOperation.m in Sources */,
 				A08341701A26667600F65082 /* TamagochiNetworking.m in Sources */,
 				A08341651A26273200F65082 /* AFHTTPSessionManager.m in Sources */,
+				A0BB4C381A2CAE40007D5E04 /* TamagochiRankingTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

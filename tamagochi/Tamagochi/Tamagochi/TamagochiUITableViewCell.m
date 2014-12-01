@@ -9,6 +9,8 @@
 #import "TamagochiUITableViewCell.h"
 #import "TamagochiFoodCollection.h"
 #import "TamagochiFood.h"
+#import "PetRanking.h"
+#import "TamagochiPet.h"
 
 
 @implementation TamagochiUITableViewCell
@@ -41,5 +43,8 @@
     
     return self;
 }
+
+
+
 
 @end
