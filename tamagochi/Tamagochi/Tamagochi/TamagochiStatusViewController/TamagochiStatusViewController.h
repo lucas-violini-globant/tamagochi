@@ -12,7 +12,7 @@
 #import <MapKit/MapKit.h>
 
 
-@interface TamagochiStatusViewController : UIViewController<FoodProtocol, MFMailComposeViewControllerDelegate, MKMapViewDelegate>
+@interface TamagochiStatusViewController : UIViewController<FoodProtocol, MFMailComposeViewControllerDelegate, MKMapViewDelegate,CLLocationManagerDelegate>
 
 -(IBAction)sendEmail:(id)sender;
 

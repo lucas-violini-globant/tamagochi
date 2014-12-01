@@ -132,9 +132,7 @@
     
     [tn downloadPetFromServerWithSuccess:^{[weakerSelf petDownloadSuccess];}
                                  failure:^{[weakerSelf petDownloadFailure];}];
-
-    
-    
+        
 }
 
 - (IBAction)switchToSelectImageScreen:(id)sender

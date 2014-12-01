@@ -30,11 +30,14 @@
 
 @property (strong , nonatomic) TamagochiFood* foodSelected;
 
-
-
 @end
 
+
+
 @implementation TamagochiStatusViewController
+
+CLLocationManager *locationManager = nil;
+
 
 - (IBAction)sendEmail:(id)sender {
     
@@ -90,6 +93,7 @@
     NSString *imageName = [[TamagochiPet sharedInstance] getImage];
     self.petImage.image = [UIImage imageNamed:imageName];
     self.petNameLabel.text = [[TamagochiPet sharedInstance] getName];
+    [self startUpdates];
     
 }
 
@@ -246,7 +250,6 @@
     UIAlertView *alerta = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Level passed!!" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
     [alerta show];
     
-    // Send a notification to all devices subscribed to the "Giants" channel.
     PFPush *push = [[PFPush alloc] init];
     [push setChannel:@"PeleaDeMascotas"];
     TamagochiPet *pet= [TamagochiPet sharedInstance];
@@ -261,6 +264,10 @@
     
     [push setData: notif];
     [push sendPushInBackground];
+    [self uploadStatusToServer];
+}
+- (IBAction)uploadManually:(id)sender {
+    [self uploadStatusToServer];
 }
 
 
@@ -488,15 +495,34 @@
 }
 
 
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
+    CLLocation *newLocation = [locations lastObject];
+    //CLLocation *oldLocation;
     NSDate* eventDate = newLocation.timestamp;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    if (abs(howRecent) < 120.0) // Updates de menos de 2 min.
+    if (abs(howRecent) < 10.0) // Updates de menos de 10 segundos
     {
         [manager stopUpdatingLocation]; // Detener el tracking y utilizar la location theLocation = newLocation;
+        NSLog(@"Coordenadas: %f, %f",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
+        [[TamagochiPet sharedInstance] setLatitude:(float)newLocation.coordinate.latitude];
+        [[TamagochiPet sharedInstance] setLongitude:(float)newLocation.coordinate.longitude];
     }
+}
+
+
+- (void)startUpdates
+{
+    NSLog(@"Starting location update");
+    if (nil == locationManager)
+    {
+        locationManager = [[CLLocationManager alloc] init]; locationManager.delegate = self;
+    }
+    locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters; //kCLLocationAccuracyKilometer; // Presición
+    locationManager.distanceFilter = 10; // Distancia mínima de updates
+    [locationManager startUpdatingLocation];
+    NSLog(@"Location update line passed");
+    
 }
 
 /*

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "TamagochiFood.h"
-
+#import <CoreLocation/CoreLocation.h>
 
 @interface TamagochiPet : NSObject
 
@@ -31,11 +31,15 @@
 @property (nonatomic, strong) NSString *imageNameCurrent;
 @property (nonatomic, strong) NSString *uniqueCode;
 
+@property  float position_lat;
 
+@property  float position_lon;
 
 @end
 
 @implementation TamagochiPet : NSObject
+
+
 
 -(TamagochiPet *) setTag:(int)someTag
 
@@ -585,6 +589,28 @@
     
     return YES;
 }
+
+
+-(float)getLatitude
+{
+    return _position_lat;
+}
+
+-(float)getLongitude
+{
+    return _position_lon;
+}
+
+-(void)setLatitude:(float)latitude
+{
+    _position_lat = latitude;
+}
+
+-(void)setLongitude:(float)longitude
+{
+    _position_lon = longitude;
+}
+
 
 
 @end

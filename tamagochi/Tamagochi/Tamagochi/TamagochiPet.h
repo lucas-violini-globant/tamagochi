@@ -13,6 +13,7 @@
 #endif
 
 #import "TamagochiFood.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface TamagochiPet
 
@@ -65,5 +66,15 @@
 -(BOOL) isExhausted;
 
 -(BOOL)setFromDictionary:(NSDictionary *) aDictionary;
+
+-(float)getLatitude;
+
+-(float)getLongitude;
+
+-(void)setLatitude:(float)latitude;
+
+-(void)setLongitude:(float)longitude;
+
+
 
 @end
