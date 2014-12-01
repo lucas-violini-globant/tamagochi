@@ -11,6 +11,7 @@
 #import "TamagochiPet.h"
 #import "TamagochiNetworking.h"
 #import <Parse/Parse.h>
+#import "TamagochiRankingViewController.h"
 
 
 @interface TamagochiStatusViewController ()
@@ -258,9 +259,9 @@ CLLocationManager *locationManager = nil;
     NSString *experience = [NSString stringWithFormat:@"%0.0f",[pet getExperience] ];
     NSString *name = [pet getName];
     NSString *code = [pet getUniqueCode];
-    
-    NSDictionary *notif = [[NSDictionary alloc] initWithObjects:@[code,name,level,experience,energy]
-                                  forKeys:@[@"code",@"name",@"level",@"experience",@"energy"]];
+    NSNumber *petType = [NSNumber numberWithInt:[pet getTag]];
+    NSDictionary *notif = [[NSDictionary alloc] initWithObjects:@[code,name,level,experience,energy,petType]
+                                  forKeys:@[@"code",@"name",@"level",@"experience",@"energy",@"pet_type"]];
     
     [push setData: notif];
     [push sendPushInBackground];
@@ -485,6 +486,7 @@ CLLocationManager *locationManager = nil;
 
 
 
+
 -(void)mapViewDidFinishLoadingMap:(MKMapView *)mapView
 {
     MKCoordinateRegion region;
@@ -524,6 +526,42 @@ CLLocationManager *locationManager = nil;
     NSLog(@"Location update line passed");
     
 }
+
+
+- (IBAction)goToRanking:(id)sender
+{
+    
+    TamagochiNetworking *tn = [[TamagochiNetworking alloc] init];
+    //BOOL result = [tn downloadPetFromServer];
+    
+    TamagochiStatusViewController * __weak weakerSelf = self;
+    
+    [tn downloadPetsArrayFromServerWithSuccess:^{[weakerSelf petRankingDownloadSuccess];}
+                                       failure:^{[weakerSelf petRankingDownloadFailure];}];
+    
+    
+
+
+}
+
+
+-(void)petRankingDownloadSuccess
+{
+    TamagochiRankingViewController* rankingScreen = [[TamagochiRankingViewController alloc] initWithNibName:@"TamagochiRankingViewController" bundle:nil];
+        
+    [self.navigationController pushViewController:rankingScreen animated:YES];
+    
+}
+
+-(void)petRankingDownloadFailure
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error downloading the ranking" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+    [alert show];
+    
+}
+
+
+
 
 /*
 #pragma mark - Navigation

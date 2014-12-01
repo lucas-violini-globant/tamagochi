@@ -48,6 +48,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (IBAction)switchToStatusScreen:(id)sender {
     
     //Singleton: Obtengo la instancia de TamagochiPet y le paso el tag, para que se setee solo

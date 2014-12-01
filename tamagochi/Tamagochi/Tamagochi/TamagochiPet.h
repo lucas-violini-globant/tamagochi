@@ -45,6 +45,8 @@
 
 + (instancetype) sharedInstance;
 
++ (instancetype) newInstance;
+
 -(BOOL) eatFood:(TamagochiFood *) someFood;
 
 -(BOOL) doneEating;
@@ -74,6 +76,10 @@
 -(void)setLatitude:(float)latitude;
 
 -(void)setLongitude:(float)longitude;
+
++(id)newInstanceAndInitWithDictionary:(NSDictionary *) aDictionary;
+
+- (NSComparisonResult)compareLevel:(TamagochiPet *)otherObject;
 
 
 

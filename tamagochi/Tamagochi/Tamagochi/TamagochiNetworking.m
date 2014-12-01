@@ -10,6 +10,7 @@
 //#import "AFNetworking/AFNetworking.h"
 #import "TamagochiPet.h"
 #import "AFNetworking.h"
+#import "PetRanking.h"
 
 
 
@@ -220,6 +221,56 @@
 {
     
 }
+
+
+-(void)downloadPetsArrayFromServerWithSuccess:(void (^)())success
+                                failure:(void (^)())failure
+{
+    //(void (^)(AFHTTPRequestOperation *operation, id responseObject))
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSLog(@"Sending GET....");
+    [manager GET:[NSString stringWithFormat:@"%@/%@",_serverURL,@"all"]
+      parameters:nil
+     
+         success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         if(success) //si el parametro success esta seteado...
+         {
+             success(); //ejecuto esto (un bloque)
+
+         if ([responseObject isKindOfClass:[NSArray class]])
+            {
+                NSLog(@"ARRAY DESCARGADO CON %d ELEMENTOS",[responseObject count]);
+                PetRanking *ranking = [PetRanking sharedInstance];
+                [ranking addPetsInArray:responseObject];
+            }
+         }
+         else if ([responseObject isKindOfClass:[NSDictionary class]])
+         {
+              NSLog(@"PROBLEMA: SE DEVOLVIO DICTIONARY, SE ESPERABA UN ARRAY");
+             if(failure) //si el parametro failure esta seteado...
+             {
+                 failure(); //ejecuto esto (un bloque)
+             }
+
+         }
+     }
+     
+         failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         
+         if(failure) //si el parametro failure esta seteado...
+         {
+             failure(); //ejecuto esto (un bloque)
+         }
+         
+     }
+     ];
+    NSLog(@"GET REQUEST COMPLETED!");
+    
+}
+
+
 
 
 @end
