@@ -32,6 +32,7 @@
 @property (nonatomic, strong) NSString *uniqueCode;
 
 
+
 @end
 
 @implementation TamagochiPet : NSObject

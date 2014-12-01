@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 #import "TamagochiFoodSelectionViewController.h"
+#import <MapKit/MapKit.h>
 
-@interface TamagochiStatusViewController : UIViewController<FoodProtocol, MFMailComposeViewControllerDelegate>
+
+@interface TamagochiStatusViewController : UIViewController<FoodProtocol, MFMailComposeViewControllerDelegate, MKMapViewDelegate>
 
 -(IBAction)sendEmail:(id)sender;
 

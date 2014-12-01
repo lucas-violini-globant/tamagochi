@@ -476,6 +476,29 @@
     return self;
 }
 
+
+
+-(void)mapViewDidFinishLoadingMap:(MKMapView *)mapView
+{
+    MKCoordinateRegion region;
+    region.center = [mapView userLocation].location.coordinate;
+    region.span.latitudeDelta = 0.02;
+    region.span.longitudeDelta = 0.02;
+    [mapView setRegion:region animated:YES];
+}
+
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    NSDate* eventDate = newLocation.timestamp;
+    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    if (abs(howRecent) < 120.0) // Updates de menos de 2 min.
+    {
+        [manager stopUpdatingLocation]; // Detener el tracking y utilizar la location theLocation = newLocation;
+    }
+}
+
 /*
 #pragma mark - Navigation
 

@@ -23,6 +23,8 @@
 		A083416A1A26273200F65082 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = A08341601A26273200F65082 /* AFURLResponseSerialization.m */; };
 		A083416B1A26273200F65082 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A08341621A26273200F65082 /* AFURLSessionManager.m */; };
 		A08341701A26667600F65082 /* TamagochiNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A083416F1A26667600F65082 /* TamagochiNetworking.m */; };
+		A0BB4C3B1A2CEB2F007D5E04 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0BB4C3A1A2CEB2F007D5E04 /* MapKit.framework */; };
+		A0BB4C3D1A2CEDEA007D5E04 /* GoogleMaps2.png in Resources */ = {isa = PBXBuildFile; fileRef = A0BB4C3C1A2CEDEA007D5E04 /* GoogleMaps2.png */; };
 		A0C2D4AF1A1BCA770013C95F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2D4AE1A1BCA770013C95F /* main.m */; };
 		A0C2D4B21A1BCA770013C95F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2D4B11A1BCA770013C95F /* AppDelegate.m */; };
 		A0C2D4BA1A1BCA770013C95F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0C2D4B91A1BCA770013C95F /* Images.xcassets */; };
@@ -207,6 +209,8 @@
 		A08341621A26273200F65082 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		A083416F1A26667600F65082 /* TamagochiNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TamagochiNetworking.m; sourceTree = "<group>"; };
 		A08341711A26668500F65082 /* TamagochiNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TamagochiNetworking.h; sourceTree = "<group>"; };
+		A0BB4C3A1A2CEB2F007D5E04 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		A0BB4C3C1A2CEDEA007D5E04 /* GoogleMaps2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GoogleMaps2.png; path = Images.xcassets/Mapa/GoogleMaps2.png; sourceTree = "<group>"; };
 		A0C2D4A91A1BCA770013C95F /* Tamagochi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tamagochi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C2D4AD1A1BCA770013C95F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0C2D4AE1A1BCA770013C95F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -372,6 +376,7 @@
 				A06AF2C01A290A630063E09D /* Bolts.framework in Frameworks */,
 				A06AF2BA1A290A370063E09D /* ParseUI.framework in Frameworks */,
 				A06AF2B81A290A1D0063E09D /* Parse.framework in Frameworks */,
+				A0BB4C3B1A2CEB2F007D5E04 /* MapKit.framework in Frameworks */,
 				A08340FF1A2377EE00F65082 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,6 +421,7 @@
 		A0C2D4A01A1BCA770013C95F = {
 			isa = PBXGroup;
 			children = (
+				A0BB4C3A1A2CEB2F007D5E04 /* MapKit.framework */,
 				A06AF2C11A290C7C0063E09D /* AudioToolbox.framework */,
 				A06AF2BF1A290A630063E09D /* Bolts.framework */,
 				A06AF2BB1A290A520063E09D /* ParseFacebookUtils.framework */,
@@ -447,6 +453,7 @@
 				A0C2D6161A1E6C310013C95F /* BasicComponents */,
 				A0C2D6151A1E6BF20013C95F /* Screens */,
 				A0C2D4B91A1BCA770013C95F /* Images.xcassets */,
+				A0BB4C3C1A2CEDEA007D5E04 /* GoogleMaps2.png */,
 				A0C2D4E61A1BD5F70013C95F /* AppIcon */,
 				A0C2D4EC1A1BD5F70013C95F /* Comida */,
 				A0C2D4FF1A1BD5F70013C95F /* Mascota */,
@@ -858,6 +865,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
 						};
 					};
 					A0C2D4C11A1BCA780013C95F = {
@@ -929,6 +939,7 @@
 				A0C2D5A01A1BD5F70013C95F /* ciervo_exhausto_1.png in Resources */,
 				A0C2D4E01A1BCFD90013C95F /* TamagochiSelectNameViewController.xib in Resources */,
 				A0C2D5841A1BD5F70013C95F /* comida_4.png in Resources */,
+				A0BB4C3D1A2CEDEA007D5E04 /* GoogleMaps2.png in Resources */,
 				A0C2D5851A1BD5F70013C95F /* comida_4@2x.png in Resources */,
 				A0C2D5BB1A1BD5F70013C95F /* gato_exhausto_1@2x.png in Resources */,
 				A0C2D5E31A1BD5F70013C95F /* leon_comiendo_4@2x.png in Resources */,
