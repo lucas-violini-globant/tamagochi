@@ -41,20 +41,22 @@
 
 
 
--(TamagochiPet *) setTag:(int)someTag
+-(void) configureWithTag:(int)someTag
 
 {
-    TamagochiPet *instancia = [TamagochiPet sharedInstance];
-    _feedingImages = [instancia getFeedingImagesArrayByTag:someTag];
-    _exercisingImages = [instancia getExercisingImagesArrayByTag:someTag];
-    _exhaustedImages = [instancia getExhaustedImagesArrayByTag:someTag];
-    _exhaustedToNormalImages = [instancia getExhaustedToNormalImagesArrayByTag:someTag];
-    _imageNameNormal = [instancia getNormalImageNameByTag:someTag];
-    _imageNameExhausted = [instancia getExhaustedImageNameByTag:someTag];
+
+    _feedingImages = [TamagochiPet getFeedingImagesArrayByTag:someTag];
+    _exercisingImages = [TamagochiPet getExercisingImagesArrayByTag:someTag];
+    _exhaustedImages = [TamagochiPet getExhaustedImagesArrayByTag:someTag];
+    _exhaustedToNormalImages = [TamagochiPet getExhaustedToNormalImagesArrayByTag:someTag];
+    _imageNameNormal = [TamagochiPet getNormalImageNameByTag:someTag];
+    _imageNameExhausted = [TamagochiPet getExhaustedImageNameByTag:someTag];
     _imageNameCurrent = _imageNameNormal;
-    _typeName = [instancia getPetTypeByTag:someTag];
-    //_stateIsEating = NO;
-    //_stateIsExercising = NO;
+    _typeName = [TamagochiPet getPetTypeByTag:someTag];
+}
+
+-(void)initPetWithDefaults
+{
     _level = 1;
     _energy = 50.0;
     _experience = 0.0;
@@ -64,8 +66,6 @@
     {
         _name = @"";
     }
-
-    return instancia;
 }
 
 -(int)getTag
@@ -155,7 +155,7 @@
 
 }
 
--(NSString *)getNormalImageNameByTag:(long)tag
++(NSString *)getNormalImageNameByTag:(long)tag
 {
     NSString *imageName = @"";
     
@@ -182,7 +182,7 @@
 
 
 
--(NSString *)getExhaustedImageNameByTag:(long)tag
++(NSString *)getExhaustedImageNameByTag:(long)tag
 {
     NSString *imageName = @"";
     
@@ -208,7 +208,7 @@
 }
 
 
--(NSArray *)getFeedingImagesArrayByTag:(long)tag
++(NSArray *)getFeedingImagesArrayByTag:(long)tag
 {
     NSArray * arreglo;
     
@@ -250,7 +250,7 @@
 }
 
 
--(NSArray *)getExercisingImagesArrayByTag:(long)tag
++(NSArray *)getExercisingImagesArrayByTag:(long)tag
 {
     NSArray * arreglo;
     
@@ -298,7 +298,7 @@
 
 
 
--(NSArray *)getExhaustedImagesArrayByTag:(long)tag
++(NSArray *)getExhaustedImagesArrayByTag:(long)tag
 {
     NSArray * arreglo;
     
@@ -344,7 +344,7 @@
 }
 
 
--(NSArray *)getExhaustedToNormalImagesArrayByTag:(long)tag
++(NSArray *)getExhaustedToNormalImagesArrayByTag:(long)tag
 {
     NSArray * arreglo;
     
@@ -391,7 +391,7 @@
 
 
 
--(NSString *)getPetTypeByTag:(long)tag
++(NSString *)getPetTypeByTag:(long)tag
 {
     NSString *resultado;
     
@@ -555,19 +555,125 @@
     return (_energy < 25);
 }
 
+-(id)initWithCoder: (NSCoder *)coder
+{
+    if (self = [super init])
+    {
+        NSString *storedPetName = [coder decodeObjectForKey:@"pet.name"];
+        int storedPetTag = [coder decodeIntForKey:@"pet.tag"];
+        float storedPetEnergy = [coder decodeFloatForKey:@"pet.energy"];
+        int storedPetLevel = [coder decodeIntForKey:@"pet.level"];
+        float storedPetExperience = [coder decodeFloatForKey:@"pet.experience"];
+        float storedPetLatitude = [coder decodeFloatForKey:@"pet.latitude"];
+        float storedPetLongitude = [coder decodeFloatForKey:@"pet.longitude"];
+        NSString *storedPetCode = [coder decodeObjectForKey:@"pet.code"];
+        
+        //[self setTag:storedPetTag];
+        [self initPetWithDefaults];
+        [self setName:storedPetName];
+        [self setLevel:storedPetLevel];
+        [self setEnergy:storedPetEnergy];
+        [self setExperience:storedPetExperience];
+        [self setLatitude:storedPetLatitude];
+        [self setLongitude:storedPetLongitude];
+        [self setUniqueCode:storedPetCode];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder: (NSCoder *)coder
+{
+    NSString *storedPetName = [self getName];
+    int storedPetTag = [self getTag];
+    float storedPetEnergy = [self getEnergy];
+    int storedPetLevel = [self getLevel];
+    float storedPetExperience = [self getExperience];
+    float storedPetLatitude = [self getLatitude];
+    float storedPetLongitude = [self getLongitude];
+    NSString *storedPetCode = [self uniqueCode];
+    
+
+    [coder encodeObject:storedPetName forKey:@"pet.name"];
+    [coder encodeInt:storedPetTag forKey:@"pet.tag"];
+    [coder encodeFloat:storedPetEnergy forKey:@"pet.energy"];
+    [coder encodeInt:storedPetLevel forKey:@"pet.level"];
+    [coder encodeFloat:storedPetExperience forKey:@"pet.experience"];
+    [coder encodeFloat:storedPetLatitude forKey:@"pet.latitude"];
+    [coder encodeFloat:storedPetLongitude forKey:@"pet.longitude"];
+    [coder encodeObject:storedPetCode forKey:@"pet.code"];
+    
+
+}
+
+
+
+
+
 
 + (instancetype) sharedInstance
 {
     static dispatch_once_t pred = 0;
-    __strong static id _sharedObject = nil;
+    __strong static TamagochiPet* _sharedObject = nil;
     //Garantiza que lo que se encuentre dentro solo se ejecutará una vez.
     dispatch_once(&pred, ^{
-                            _sharedObject = [[self alloc] init];
-                           }
+                            _sharedObject = [TamagochiPet loadData];
+        
+                            if (_sharedObject == nil)
+                            {
+                                _sharedObject = [[self alloc] init];
+                                [_sharedObject initPetWithDefaults];
+                            } else {
+                                [_sharedObject configureWithTag:[_sharedObject getTag]];
+                            }
+                        }
                   );
     return _sharedObject;
 }
 
+
+
++ (NSString *) pathForDataFile
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString* directory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSError* error;
+    
+    directory = [directory stringByExpandingTildeInPath];
+    
+    if ([fileManager fileExistsAtPath: directory] == NO)
+    {
+        
+        [fileManager createDirectoryAtPath:directory withIntermediateDirectories:YES attributes:nil error:&error];
+    }
+    
+    NSString *fileName = [directory stringByAppendingString:@"/Tamagochi.ios"];
+    
+    return fileName;
+}
+
+
+- (void) saveData
+{
+    NSString *path = [TamagochiPet pathForDataFile];
+    
+    NSMutableDictionary *rootObject = [NSMutableDictionary dictionary];
+    
+    [rootObject setValue: self forKey:@"TamagochiPet"];
+    
+    [NSKeyedArchiver archiveRootObject: rootObject toFile: path];
+}
+
+
+
++ (instancetype) loadData
+{
+    NSString *path = [self pathForDataFile];
+    NSDictionary *rootObject;
+    rootObject = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    
+    return [rootObject valueForKey:@"TamagochiPet"];
+    
+}
 
 
 + (instancetype) newInstance
@@ -596,7 +702,7 @@
     
     NSLog(@"Updated values - Name: %@ , Experience: %@ , Level: %@ , Energy: %@, Pet_Type: %@",name,experience,level,energy,petType);
     
-    [self setTag:[petType integerValue]];
+    [self configureWithTag:[petType integerValue]];
     _name = name;
     _energy = [energy floatValue];
     _experience = [experience floatValue];

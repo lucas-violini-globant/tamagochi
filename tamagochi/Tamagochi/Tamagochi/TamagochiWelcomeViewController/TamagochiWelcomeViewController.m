@@ -155,13 +155,12 @@
     }
     else
     {
-        TamagochiSelectNameViewController* home = [[TamagochiSelectNameViewController alloc] initWithNibName:@"TamagochiSelectNameViewController" bundle:nil petName:[self.textFieldName text]];
-        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"screen1Passed"];
+        [[TamagochiPet sharedInstance] setName:[self.textFieldName text]];
+        TamagochiSelectNameViewController* home = [[TamagochiSelectNameViewController alloc] initWithNibName:@"TamagochiSelectNameViewController" bundle:nil];
         [self.navigationController pushViewController:home animated:YES];
         [self.navigationController setTitle:@"Choose an Image"];
     }
-    
-    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -178,7 +177,6 @@
 
 - (IBAction)nameChanged:(id)sender {
     
-    //BOOL isValid = [self.textFieldName.text rangeOfCharacterFromSet:[NSCharacterSet letterCharacterSet]].length == self.textFieldName.text.length;
     BOOL isValid = [self.textFieldName.text rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"0123456789-,><:;.!@#$%^&*()_+=-/"]].location == NSNotFound;
     
    if (!isValid)

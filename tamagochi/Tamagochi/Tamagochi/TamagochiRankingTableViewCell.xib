@@ -18,7 +18,7 @@
                         <rect key="frame" x="5" y="5" width="70" height="70"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nivel:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yg7-gI-GCc">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yg7-gI-GCc">
                         <rect key="frame" x="83" y="37" width="46" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -26,16 +26,12 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YvL-LY-4D9">
-                        <rect key="frame" x="130" y="37" width="42" height="21"/>
+                        <rect key="frame" x="131" y="37" width="42" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="6gJ-MH-M8p">
-                        <rect key="frame" x="258" y="26" width="54" height="48"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rix-Oj-mpV">
                         <rect key="frame" x="83" y="8" width="205" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -43,18 +39,30 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hT4-6c-Bk2">
+                        <rect key="frame" x="262" y="15" width="50" height="50"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" image="GoogleMaps2.png">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickImage:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="mQp-OA-SYk"/>
+                        </connections>
+                    </button>
                 </subviews>
-                <color key="backgroundColor" red="1" green="0.90561549740000002" blue="0.52590239599999999" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" red="1" green="0.91412093277219697" blue="0.075865124901972725" alpha="1" colorSpace="calibratedRGB"/>
             </tableViewCellContentView>
             <connections>
                 <outlet property="petLevelLabel" destination="YvL-LY-4D9" id="riR-pd-NgX"/>
-                <outlet property="petMapIconUImageView" destination="6gJ-MH-M8p" id="g3X-bD-XjC"/>
                 <outlet property="petNameLabel" destination="rix-Oj-mpV" id="HRo-2b-Cb4"/>
                 <outlet property="petUImageView" destination="Qt3-DH-I2E" id="X15-Ex-6vy"/>
             </connections>
             <point key="canvasLocation" x="421" y="438"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="GoogleMaps2.png" width="256" height="256"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -12,6 +12,7 @@
 #import "TamagochiNetworking.h"
 #import <Parse/Parse.h>
 #import "TamagochiRankingViewController.h"
+#import "TamagochiMapViewController.h"
 
 
 @interface TamagochiStatusViewController ()
@@ -487,14 +488,7 @@ CLLocationManager *locationManager = nil;
 
 
 
--(void)mapViewDidFinishLoadingMap:(MKMapView *)mapView
-{
-    MKCoordinateRegion region;
-    region.center = [mapView userLocation].location.coordinate;
-    region.span.latitudeDelta = 0.02;
-    region.span.longitudeDelta = 0.02;
-    [mapView setRegion:region animated:YES];
-}
+
 
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -561,6 +555,12 @@ CLLocationManager *locationManager = nil;
 }
 
 
+- (IBAction)goToMap:(id)sender
+{
+    TamagochiMapViewController* mapScreen = [[TamagochiMapViewController alloc] initWithNibName:@"TamagochiMapViewController" bundle:nil];
+    [mapScreen displayOnePet:[TamagochiPet sharedInstance]];
+    [self.navigationController pushViewController:mapScreen animated:YES];
+}
 
 
 /*

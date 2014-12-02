@@ -15,9 +15,9 @@
 #import "TamagochiFood.h"
 #import <CoreLocation/CoreLocation.h>
 
-@interface TamagochiPet
+@interface TamagochiPet<NSCoding>
 
--(TamagochiPet *) setTag:(int)someTag;
+-(void) configureWithTag:(int)someTag;
 
 -(int) getTag;
 
@@ -81,6 +81,6 @@
 
 - (NSComparisonResult)compareLevel:(TamagochiPet *)otherObject;
 
-
+- (void) saveData;
 
 @end

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A00EB9481A2DE30800CD7D0E /* TamagochiMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A00EB9461A2DE30800CD7D0E /* TamagochiMapViewController.m */; };
+		A00EB9491A2DE30800CD7D0E /* TamagochiMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A00EB9471A2DE30800CD7D0E /* TamagochiMapViewController.xib */; };
+		A00EB9B31A2E0B0E00CD7D0E /* TamagochiMKMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A00EB9B21A2E0B0E00CD7D0E /* TamagochiMKMapAnnotation.m */; };
 		A06AF2B81A290A1D0063E09D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06AF2B71A290A1D0063E09D /* Parse.framework */; };
 		A06AF2BA1A290A370063E09D /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06AF2B91A290A370063E09D /* ParseUI.framework */; };
 		A06AF2C01A290A630063E09D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06AF2BF1A290A630063E09D /* Bolts.framework */; };
@@ -23,13 +26,13 @@
 		A083416A1A26273200F65082 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = A08341601A26273200F65082 /* AFURLResponseSerialization.m */; };
 		A083416B1A26273200F65082 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A08341621A26273200F65082 /* AFURLSessionManager.m */; };
 		A08341701A26667600F65082 /* TamagochiNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A083416F1A26667600F65082 /* TamagochiNetworking.m */; };
-		A0BB4C3B1A2CEB2F007D5E04 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0BB4C3A1A2CEB2F007D5E04 /* MapKit.framework */; };
-		A0BB4C3D1A2CEDEA007D5E04 /* GoogleMaps2.png in Resources */ = {isa = PBXBuildFile; fileRef = A0BB4C3C1A2CEDEA007D5E04 /* GoogleMaps2.png */; };
 		A0BB4C2F1A2A19E4007D5E04 /* PetRanking.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BB4C2E1A2A19E4007D5E04 /* PetRanking.m */; };
 		A0BB4C331A2A2D3E007D5E04 /* TamagochiRankingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BB4C311A2A2D3E007D5E04 /* TamagochiRankingViewController.m */; };
 		A0BB4C341A2A2D3E007D5E04 /* TamagochiRankingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0BB4C321A2A2D3E007D5E04 /* TamagochiRankingViewController.xib */; };
 		A0BB4C381A2CAE40007D5E04 /* TamagochiRankingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BB4C361A2CAE40007D5E04 /* TamagochiRankingTableViewCell.m */; };
 		A0BB4C391A2CAE40007D5E04 /* TamagochiRankingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0BB4C371A2CAE40007D5E04 /* TamagochiRankingTableViewCell.xib */; };
+		A0BB4C3B1A2CEB2F007D5E04 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0BB4C3A1A2CEB2F007D5E04 /* MapKit.framework */; };
+		A0BB4C3D1A2CEDEA007D5E04 /* GoogleMaps2.png in Resources */ = {isa = PBXBuildFile; fileRef = A0BB4C3C1A2CEDEA007D5E04 /* GoogleMaps2.png */; };
 		A0C2D4AF1A1BCA770013C95F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2D4AE1A1BCA770013C95F /* main.m */; };
 		A0C2D4B21A1BCA770013C95F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2D4B11A1BCA770013C95F /* AppDelegate.m */; };
 		A0C2D4BA1A1BCA770013C95F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0C2D4B91A1BCA770013C95F /* Images.xcassets */; };
@@ -185,6 +188,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A00EB9451A2DE30800CD7D0E /* TamagochiMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TamagochiMapViewController.h; sourceTree = "<group>"; };
+		A00EB9461A2DE30800CD7D0E /* TamagochiMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TamagochiMapViewController.m; sourceTree = "<group>"; };
+		A00EB9471A2DE30800CD7D0E /* TamagochiMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TamagochiMapViewController.xib; sourceTree = "<group>"; };
+		A00EB94D1A2E0A3700CD7D0E /* TamagochiMKMapAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TamagochiMKMapAnnotation.h; sourceTree = "<group>"; };
+		A00EB9B21A2E0B0E00CD7D0E /* TamagochiMKMapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TamagochiMKMapAnnotation.m; sourceTree = "<group>"; };
 		A06AF2B71A290A1D0063E09D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../../../Documents/Parse/Parse.framework; sourceTree = "<group>"; };
 		A06AF2B91A290A370063E09D /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = ../../../Documents/Parse/ParseUI.framework; sourceTree = "<group>"; };
 		A06AF2BB1A290A520063E09D /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = ../../../Documents/Parse/ParseFacebookUtils.framework; sourceTree = "<group>"; };
@@ -214,8 +222,6 @@
 		A08341621A26273200F65082 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		A083416F1A26667600F65082 /* TamagochiNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TamagochiNetworking.m; sourceTree = "<group>"; };
 		A08341711A26668500F65082 /* TamagochiNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TamagochiNetworking.h; sourceTree = "<group>"; };
-		A0BB4C3A1A2CEB2F007D5E04 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		A0BB4C3C1A2CEDEA007D5E04 /* GoogleMaps2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GoogleMaps2.png; path = Images.xcassets/Mapa/GoogleMaps2.png; sourceTree = "<group>"; };
 		A0BB4C2D1A2A19CA007D5E04 /* PetRanking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PetRanking.h; sourceTree = "<group>"; };
 		A0BB4C2E1A2A19E4007D5E04 /* PetRanking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PetRanking.m; sourceTree = "<group>"; };
 		A0BB4C301A2A2D3E007D5E04 /* TamagochiRankingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TamagochiRankingViewController.h; sourceTree = "<group>"; };
@@ -224,6 +230,8 @@
 		A0BB4C351A2CAE40007D5E04 /* TamagochiRankingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TamagochiRankingTableViewCell.h; sourceTree = "<group>"; };
 		A0BB4C361A2CAE40007D5E04 /* TamagochiRankingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TamagochiRankingTableViewCell.m; sourceTree = "<group>"; };
 		A0BB4C371A2CAE40007D5E04 /* TamagochiRankingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TamagochiRankingTableViewCell.xib; sourceTree = "<group>"; };
+		A0BB4C3A1A2CEB2F007D5E04 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		A0BB4C3C1A2CEDEA007D5E04 /* GoogleMaps2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GoogleMaps2.png; path = Images.xcassets/Mapa/GoogleMaps2.png; sourceTree = "<group>"; };
 		A0C2D4A91A1BCA770013C95F /* Tamagochi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tamagochi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C2D4AD1A1BCA770013C95F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0C2D4AE1A1BCA770013C95F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -805,6 +813,9 @@
 				A0BB4C301A2A2D3E007D5E04 /* TamagochiRankingViewController.h */,
 				A0BB4C311A2A2D3E007D5E04 /* TamagochiRankingViewController.m */,
 				A0BB4C321A2A2D3E007D5E04 /* TamagochiRankingViewController.xib */,
+				A00EB9451A2DE30800CD7D0E /* TamagochiMapViewController.h */,
+				A00EB9461A2DE30800CD7D0E /* TamagochiMapViewController.m */,
+				A00EB9471A2DE30800CD7D0E /* TamagochiMapViewController.xib */,
 			);
 			name = Screens;
 			sourceTree = "<group>";
@@ -828,6 +839,8 @@
 				A0BB4C351A2CAE40007D5E04 /* TamagochiRankingTableViewCell.h */,
 				A0BB4C361A2CAE40007D5E04 /* TamagochiRankingTableViewCell.m */,
 				A0BB4C371A2CAE40007D5E04 /* TamagochiRankingTableViewCell.xib */,
+				A00EB94D1A2E0A3700CD7D0E /* TamagochiMKMapAnnotation.h */,
+				A00EB9B21A2E0B0E00CD7D0E /* TamagochiMKMapAnnotation.m */,
 			);
 			name = BasicComponents;
 			sourceTree = "<group>";
@@ -1026,6 +1039,7 @@
 				A0C2D5E61A1BD5F70013C95F /* leon_ejercicio_2.png in Resources */,
 				A0C2D5F41A1BD5F70013C95F /* leon_exhausto_4.png in Resources */,
 				A0C2D5881A1BD5F70013C95F /* comida_6.png in Resources */,
+				A00EB9491A2DE30800CD7D0E /* TamagochiMapViewController.xib in Resources */,
 				A0C2D57F1A1BD5F70013C95F /* comida_1@2x.png in Resources */,
 				A0C2D5C21A1BD5F70013C95F /* jirafa_comiendo_1.png in Resources */,
 				A0C2D5AB1A1BD5F70013C95F /* gato_comiendo_2@2x.png in Resources */,
@@ -1089,7 +1103,9 @@
 				A083416A1A26273200F65082 /* AFURLResponseSerialization.m in Sources */,
 				A0C2D4AF1A1BCA770013C95F /* main.m in Sources */,
 				A0C2D4DF1A1BCFD90013C95F /* TamagochiSelectNameViewController.m in Sources */,
+				A00EB9B31A2E0B0E00CD7D0E /* TamagochiMKMapAnnotation.m in Sources */,
 				A08341691A26273200F65082 /* AFURLRequestSerialization.m in Sources */,
+				A00EB9481A2DE30800CD7D0E /* TamagochiMapViewController.m in Sources */,
 				A08341661A26273200F65082 /* AFNetworkReachabilityManager.m in Sources */,
 				A08341011A23904B00F65082 /* TamagochiPet.m in Sources */,
 				A08341631A26273200F65082 /* AFHTTPRequestOperation.m in Sources */,
