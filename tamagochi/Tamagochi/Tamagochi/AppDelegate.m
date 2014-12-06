@@ -14,8 +14,8 @@
 #import "TamagochiStatusViewController.h"
 #import "TamagochiPet.h"
 
-@interface AppDelegate ()
 
+@interface AppDelegate ()
 
 
 @end

@@ -30,5 +30,13 @@
 
 -(id)getPetWithUniqueCode:(NSString *)uniqueCode;
 
+-(PetRanking *)loadFromDataBase;
+
+-(void)deleteDataBase;
+
+-(void)saveToDataBase;
+
+-(void)dropAll;
+
 
 @end

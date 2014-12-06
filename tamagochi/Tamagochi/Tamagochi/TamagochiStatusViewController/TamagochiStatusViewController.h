@@ -10,7 +10,13 @@
 #import <MessageUI/MessageUI.h>
 #import "TamagochiFoodSelectionViewController.h"
 #import <MapKit/MapKit.h>
-
+#import "TamagochiStatusViewController.h"
+#import "TamagochiPet.h"
+#import "TamagochiNetworking.h"
+#import <Parse/Parse.h>
+#import "TamagochiRankingViewController.h"
+#import "TamagochiMapViewController.h"
+#import "PetRanking.h"
 
 @interface TamagochiStatusViewController : UIViewController<FoodProtocol, MFMailComposeViewControllerDelegate, MKMapViewDelegate,CLLocationManagerDelegate>
 

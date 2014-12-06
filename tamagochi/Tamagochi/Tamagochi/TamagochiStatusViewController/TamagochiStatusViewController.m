@@ -6,14 +6,8 @@
 //  Copyright (c) 2014 Lucas. All rights reserved.
 //
 
-#import "TamagochiStatusViewController.h"
-#import "TamagochiFoodSelectionViewController.h"
-#import "TamagochiPet.h"
-#import "TamagochiNetworking.h"
-#import <Parse/Parse.h>
-#import "TamagochiRankingViewController.h"
-#import "TamagochiMapViewController.h"
 
+#import "TamagochiStatusViewController.h"
 
 @interface TamagochiStatusViewController ()
 
@@ -31,6 +25,8 @@
 @property (strong, nonatomic) IBOutlet UIProgressView *energyBar;
 
 @property (strong , nonatomic) TamagochiFood* foodSelected;
+
+@property (strong, strong) NSTimer *fetchRankingTimer;
 
 @end
 
@@ -157,8 +153,7 @@ CLLocationManager *locationManager = nil;
 - (IBAction)clickExercising:(id)sender
 {
     TamagochiPet *pet =[TamagochiPet sharedInstance];
-    NSString *msg = [NSString stringWithFormat:@"%0.0f",[pet getEnergy]];
-    //NSLog(msg);
+
     
     if ([pet canBeExercised])
         {
@@ -184,7 +179,6 @@ CLLocationManager *locationManager = nil;
 }
 
 
-
 -(void)tick:(NSTimer *)timer
 {
     TamagochiPet *pet =[TamagochiPet sharedInstance];
@@ -193,19 +187,17 @@ CLLocationManager *locationManager = nil;
         [pet exercise];
         [self animateExercisingPet];
         self.energyBar.progress = [pet getEnergy] / 100 ;
-        //NSString *msg = [NSString stringWithFormat:@"%0.0f",[pet getEnergy]];
-        //NSLog(msg);
     }
     else
     {
         //No se puede ejercitar mas, detengo el timer
-        //NSLog(@"The pet is exhausted!!");
-        
+        [self.btnExercise setTitle:@"Start Exercise" forState:UIControlStateNormal];
         if(self.exerciseTimer && [self.exerciseTimer isValid])
         {
             [self.exerciseTimer invalidate];
             self.exerciseTimer = nil;
         }
+        
     }
 }
 
@@ -316,10 +308,10 @@ CLLocationManager *locationManager = nil;
                                             TamagochiPet *pet = [TamagochiPet sharedInstance];
                                             if ([pet canBeFed])
                                             {
-                                                NSLog([NSString stringWithFormat:@"Energia antes de comida con energia %f: %f",[self.foodSelected getEnergy],[pet getEnergy]]);
+                                                NSLog([NSString stringWithFormat:@"Energia antes de comida con energia %f: %f",[self.foodSelected getEnergy],[pet getEnergy]], nil);
 
                                                 [pet eatFood:self.foodSelected];
-                                                NSLog([NSString stringWithFormat:@"Energia despues de comida con energia %f: %f",[self.foodSelected getEnergy],[pet getEnergy]]);
+                                                NSLog([NSString stringWithFormat:@"Energia despues de comida con energia %f: %f",[self.foodSelected getEnergy],[pet getEnergy]],nil);
                                                     [UIView animateWithDuration:0.5
                                                                           delay:0.0
                                                                         options:UIViewAnimationOptionBeginFromCurrentState
@@ -357,17 +349,13 @@ CLLocationManager *locationManager = nil;
     if (self)
     {
         TamagochiPet *pet = [TamagochiPet sharedInstance];
-        [pet setName:aString];
-        [pet setTag:anInt];
+        [pet configureWithTag:anInt];
         [pet setName:aString];
         self.imageTag = anInt;
         self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moverComida:)];
-
-
     }
     
     return self;
-    
 }
 
 
@@ -419,8 +407,6 @@ CLLocationManager *locationManager = nil;
     return [self getFeedingImageArrayByTag:self.imageTag];
 }
 
-
-
 -(NSArray *)getFeedingImageArrayByTag:(long)tag
 {
     NSArray * arreglo;
@@ -463,8 +449,6 @@ CLLocationManager *locationManager = nil;
 }
 
 
-
-
 //Pasa a la pantalla de seleccion de comida
 - (IBAction)switchToFoodSelection:(id)sender {
     TamagochiFoodSelectionViewController *home = [[TamagochiFoodSelectionViewController alloc] initWithNibName:@"TamagochiFoodSelectionViewController" bundle:nil];
@@ -472,7 +456,6 @@ CLLocationManager *locationManager = nil;
     [self.navigationController pushViewController:home animated:YES];
     
 }
-
 
 
 //Delegate: Implemento el metodo del protocolo FoodProtocol
@@ -484,11 +467,6 @@ CLLocationManager *locationManager = nil;
     self.foodSelected = foodObject;
     return self;
 }
-
-
-
-
-
 
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -522,37 +500,18 @@ CLLocationManager *locationManager = nil;
 }
 
 
+
+
+
 - (IBAction)goToRanking:(id)sender
 {
-    
-    TamagochiNetworking *tn = [[TamagochiNetworking alloc] init];
-    //BOOL result = [tn downloadPetFromServer];
-    
-    TamagochiStatusViewController * __weak weakerSelf = self;
-    
-    [tn downloadPetsArrayFromServerWithSuccess:^{[weakerSelf petRankingDownloadSuccess];}
-                                       failure:^{[weakerSelf petRankingDownloadFailure];}];
-    
-    
-
-
-}
-
-
--(void)petRankingDownloadSuccess
-{
-    TamagochiRankingViewController* rankingScreen = [[TamagochiRankingViewController alloc] initWithNibName:@"TamagochiRankingViewController" bundle:nil];
-        
-    [self.navigationController pushViewController:rankingScreen animated:YES];
+    TamagochiRankingViewController* mapScreen = [[TamagochiRankingViewController alloc] initWithNibName:@"TamagochiRankingViewController" bundle:nil];
+    [self.navigationController pushViewController:mapScreen animated:YES];
     
 }
 
--(void)petRankingDownloadFailure
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error downloading the ranking" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
-    [alert show];
-    
-}
+
+
 
 
 - (IBAction)goToMap:(id)sender
@@ -561,6 +520,10 @@ CLLocationManager *locationManager = nil;
     [mapScreen displayOnePet:[TamagochiPet sharedInstance]];
     [self.navigationController pushViewController:mapScreen animated:YES];
 }
+
+
+
+
 
 
 /*

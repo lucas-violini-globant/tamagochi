@@ -6,135 +6,150 @@
 //  Copyright (c) 2014 Lucas. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import "TamagochiFood.h"
-#import <CoreLocation/CoreLocation.h>
+#import "TamagochiPet.h"
 
-@interface TamagochiPet : NSObject
 
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *typeName;
-@property int tagId;
-@property (nonatomic, strong) NSArray *feedingImages;
-@property (nonatomic, strong) NSArray *exercisingImages;
-@property (nonatomic, strong) NSArray *exhaustedImages;
-@property (nonatomic, strong) NSArray *exhaustedToNormalImages;
-@property float energy;
-@property float exerciseEnergyCost;
-@property int level;
-@property float experience;
-//@property BOOL stateIsExercising;
-//@property BOOL stateIsEating;
-@property (nonatomic, strong) NSString *imageNameNormal;
-@property (nonatomic, strong) NSString *imageNameExhausted;
-@property (nonatomic, strong) NSString *imageNameCurrent;
-@property (nonatomic, strong) NSString *uniqueCode;
+@interface TamagochiPet ()
 
-@property  float position_lat;
 
-@property  float position_lon;
+
 
 @end
 
-@implementation TamagochiPet : NSObject
+@implementation TamagochiPet : NSManagedObject
 
+
+
+
+
+@synthesize name = name;
+@synthesize typeName = typeName;
+@synthesize tagId = _tagId;
+@synthesize feedingImages = _feedingImages;
+@synthesize exercisingImages = _exercisingImages;
+@synthesize exhaustedImages = _exhaustedImages;
+@synthesize exhaustedToNormalImages = _exhaustedToNormalImages;
+@synthesize energy = _energy;
+@synthesize exerciseEnergyCost = _exerciseEnergyCost;
+@synthesize level = _level;
+@synthesize experience = _experience;
+@synthesize imageNameNormal = _imageNameNormal;
+@synthesize imageNameExhausted = _imageNameExhausted;
+@synthesize imageNameCurrent = _imageNameCurrent;
+@synthesize uniqueCode = _uniqueCode;
+@synthesize position_lat = _position_lat;
+@synthesize position_lon = _position_lon;
 
 
 -(void) configureWithTag:(int)someTag
 
 {
 
-    _feedingImages = [TamagochiPet getFeedingImagesArrayByTag:someTag];
-    _exercisingImages = [TamagochiPet getExercisingImagesArrayByTag:someTag];
-    _exhaustedImages = [TamagochiPet getExhaustedImagesArrayByTag:someTag];
-    _exhaustedToNormalImages = [TamagochiPet getExhaustedToNormalImagesArrayByTag:someTag];
-    _imageNameNormal = [TamagochiPet getNormalImageNameByTag:someTag];
-    _imageNameExhausted = [TamagochiPet getExhaustedImageNameByTag:someTag];
-    _imageNameCurrent = _imageNameNormal;
-    _typeName = [TamagochiPet getPetTypeByTag:someTag];
+    self.feedingImages = [TamagochiPet getFeedingImagesArrayByTag:someTag];
+    self.exercisingImages = [TamagochiPet getExercisingImagesArrayByTag:someTag];
+    self.exhaustedImages = [TamagochiPet getExhaustedImagesArrayByTag:someTag];
+    self.exhaustedToNormalImages = [TamagochiPet getExhaustedToNormalImagesArrayByTag:someTag];
+    self.imageNameNormal = [TamagochiPet getNormalImageNameByTag:someTag];
+    self.imageNameExhausted = [TamagochiPet getExhaustedImageNameByTag:someTag];
+    self.imageNameCurrent = self.imageNameNormal;
+    self.typeName = [TamagochiPet getPetTypeByTag:someTag];
 }
 
 -(void)initPetWithDefaults
 {
-    _level = 1;
-    _energy = 50.0;
-    _experience = 0.0;
-    _exerciseEnergyCost = 10.0;
-    _uniqueCode = @"lv3503";
-    if (_name == nil)
+    self.level = 1;
+    self.energy = 50.0;
+    self.experience = 0.0;
+    self.exerciseEnergyCost = 10.0;
+    self.uniqueCode = @"lv3503";
+    if (self.name == nil)
     {
-        _name = @"";
+        self.name = @"";
     }
 }
 
 -(int)getTag
 {
-    return _tagId;
+    return self.tagId;
 }
 
--(void) setName:(NSString *)someName
+-(void) setPetName:(NSString *)someName
 {
-    _name = someName;
+    if (someName == nil)
+    {
+        self.name = @"";
+    }
+    else
+    {
+        self.name = someName;
+    }
+}
+
+-(NSString *) getPetName
+{
+    return [self name];
 }
 
 -(NSString *)getUniqueCode
 {
-    return _uniqueCode;
+    return self.uniqueCode;
 }
 
 -(NSArray *)getFeedingImagesArray
 {
-    return _feedingImages;
+    return self.feedingImages;
 }
 
 
 -(NSArray *)getExercisingImagesArray
 {
-    return _exercisingImages;
+    return self.exercisingImages;
 }
 
 -(NSArray *)getExhaustedImagesArray
 {
-    return _exhaustedImages;
+    return self.exhaustedImages;
 }
 
 
 -(NSArray *)getExhaustedToNormalImagesArray
 {
-    return _exhaustedToNormalImages;
+    return self.exhaustedToNormalImages;
 }
 
 
 -(NSString *)getImage
 {
-    return _imageNameCurrent;
+    return self.imageNameCurrent;
 }
 
 
 -(int)getLevel
 {
-    return _level;
+    return self.level;
 }
 
 -(float)getExperience
 {
-    return _experience;
+    return self.experience;
 }
 
+-(NSString *)getPetType
+{
+    return self.typeName;
+}
 
 
 -(float)experienceRequiredForNextLevel
 {
-    return (_level * _level * 100);
-    //NSLog([NSString stringWithFormat:@"Experience required to pass level: %f",(_level * _level * 100)]);
+    return (self.level * self.level * 100);
 }
 
 -(BOOL)addExperience:(float) aFloat
 {
-    _experience = _experience + aFloat;
-    //NSLog([NSString stringWithFormat:@"Experience: %f",_experience]);
-    if (_experience >= [self experienceRequiredForNextLevel])
+    //If it has passed to the next level, return YES
+    self.experience = self.experience + aFloat;
+    if (self.experience >= [self experienceRequiredForNextLevel])
     {
         [self didPassLevel];
         return YES;
@@ -150,8 +165,8 @@
     //sin implementar
     [[NSNotificationCenter defaultCenter] postNotificationName:@"LEVEL_PASSED" object:nil];
     //NSLog(@"*****LEVEL PASSED*****");
-    _experience = 0;
-    _level = _level + 1;
+    self.experience = self.experience - 100.0f;
+    self.level = self.level + 1;
 
 }
 
@@ -426,23 +441,23 @@
 
 -(NSString *)getName
 {
-    return _name;
+    return self.name;
 }
 
 -(NSString *)getType
 {
-    return _typeName;
+    return self.typeName;
 }
 
 
 -(float)getEnergy
 {
-    return _energy;
+    return self.energy;
 }
 
 -(BOOL)switchStateToExhausted
 {
-    _imageNameCurrent = _imageNameExhausted;
+    self.imageNameCurrent = self.imageNameExhausted;
 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PET_STATUS_CHANGED" object:nil];
 
@@ -452,7 +467,7 @@
 
 -(BOOL)switchStateToNormal
 {
-    _imageNameCurrent = _imageNameNormal;
+    self.imageNameCurrent = self.imageNameNormal;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PET_STATUS_CHANGED_NORMAL" object:nil];
     
@@ -466,7 +481,7 @@
 {
     if ([self canBeFed])
     {
-        _energy = _energy + [someFood getEnergy];
+        self.energy = self.energy + [someFood getEnergy];
         if ([self canBeExercised])
         {
             [self switchStateToNormal];
@@ -505,7 +520,7 @@
     
     if ([self canBeExercised])
     {
-        _energy = _energy - _exerciseEnergyCost; //Reduce the amount of energy
+        self.energy = self.energy - self.exerciseEnergyCost; //Reduce the amount of energy
         //_stateIsExercising = YES;
         [self addExperience:15.0f];
         if (![self canBeExercised])
@@ -523,14 +538,14 @@
 
 -(BOOL) canBeExercised
 {
-    return ((_energy - _exerciseEnergyCost > 0) && (![self isEating]));
+    return ((self.energy - self.exerciseEnergyCost > 0) && (![self isEating]));
 }
 
 
 
 -(BOOL) canBeFed
 {
-    return ((_energy < 100) && (![self isExercising]));
+    return ((self.energy < 100) && (![self isExercising]));
 }
 
 
@@ -552,7 +567,7 @@
 
 -(BOOL) isExhausted
 {
-    return (_energy < 25);
+    return (self.energy < 25);
 }
 
 -(id)initWithCoder: (NSCoder *)coder
@@ -568,8 +583,9 @@
         float storedPetLongitude = [coder decodeFloatForKey:@"pet.longitude"];
         NSString *storedPetCode = [coder decodeObjectForKey:@"pet.code"];
         
-        //[self setTag:storedPetTag];
+        
         [self initPetWithDefaults];
+        [self configureWithTag:storedPetTag];
         [self setName:storedPetName];
         [self setLevel:storedPetLevel];
         [self setEnergy:storedPetEnergy];
@@ -675,16 +691,30 @@
     
 }
 
+-(instancetype) initCoreData
+{
+    self = [NSEntityDescription
+     insertNewObjectForEntityForName:@"TamagochiPet"
+            inManagedObjectContext:[[TamagochiPersistenceHelper sharedInstance]managedObjectContext]];
+    return self;
+}
 
 + (instancetype) newInstance
 {
-    return [[TamagochiPet alloc] init];
-
+    return [[TamagochiPet alloc] initCoreData];
 }
+
++(instancetype) newInstanceClean
+{
+    TamagochiPet *pet = [[TamagochiPet newInstance] initCoreData];
+    [pet initPetWithDefaults];
+    return pet;
+}
+
 
 +(id)newInstanceAndInitWithDictionary:(NSDictionary *) aDictionary
 {
-    TamagochiPet *petObject = [self newInstance];
+    TamagochiPet *petObject = [TamagochiPet newInstance];
     [petObject setFromDictionary:aDictionary];
     return petObject;
 }
@@ -692,23 +722,22 @@
 
 -(BOOL)setFromDictionary:(NSDictionary *) aDictionary
 {
-    //{"code":"lv3503","name":"okokokoko","_id":"547641321c7fc4020094cef8","__v":0,"experience":0,"last_update":"2014-11-26T21:35:08.386Z","level":1,"energy":50}
-    NSString *name = [aDictionary valueForKey:@"name"];
+    NSString *petName = [aDictionary valueForKey:@"name"];
     NSString *code = [aDictionary valueForKey:@"code"];
     NSNumber *experience = [aDictionary valueForKey:@"experience"];
     NSNumber *level = [aDictionary valueForKey:@"level"];
     NSNumber *energy = [aDictionary valueForKey:@"energy"];
     NSNumber *petType = [aDictionary valueForKey:@"pet_type"];
     
-    NSLog(@"Updated values - Name: %@ , Experience: %@ , Level: %@ , Energy: %@, Pet_Type: %@",name,experience,level,energy,petType);
+    NSLog(@"Updated values - Name: %@ , Experience: %@ , Level: %@ , Energy: %@, Pet_Type: %@",petName,experience,level,energy,petType,nil);
     
     [self configureWithTag:[petType integerValue]];
-    _name = name;
-    _energy = [energy floatValue];
-    _experience = [experience floatValue];
-    _level = [level integerValue];
+    self.name = petName;
+    self.energy = [energy floatValue];
+    self.experience = [experience floatValue];
+    self.level = [level integerValue];
 
-    _uniqueCode = code;
+    self.uniqueCode = code;
     
     
     return YES;
@@ -717,22 +746,22 @@
 
 -(float)getLatitude
 {
-    return _position_lat;
+    return self.position_lat;
 }
 
 -(float)getLongitude
 {
-    return _position_lon;
+    return self.position_lon;
 }
 
 -(void)setLatitude:(float)latitude
 {
-    _position_lat = latitude;
+    self.position_lat = latitude;
 }
 
 -(void)setLongitude:(float)longitude
 {
-    _position_lon = longitude;
+    self.position_lon = longitude;
 }
 
 
@@ -750,6 +779,38 @@
     return NSOrderedDescending;
             
 }
+
++(void)loadFromDataBaseByUniqueCode:(NSString *)unique_code
+{
+    NSLog(@"Entering on TamagochiPet --> +(void)loadFromDataBaseByUniqueCode:");
+    NSManagedObjectContext *context = [[TamagochiPersistenceHelper sharedInstance] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"TamagochiPet" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setFetchLimit:1];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"level" ascending:NO];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    NSPredicate *predicateID = [NSPredicate predicateWithFormat:@"unique_code == %@",unique_code];
+    [fetchRequest setPredicate:predicateID];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+     
+    if (fetchedObjects != nil) {
+        NSUInteger count = [fetchedObjects count]; // May be 0 if the object has been deleted.
+        if (count)
+        {
+            TamagochiPet *pet = [fetchedObjects objectAtIndex:0];
+            [pet configureWithTag:[pet getTag]];
+        }
+    NSLog(@"Completed TamagochiPet --> +(void)loadFromDataBaseByUniqueCode:");
+    }
+    else {
+        // Deal with error.
+        NSLog(@"Error on TamagochiPet --> +(void)loadFromDataBaseByUniqueCode:");
+    }
+}
+
+
 
 
 @end

@@ -10,5 +10,5 @@
 
 @interface TamagochiRankingViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tablaRanking;
-
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @end

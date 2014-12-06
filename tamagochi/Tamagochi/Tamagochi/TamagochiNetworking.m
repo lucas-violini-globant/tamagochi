@@ -241,7 +241,9 @@
          if ([responseObject isKindOfClass:[NSArray class]])
             {
                 NSLog(@"ARRAY DESCARGADO CON %d ELEMENTOS",[responseObject count]);
+                
                 PetRanking *ranking = [PetRanking sharedInstance];
+                [ranking dropAll];
                 [ranking addPetsInArray:responseObject];
             }
          }
