@@ -13,10 +13,14 @@
 @property (nonatomic, strong) NSMutableArray *local_array;
 
 
--(void)addDictionaryWithContactInfo:(NSDictionary *)aDictionary;
+-(BOOL)hasContactWithFirstName:(NSString *)firstNameString andLastName:(NSString *)lastNameString;
 
--(void)hasContactWithFirstName:(NSString *)firstNameString andLastName:(NSString *)lastNameString;
+-(void)addContactWithFirstName:(NSString *) firstNameString lastName:(NSString *)lastNameString phone:(NSString *)phone company:(NSString *)company email:(NSString *)email;
 
 -(void)drop;
+
+-(int)count;
+
+-(NSMutableDictionary *)objectAtIndex:(NSUInteger)index;
 
 @end

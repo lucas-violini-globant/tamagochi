@@ -48,9 +48,8 @@ CLLocationManager *locationManager = nil;
     [composer setMessageBody:message isHTML:NO];
     [composer setToRecipients:recipients] ;
     [self presentViewController:composer animated:NO completion:nil];
-    
-    
 }
+
 - (IBAction)btnTestUpdate:(id)sender {
     [self uploadStatusToServer];
 }

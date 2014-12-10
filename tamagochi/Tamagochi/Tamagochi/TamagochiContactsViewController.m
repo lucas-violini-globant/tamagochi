@@ -8,9 +8,14 @@
 
 #import "TamagochiContactsViewController.h"
 #import <AddressBookUI/AddressBookUI.h>
+#import "TamagochiContactList.h"
+#import "ContactTableViewCell.h"
 
 @interface TamagochiContactsViewController ()
 
+@property (nonatomic,strong) TamagochiContactList *contacts;
+
+@property (strong, nonatomic) IBOutlet UITableView *contactos;
 @end
 
 @implementation TamagochiContactsViewController
@@ -18,6 +23,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    _contacts = [[TamagochiContactList alloc] init];
+    [self accessContacts];
+    [_contactos registerNib:[UINib nibWithNibName:@"ContactTableViewCell" bundle:[NSBundle mainBundle]]
+        forCellReuseIdentifier:@"cellIdContact"];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,10 +36,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        self.contacts = [[TamagochiContactList alloc] init];
+    }
+    return self;
+}
 
 
 -(void)accessContacts
 {
+    
     ABAuthorizationStatus status = ABAddressBookGetAuthorizationStatus();
     
     if (status == kABAuthorizationStatusDenied) {
@@ -88,23 +109,33 @@
     NSArray *allPeople = CFBridgingRelease(ABAddressBookCopyArrayOfAllPeople(addressBook));
     
     for (NSInteger i = 0; i < numberOfPeople; i++) {
+        
+        //Aca agrego TODOS los contactos a mi TamagochiContactList
+        //Va iterando sobre cada item de la lista de contactos del iPhone
+        //...y uno por uno los va agregando a mi TamagochiContactList
+        
         ABRecordRef person = (__bridge ABRecordRef)allPeople[i];
         
         NSString *firstName = CFBridgingRelease(ABRecordCopyValue(person, kABPersonFirstNameProperty));
         NSString *lastName  = CFBridgingRelease(ABRecordCopyValue(person, kABPersonLastNameProperty));
-        NSLog(@"Name:%@ %@", firstName, lastName);
+
         
         ABMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
         
+        NSString *phoneNumber = @"";
         CFIndex numberOfPhoneNumbers = ABMultiValueGetCount(phoneNumbers);
-        for (CFIndex i = 0; i < numberOfPhoneNumbers; i++) {
-            NSString *phoneNumber = CFBridgingRelease(ABMultiValueCopyValueAtIndex(phoneNumbers, i));
+        if (numberOfPhoneNumbers > 0) {
+             phoneNumber = CFBridgingRelease(ABMultiValueCopyValueAtIndex(phoneNumbers, 0));
             NSLog(@"  phone:%@", phoneNumber);
         }
         
-        CFRelease(phoneNumbers);
+        
+        //Agrego los datos...
+        [_contacts addContactWithFirstName:firstName lastName:lastName phone:phoneNumber company:@"" email:@""];
+        NSLog(@"Name:%@ %@", firstName, lastName);
         
         NSLog(@"=============================================");
+        CFRelease(phoneNumbers);
     }
 }
 
@@ -116,8 +147,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return self.rankingCount;
-    //return [[PetRanking sharedInstance] count];
+    return [self.contacts count];    //return [[PetRanking sharedInstance] count];
 }
 
 
@@ -127,14 +157,14 @@
 {
     
     //Intentamos recuperar una celda ya creada.
-    TamagochiRankingTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cellIdRanking"];
+    ContactTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cellIdContact"];
     if (cell == nil) {
         //Si la celda no existe, la creamos.
-        cell = [[TamagochiRankingTableViewCell alloc] init];
+        cell = [[ContactTableViewCell alloc] init];
     }
-    //Configurar la celda con los datos del objeto que corresponda mostrar en esta fila
     
-    [cell configurarParaMascota:indexPath.row enPetRanking:[PetRanking sharedInstance] ];
+    //Configurar la celda con los datos del objeto que corresponda mostrar en esta fila
+    [cell configureForContact:[self.contacts objectAtIndex:indexPath.row]];
     return cell;
 }
 
@@ -142,15 +172,15 @@
 //Delegate: Implemento el protocolo de UITableViewDelegate
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 86.0f;
+    return 118.0f;
 }
 
 //Delegate: Implemento el protocolo de UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
 }
+
 
 
 

@@ -95,15 +95,6 @@
     self.textFieldName.enabled = NO;
     self.DownloadPet.enabled = NO;
     self.imgBackgroundLoading.hidden = NO;
-    //self.imgBackgroundLoading.bounds = self.view.bounds;
-    //CGRect screenBound = [[UIScreen mainScreen] bounds];
-    //CGSize screenSize = screenBound.size;
-    //CGFloat screenWidth = screenSize.width;
-    //CGFloat screenHeight = screenSize.height;
-    //self.imgBackgroundLoading.bounds = screenBound;
-    //self.imgBackgroundLoading.view.width = screenWidth;
-    //self.imgBackgroundLoading.view.height = screenHeight;
-//    self.imgBackgroundLoading.
     self.activityIndicatorLoading.hidden = NO;
     [self.activityIndicatorLoading startAnimating ];
 }

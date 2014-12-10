@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
-@interface ContactTableViewCell : UITableViewCell
+@interface ContactTableViewCell : UITableViewCell<MFMailComposeViewControllerDelegate>
 
+@property (strong, nonatomic) IBOutlet UILabel *firstAndLastName;
+@property (strong, nonatomic) IBOutlet UILabel *company;
+@property (strong, nonatomic) IBOutlet UILabel *phone;
+@property (strong, nonatomic) IBOutlet UILabel *email;
+
+-(void)configureForContact:(NSMutableDictionary *) aDictionary;
 @end
