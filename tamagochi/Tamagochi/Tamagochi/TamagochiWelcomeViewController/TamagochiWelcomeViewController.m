@@ -30,32 +30,14 @@
 
 @implementation TamagochiWelcomeViewController
 
+
+#pragma mark - Metodos comunes de View Controller
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.textFieldName.delegate = self;
     self.oldName = @"";
 
-}
-
-- (IBAction)testPushLocal:(id)sender {
-    //Create a new local notification
-    UILocalNotification *localNotification =[[UILocalNotification alloc]init];
-    
-    // Notification details
-    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:20];
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.repeatCalendar = [NSCalendar currentCalendar];
-    localNotification.alertBody = @"Alerta";
-    localNotification.alertAction = @"Accion";
-    //localNotification.userInfo = [[NSDictionary alloc] initWithObjectsAndKeys:CHECK_IN_STRATEGY_USER_INFO_VALUE, CHECK_IN_STRATEGY_USER_INFO_KEY, nil];
-    localNotification.repeatInterval = 0;
-    localNotification.soundName = UILocalNotificationDefaultSoundName;
-    localNotification.applicationIconBadgeNumber = 1;
-    
-    // Schedule the notification
-    [[UIApplication sharedApplication]scheduleLocalNotification:localNotification];
-    
 }
 
 
@@ -72,23 +54,9 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)petDownloadSuccess
-{
-    NSLog(@"SUCCESS Downloading Pet!! - ");
-    [self hideLoading];
-    TamagochiStatusViewController *home = [[TamagochiStatusViewController alloc] initWithNibName:@"TamagochiStatusViewController" bundle:nil];
-    [self.navigationController pushViewController:home animated:YES];
-}
 
--(void)petDownloadFailure
-{
-    NSLog(@"FAILURE Downloading Pet!! - ");
-    UIAlertView *alerta = [[UIAlertView alloc] initWithTitle:@"Error" message:@"An error has ocurred while connecting to the server" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
-    [alerta show];
-    [self hideLoading];
-  
-}
 
+#pragma mark - Efecto de Loading (On/Off)
 -(void)showLoading
 {
     self.btnContinue.enabled = NO;
@@ -111,6 +79,28 @@
 
 }
 
+#pragma mark - Prueba de Notificaciones Push
+- (IBAction)testPushLocal:(id)sender {
+    //Create a new local notification
+    UILocalNotification *localNotification =[[UILocalNotification alloc]init];
+    
+    // Notification details
+    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:20];
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.repeatCalendar = [NSCalendar currentCalendar];
+    localNotification.alertBody = @"Alerta";
+    localNotification.alertAction = @"Accion";
+    //localNotification.userInfo = [[NSDictionary alloc] initWithObjectsAndKeys:CHECK_IN_STRATEGY_USER_INFO_VALUE, CHECK_IN_STRATEGY_USER_INFO_KEY, nil];
+    localNotification.repeatInterval = 0;
+    localNotification.soundName = UILocalNotificationDefaultSoundName;
+    localNotification.applicationIconBadgeNumber = 1;
+    
+    // Schedule the notification
+    [[UIApplication sharedApplication]scheduleLocalNotification:localNotification];
+    
+}
+
+#pragma mark - Actualizacion de mascota desde el servidor
 
 - (IBAction)updatePetFromServer:(id)sender
 {
@@ -126,34 +116,24 @@
         
 }
 
-- (IBAction)switchToSelectImageScreen:(id)sender
+-(void)petDownloadSuccess
 {
-    if ([self.textFieldName.text isEqualToString:@""])
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Attention" message:@"You must enter a name for your pet" delegate:self cancelButtonTitle:@"Okay man" otherButtonTitles:nil, nil];
-        [alert show];
-        
-    }
-    else if ([self.textFieldName.text length] > 16)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Name too long" message:@"Sorry, the maximum length allowed is 16." delegate:self cancelButtonTitle:@"Okay, whatever" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-    else if ([self.textFieldName.text length] < 6)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Name too short" message:@"The name must have at least 6 letters." delegate:self cancelButtonTitle:@"Okay, whatever" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-    else
-    {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"screen1Passed"];
-        [[TamagochiPet sharedInstance] setName:[self.textFieldName text]];
-        TamagochiSelectNameViewController* home = [[TamagochiSelectNameViewController alloc] initWithNibName:@"TamagochiSelectNameViewController" bundle:nil];
-        [self.navigationController pushViewController:home animated:YES];
-        [self.navigationController setTitle:@"Choose an Image"];
-    }
+    NSLog(@"SUCCESS Downloading Pet!! - ");
+    [self hideLoading];
+    TamagochiStatusViewController *home = [[TamagochiStatusViewController alloc] initWithNibName:@"TamagochiStatusViewController" bundle:nil];
+    [self.navigationController pushViewController:home animated:YES];
 }
 
+-(void)petDownloadFailure
+{
+    NSLog(@"FAILURE Downloading Pet!! - ");
+    UIAlertView *alerta = [[UIAlertView alloc] initWithTitle:@"Error" message:@"An error has ocurred while connecting to the server" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
+    [alerta show];
+    [self hideLoading];
+    
+}
+
+#pragma mark - Textfield
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
@@ -180,21 +160,35 @@
     {
         self.oldName = self.textFieldName.text;
     }
-
 }
 
 
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - Pasaje a pantalla de seleccion de mascota
+- (IBAction)switchToSelectImageScreen:(id)sender
+{
+    if ([self.textFieldName.text isEqualToString:@""])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Attention" message:@"You must enter a name for your pet" delegate:self cancelButtonTitle:@"Okay man" otherButtonTitles:nil, nil];
+        [alert show];
+        
+    }
+    else if ([self.textFieldName.text length] > 16)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Name too long" message:@"Sorry, the maximum length allowed is 16." delegate:self cancelButtonTitle:@"Okay, whatever" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else if ([self.textFieldName.text length] < 6)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Name too short" message:@"The name must have at least 6 letters." delegate:self cancelButtonTitle:@"Okay, whatever" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else
+    {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"screen1Passed"];
+        [[TamagochiPet sharedInstance] setName:[self.textFieldName text]];
+        TamagochiSelectNameViewController* home = [[TamagochiSelectNameViewController alloc] initWithNibName:@"TamagochiSelectNameViewController" bundle:nil];
+        [self.navigationController pushViewController:home animated:YES];
+    }
 }
-*/
 
 @end

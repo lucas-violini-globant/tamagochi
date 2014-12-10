@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 
+@protocol SendEmailProtocol <NSObject>
+-(id)sendEmailToAddress:(NSString*)emailAddress;
+-(id)callToNumber:(NSString *)phoneNumber;
+@end
+
 @interface TamagochiContactsViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
 

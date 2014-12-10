@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
+#import "TamagochiSelectNameViewController.h"
+#import "TamagochiContactsViewController.h"
 
 @interface ContactTableViewCell : UITableViewCell<MFMailComposeViewControllerDelegate>
 
-@property (strong, nonatomic) IBOutlet UILabel *firstAndLastName;
-@property (strong, nonatomic) IBOutlet UILabel *company;
-@property (strong, nonatomic) IBOutlet UILabel *phone;
-@property (strong, nonatomic) IBOutlet UILabel *email;
+@property (strong, nonatomic) TamagochiContactsViewController *tableViewController;
 
 -(void)configureForContact:(NSMutableDictionary *) aDictionary;
+
 @end

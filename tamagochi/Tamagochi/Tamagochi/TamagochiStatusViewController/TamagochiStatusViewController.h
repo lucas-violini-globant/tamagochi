@@ -17,6 +17,7 @@
 #import "TamagochiRankingViewController.h"
 #import "TamagochiMapViewController.h"
 #import "PetRanking.h"
+#import "TamagochiContactsViewController.h"
 
 @interface TamagochiStatusViewController : UIViewController<FoodProtocol, MFMailComposeViewControllerDelegate, MKMapViewDelegate,CLLocationManagerDelegate>
 
@@ -27,8 +28,5 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil petName:(NSString *)aString tagSelected:(int)anInt;
 
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapGesture;
-
--(NSArray *)getFeedingImageArrayByTag:(long)tag;
--(NSArray *)getFeedingImageArrayForCurrentPet;
 
 @end

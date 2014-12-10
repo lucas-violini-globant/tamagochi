@@ -35,6 +35,9 @@
 		A089AF221A33223800905DDD /* TamagochiContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A089AF201A33223800905DDD /* TamagochiContactsViewController.m */; };
 		A089AF231A33223800905DDD /* TamagochiContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A089AF211A33223800905DDD /* TamagochiContactsViewController.xib */; };
 		A089AF261A332B0B00905DDD /* TamagochiContactList.m in Sources */ = {isa = PBXBuildFile; fileRef = A089AF251A332B0B00905DDD /* TamagochiContactList.m */; };
+		A089B1001A38D08900905DDD /* call_button.png_med.png in Resources */ = {isa = PBXBuildFile; fileRef = A089B0FE1A38D08900905DDD /* call_button.png_med.png */; };
+		A089B1011A38D08900905DDD /* mail-icon-ios-7.png in Resources */ = {isa = PBXBuildFile; fileRef = A089B0FF1A38D08900905DDD /* mail-icon-ios-7.png */; };
+		A089B1031A38D19E00905DDD /* Email-Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A089B1021A38D19E00905DDD /* Email-Logo.png */; };
 		A0BB4C2F1A2A19E4007D5E04 /* PetRanking.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BB4C2E1A2A19E4007D5E04 /* PetRanking.m */; };
 		A0BB4C331A2A2D3E007D5E04 /* TamagochiRankingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BB4C311A2A2D3E007D5E04 /* TamagochiRankingViewController.m */; };
 		A0BB4C341A2A2D3E007D5E04 /* TamagochiRankingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0BB4C321A2A2D3E007D5E04 /* TamagochiRankingViewController.xib */; };
@@ -244,6 +247,9 @@
 		A089AF211A33223800905DDD /* TamagochiContactsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TamagochiContactsViewController.xib; sourceTree = "<group>"; };
 		A089AF241A332AF900905DDD /* TamagochiContactList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TamagochiContactList.h; sourceTree = "<group>"; };
 		A089AF251A332B0B00905DDD /* TamagochiContactList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TamagochiContactList.m; sourceTree = "<group>"; };
+		A089B0FE1A38D08900905DDD /* call_button.png_med.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = call_button.png_med.png; sourceTree = "<group>"; };
+		A089B0FF1A38D08900905DDD /* mail-icon-ios-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail-icon-ios-7.png"; sourceTree = "<group>"; };
+		A089B1021A38D19E00905DDD /* Email-Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Email-Logo.png"; sourceTree = "<group>"; };
 		A0BB4C2D1A2A19CA007D5E04 /* PetRanking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PetRanking.h; sourceTree = "<group>"; };
 		A0BB4C2E1A2A19E4007D5E04 /* PetRanking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PetRanking.m; sourceTree = "<group>"; };
 		A0BB4C301A2A2D3E007D5E04 /* TamagochiRankingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TamagochiRankingViewController.h; sourceTree = "<group>"; };
@@ -463,6 +469,17 @@
 			path = Tamagochi/AFNetworking;
 			sourceTree = "<group>";
 		};
+		A089B0FD1A38D08900905DDD /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				A089B1021A38D19E00905DDD /* Email-Logo.png */,
+				A089B0FE1A38D08900905DDD /* call_button.png_med.png */,
+				A089B0FF1A38D08900905DDD /* mail-icon-ios-7.png */,
+			);
+			name = Buttons;
+			path = Images.xcassets/Buttons;
+			sourceTree = "<group>";
+		};
 		A0C2D4A01A1BCA770013C95F = {
 			isa = PBXGroup;
 			children = (
@@ -494,6 +511,7 @@
 		A0C2D4AB1A1BCA770013C95F /* Tamagochi */ = {
 			isa = PBXGroup;
 			children = (
+				A089B0FD1A38D08900905DDD /* Buttons */,
 				A0C2D4B01A1BCA770013C95F /* AppDelegate.h */,
 				A0C2D4B11A1BCA770013C95F /* AppDelegate.m */,
 				A0C2D6161A1E6C310013C95F /* BasicComponents */,
@@ -1010,6 +1028,7 @@
 				A0C2D5F21A1BD5F70013C95F /* leon_exhausto_3.png in Resources */,
 				A0C2D5A01A1BD5F70013C95F /* ciervo_exhausto_1.png in Resources */,
 				A0C2D4E01A1BCFD90013C95F /* TamagochiSelectNameViewController.xib in Resources */,
+				A089B1011A38D08900905DDD /* mail-icon-ios-7.png in Resources */,
 				A0C2D5841A1BD5F70013C95F /* comida_4.png in Resources */,
 				A0BB4C3D1A2CEDEA007D5E04 /* GoogleMaps2.png in Resources */,
 				A0C2D5851A1BD5F70013C95F /* comida_4@2x.png in Resources */,
@@ -1031,6 +1050,7 @@
 				A0C2D59A1A1BD5F70013C95F /* ciervo_ejercicio_3.png in Resources */,
 				A0C2D5901A1BD5F70013C95F /* ciervo_comiendo_2.png in Resources */,
 				A0C2D5C91A1BD5F70013C95F /* jirafa_comiendo_4@2x.png in Resources */,
+				A089B1001A38D08900905DDD /* call_button.png_med.png in Resources */,
 				A0C2D5EC1A1BD5F70013C95F /* leon_ejercicio_5.png in Resources */,
 				A0C2D5B01A1BD5F70013C95F /* gato_ejercicio_1.png in Resources */,
 				A0C2D57B1A1BD5F70013C95F /* Contents.json in Resources */,
@@ -1061,6 +1081,7 @@
 				A0C2D5831A1BD5F70013C95F /* comida_3@2x.png in Resources */,
 				A0C2D5A41A1BD5F70013C95F /* ciervo_exhausto_3.png in Resources */,
 				A0C2D5DE1A1BD5F70013C95F /* leon_comiendo_2.png in Resources */,
+				A089B1031A38D19E00905DDD /* Email-Logo.png in Resources */,
 				A0C2D5C71A1BD5F70013C95F /* jirafa_comiendo_3@2x.png in Resources */,
 				A0C2D5B91A1BD5F70013C95F /* gato_ejercicio_5@2x.png in Resources */,
 				A0C2D5CF1A1BD5F70013C95F /* jirafa_ejercicio_3@2x.png in Resources */,

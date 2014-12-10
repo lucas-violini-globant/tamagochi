@@ -46,6 +46,7 @@
     return self;
 }
 
+#pragma mark - Acceso a lista de contactos
 
 -(void)accessContacts
 {
@@ -108,17 +109,23 @@
     NSInteger numberOfPeople = ABAddressBookGetPersonCount(addressBook);
     NSArray *allPeople = CFBridgingRelease(ABAddressBookCopyArrayOfAllPeople(addressBook));
     
+    //Elimino lo que haya, previo a levantar los contactos nuevamente...
+    [self.contacts drop];
+    
+    //Itero sobre los contactos...
     for (NSInteger i = 0; i < numberOfPeople; i++) {
         
         //Aca agrego TODOS los contactos a mi TamagochiContactList
         //Va iterando sobre cada item de la lista de contactos del iPhone
-        //...y uno por uno los va agregando a mi TamagochiContactList
+        //Uno por uno los va agregando al TamagochiContactList
         
         ABRecordRef person = (__bridge ABRecordRef)allPeople[i];
         
         NSString *firstName = CFBridgingRelease(ABRecordCopyValue(person, kABPersonFirstNameProperty));
         NSString *lastName  = CFBridgingRelease(ABRecordCopyValue(person, kABPersonLastNameProperty));
 
+        
+        NSString *company = CFBridgingRelease(ABRecordCopyValue(person,kABPersonOrganizationProperty));
         
         ABMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
         
@@ -129,13 +136,26 @@
             NSLog(@"  phone:%@", phoneNumber);
         }
         
+        ABMultiValueRef emailAddresses = ABRecordCopyValue(person , kABPersonEmailProperty);
+        NSString *emailAddress = @"";
+        CFIndex numberOfEmailAddresses = ABMultiValueGetCount(emailAddresses);
+        if (numberOfEmailAddresses > 0)
+        {
+            emailAddress = CFBridgingRelease(ABMultiValueCopyValueAtIndex(emailAddresses,0));
+        }
+        
         
         //Agrego los datos...
-        [_contacts addContactWithFirstName:firstName lastName:lastName phone:phoneNumber company:@"" email:@""];
+        [self.contacts addContactWithFirstName:firstName lastName:lastName phone:phoneNumber company:company email:emailAddress];
         NSLog(@"Name:%@ %@", firstName, lastName);
         
         NSLog(@"=============================================");
         CFRelease(phoneNumbers);
+    }
+    
+    for (NSMutableDictionary *contact in self.contacts.local_array)
+    {
+        NSLog([contact valueForKey:@"first"],nil);
     }
 }
 
@@ -143,6 +163,7 @@
 
 
 
+#pragma mark - Metodos del protocolo para UITableView
 //Delegate: Implemento el protocolo de UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -165,6 +186,7 @@
     
     //Configurar la celda con los datos del objeto que corresponda mostrar en esta fila
     [cell configureForContact:[self.contacts objectAtIndex:indexPath.row]];
+    [cell setTableViewController:self];
     return cell;
 }
 
@@ -181,20 +203,5 @@
     
 }
 
-
-
-
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

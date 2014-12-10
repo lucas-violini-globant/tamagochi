@@ -47,13 +47,11 @@
     
 }
 
+
 -(void)mapViewDidFinishLoadingMap:(MKMapView *)mapView
 {
 MKCoordinateRegion region;
 //region.center = [mapView userLocation].location.coordinate;
-    
-
-    
 region.center.latitude = self.centerLat;
 region.center.longitude = self.centerLon;
 region.span.latitudeDelta = 0.02;
@@ -62,6 +60,8 @@ region.span.longitudeDelta = 0.02;
     
 }
 
+
+//Muestra una sola mascota en el mapa
 -(void)displayOnePet:(TamagochiPet *)aPet
 {
     self.centerLat = (CLLocationDegrees)[aPet getLatitude];
@@ -94,14 +94,6 @@ region.span.longitudeDelta = 0.02;
     return av;
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

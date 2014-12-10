@@ -14,11 +14,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S1e-jN-ail">
-                        <rect key="frame" x="258" y="80" width="58" height="30"/>
-                        <state key="normal" title="Llamar">
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S1e-jN-ail">
+                        <rect key="frame" x="262" y="65" width="50" height="50"/>
+                        <state key="normal" title="Llamar" image="call_button.png_med.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="callToContact:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="MBP-BE-KhF"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nombre y apellido" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wr-vK-peb">
                         <rect key="frame" x="8" y="0.0" width="242" height="21"/>
@@ -26,11 +29,14 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVq-7D-bmH">
-                        <rect key="frame" x="262" y="6" width="50" height="30"/>
-                        <state key="normal" title="Email">
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVq-7D-bmH">
+                        <rect key="frame" x="262" y="6" width="50" height="50"/>
+                        <state key="normal" title="Email" image="Email-Logo.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="sendEmailToContact:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Gn6-7W-6NW"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Compa;ia" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="keN-m5-Frv">
                         <rect key="frame" x="8" y="29" width="242" height="21"/>
@@ -53,12 +59,16 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="company" destination="H2p-sc-9uM" id="1Sk-O2-vcz"/>
-                <outlet property="email" destination="Wex-3i-IXX" id="Hbn-gT-rUZ"/>
-                <outlet property="firstAndLastName" destination="H2p-sc-9uM" id="fdY-fH-PA0"/>
-                <outlet property="phone" destination="3dW-Xn-3B7" id="7vN-Am-CAa"/>
+                <outlet property="company" destination="keN-m5-Frv" id="ymz-H3-NB9"/>
+                <outlet property="email" destination="Wex-3i-IXX" id="iRc-8U-lNQ"/>
+                <outlet property="firstAndLastName" destination="4wr-vK-peb" id="bjG-8d-7bP"/>
+                <outlet property="phone" destination="3dW-Xn-3B7" id="T9R-Lj-EEy"/>
             </connections>
             <point key="canvasLocation" x="379" y="286.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="Email-Logo.png" width="256" height="256"/>
+        <image name="call_button.png_med.png" width="512" height="512"/>
+    </resources>
 </document>

@@ -25,6 +25,7 @@
     self = [super init];
     if (self)
     {
+    self.local_array = [[NSMutableArray alloc] init];
     self.firstNameKey = @"first";
     self.lastNameKey = @"last";
     self.phoneKey = @"phone";
