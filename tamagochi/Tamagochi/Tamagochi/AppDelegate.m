@@ -11,8 +11,12 @@
 #import "TamagochiSelectNameViewController.h"
 #import "TamagochiNetworking.h"
 #import <Parse/Parse.h>
+#import "TamagochiStatusViewController.h"
+#import "TamagochiPet.h"
+
 
 @interface AppDelegate ()
+
 
 @end
 
@@ -22,10 +26,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    TamagochiWelcomeViewController* home = [[TamagochiWelcomeViewController alloc] initWithNibName:@"TamagochiWelcomeViewController" bundle:nil];
-    UINavigationController* navControllerHome = [[UINavigationController alloc] initWithRootViewController:home];
-    
+    UINavigationController* navControllerHome = [[UINavigationController alloc] initWithRootViewController:[self initialViewController]];
     [self.window setRootViewController:navControllerHome];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -37,9 +38,7 @@
         }
         else
         {
-            
-            
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+            [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
                                                                                UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
              
  
@@ -64,12 +63,29 @@
                   clientKey:@"SnnbrQ9yOemJspA7LRt1MCACFFUYNkbQ1k2IM1vH"];
     
     
-    
     return YES;
 }
 
 
+-(UIViewController *)initialViewController
+{
+    BOOL screen1Passed = [[NSUserDefaults standardUserDefaults] boolForKey:@"screen1Passed"];
+    BOOL screen2Passed = [[NSUserDefaults standardUserDefaults] boolForKey:@"screen2Passed"];
+    
+    if (!screen1Passed)
+    {
+        return[[TamagochiWelcomeViewController alloc] initWithNibName:@"TamagochiWelcomeViewController" bundle:nil];
+        
+    }
+    if (!screen2Passed)
+    {
+        //push screen 2
+        return [[TamagochiSelectNameViewController alloc] initWithNibName:@"TamagochiSelectNameViewController" bundle:nil];
+    }
 
+    return[[TamagochiStatusViewController alloc] initWithNibName:@"TamagochiStatusViewController" bundle:nil];
+
+}
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
@@ -115,6 +131,8 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    
+    [[TamagochiPet sharedInstance] saveData];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -132,6 +150,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[TamagochiPet sharedInstance] saveData];
 }
 
 @end

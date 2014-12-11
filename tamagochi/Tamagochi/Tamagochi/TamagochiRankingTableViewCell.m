@@ -23,6 +23,8 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)clickImage:(id)sender {
+}
 
 -(id)configurarParaMascota:(int)numeroFila enPetRanking:(PetRanking *) unRanking
 {
@@ -43,6 +45,10 @@
         [self.contentView setBackgroundColor: [UIColor darkGrayColor]];
 
         self.petNameLabel.text = [NSString stringWithFormat:@"%@ (YOU)",self.petNameLabel.text];
+    }
+    else
+    {
+        [self.contentView setBackgroundColor: [UIColor yellowColor]];
     }
 
     

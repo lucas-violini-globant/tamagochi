@@ -30,6 +30,8 @@
 
 @implementation TamagochiWelcomeViewController
 
+
+#pragma mark - Metodos comunes de View Controller
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -38,6 +40,46 @@
 
 }
 
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(petDownloadSuccess) name:@"PET_DOWNLOAD_SUCCESS" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(petDownloadFailure) name:@"PET_DOWNLOAD_FAILURE" object:nil];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+
+#pragma mark - Efecto de Loading (On/Off)
+-(void)showLoading
+{
+    self.btnContinue.enabled = NO;
+    self.textFieldName.enabled = NO;
+    self.DownloadPet.enabled = NO;
+    self.imgBackgroundLoading.hidden = NO;
+    self.activityIndicatorLoading.hidden = NO;
+    [self.activityIndicatorLoading startAnimating ];
+}
+
+-(void)hideLoading
+{
+    self.btnContinue.enabled = YES;
+    self.textFieldName.enabled = YES;
+    self.DownloadPet.enabled = YES;
+    self.imgBackgroundLoading.hidden = YES;
+    self.imgBackgroundLoading.bounds = self.view.bounds;
+    self.activityIndicatorLoading.hidden = YES;
+    [self.activityIndicatorLoading stopAnimating ];
+
+}
+
+#pragma mark - Prueba de Notificaciones Push
 - (IBAction)testPushLocal:(id)sender {
     //Create a new local notification
     UILocalNotification *localNotification =[[UILocalNotification alloc]init];
@@ -58,18 +100,20 @@
     
 }
 
+#pragma mark - Actualizacion de mascota desde el servidor
 
-
--(void)viewWillAppear:(BOOL)animated
+- (IBAction)updatePetFromServer:(id)sender
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(petDownloadSuccess) name:@"PET_DOWNLOAD_SUCCESS" object:nil];
+    NSLog(@"- (IBAction)updatePetFromServer:(id)sender");
+    [self showLoading];
+    TamagochiNetworking *tn = [[TamagochiNetworking alloc] init];
+    //BOOL result = [tn downloadPetFromServer];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(petDownloadFailure) name:@"PET_DOWNLOAD_FAILURE" object:nil];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    TamagochiWelcomeViewController * __weak weakerSelf = self;
+    
+    [tn downloadPetFromServerWithSuccess:^{[weakerSelf petDownloadSuccess];}
+                                 failure:^{[weakerSelf petDownloadFailure];}];
+        
 }
 
 -(void)petDownloadSuccess
@@ -86,57 +130,40 @@
     UIAlertView *alerta = [[UIAlertView alloc] initWithTitle:@"Error" message:@"An error has ocurred while connecting to the server" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
     [alerta show];
     [self hideLoading];
-  
+    
 }
 
--(void)showLoading
+#pragma mark - Textfield
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    self.btnContinue.enabled = NO;
-    self.textFieldName.enabled = NO;
-    self.DownloadPet.enabled = NO;
-    self.imgBackgroundLoading.hidden = NO;
-    //self.imgBackgroundLoading.bounds = self.view.bounds;
-    //CGRect screenBound = [[UIScreen mainScreen] bounds];
-    //CGSize screenSize = screenBound.size;
-    //CGFloat screenWidth = screenSize.width;
-    //CGFloat screenHeight = screenSize.height;
-    //self.imgBackgroundLoading.bounds = screenBound;
-    //self.imgBackgroundLoading.view.width = screenWidth;
-    //self.imgBackgroundLoading.view.height = screenHeight;
-//    self.imgBackgroundLoading.
-    self.activityIndicatorLoading.hidden = NO;
-    [self.activityIndicatorLoading startAnimating ];
+    [textField resignFirstResponder];
+    return YES;
 }
 
--(void)hideLoading
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
-    self.btnContinue.enabled = YES;
-    self.textFieldName.enabled = YES;
-    self.DownloadPet.enabled = YES;
-    self.imgBackgroundLoading.hidden = YES;
-    self.imgBackgroundLoading.bounds = self.view.bounds;
-    self.activityIndicatorLoading.hidden = YES;
-    [self.activityIndicatorLoading stopAnimating ];
-
+    return YES;
 }
 
 
-- (IBAction)updatePetFromServer:(id)sender
-{
-    NSLog(@"- (IBAction)updatePetFromServer:(id)sender");
-    [self showLoading];
-    TamagochiNetworking *tn = [[TamagochiNetworking alloc] init];
-    //BOOL result = [tn downloadPetFromServer];
+- (IBAction)nameChanged:(id)sender {
     
-    TamagochiWelcomeViewController * __weak weakerSelf = self;
+    BOOL isValid = [self.textFieldName.text rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"0123456789-,><:;.!@#$%^&*()_+=-/"]].location == NSNotFound;
     
-    [tn downloadPetFromServerWithSuccess:^{[weakerSelf petDownloadSuccess];}
-                                 failure:^{[weakerSelf petDownloadFailure];}];
-
-    
-    
+   if (!isValid)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Name too weird" message:@"Only letters and spaces, please" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+        self.textFieldName.text = self.oldName;
+    }
+    else
+    {
+        self.oldName = self.textFieldName.text;
+    }
 }
 
+
+#pragma mark - Pasaje a pantalla de seleccion de mascota
 - (IBAction)switchToSelectImageScreen:(id)sender
 {
     if ([self.textFieldName.text isEqualToString:@""])
@@ -157,57 +184,11 @@
     }
     else
     {
-        TamagochiSelectNameViewController* home = [[TamagochiSelectNameViewController alloc] initWithNibName:@"TamagochiSelectNameViewController" bundle:nil petName:[self.textFieldName text]];
-        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"screen1Passed"];
+        [[TamagochiPet sharedInstance] setName:[self.textFieldName text]];
+        TamagochiSelectNameViewController* home = [[TamagochiSelectNameViewController alloc] initWithNibName:@"TamagochiSelectNameViewController" bundle:nil];
         [self.navigationController pushViewController:home animated:YES];
-        [self.navigationController setTitle:@"Choose an Image"];
     }
-    
-    
 }
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return YES;
-}
-
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
-{
-    return YES;
-}
-
-
-- (IBAction)nameChanged:(id)sender {
-    
-    //BOOL isValid = [self.textFieldName.text rangeOfCharacterFromSet:[NSCharacterSet letterCharacterSet]].length == self.textFieldName.text.length;
-    BOOL isValid = [self.textFieldName.text rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"0123456789-,><:;.!@#$%^&*()_+=-/"]].location == NSNotFound;
-    
-   if (!isValid)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Name too weird" message:@"Only letters and spaces, please" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-        self.textFieldName.text = self.oldName;
-    }
-    else
-    {
-        self.oldName = self.textFieldName.text;
-    }
-
-}
-
-
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

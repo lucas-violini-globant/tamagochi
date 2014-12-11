@@ -99,9 +99,11 @@
     NSString *energy     = [NSString stringWithFormat:@"%0.0f", [pet getEnergy] ];
     NSString *level      = [NSString stringWithFormat:@"%d", [pet getLevel] ];
     NSString *experience = [NSString stringWithFormat:@"%0.0f", [pet getExperience] ];
+    NSNumber *latitude = [NSNumber numberWithFloat:[pet getLatitude]];
+    NSNumber *longitude = [NSNumber numberWithFloat:[pet getLongitude]];
     
-    NSDictionary *parameters = [[NSMutableDictionary alloc] initWithObjects:@[code,name,energy,level,experience]
-                                                                    forKeys:@[@"code",@"name",@"energy",@"level",@"experience"] ];
+    NSDictionary *parameters = [[NSMutableDictionary alloc] initWithObjects:@[code,name,energy,level,experience,latitude,longitude]
+                                                                    forKeys:@[@"code",@"name",@"energy",@"level",@"experience",@"position_lat",@"position_lon"] ];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager setRequestSerializer:[AFJSONRequestSerializer serializer]];
@@ -239,7 +241,9 @@
          if ([responseObject isKindOfClass:[NSArray class]])
             {
                 NSLog(@"ARRAY DESCARGADO CON %d ELEMENTOS",[responseObject count]);
+                
                 PetRanking *ranking = [PetRanking sharedInstance];
+                [ranking dropAll];
                 [ranking addPetsInArray:responseObject];
             }
          }

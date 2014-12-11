@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "TamagochiPet.h"
+#import "TamagochiPersistenceHelper.h"
+#import <CoreData/CoreData.h>
 
 
 @interface PetRanking : NSObject
@@ -48,8 +50,8 @@
     //Garantiza que lo que se encuentre dentro solo se ejecutará una vez.
     dispatch_once(&pred, ^{
         _sharedObject = [[self alloc] init];
-    }
-                  );
+        }
+    );
     return _sharedObject;
 }
 
@@ -57,9 +59,6 @@
 
 -(BOOL)addPetsInArray:(NSArray *) aNSArray
 {
-
-    
-
     NSString *code = @"";
     for (NSDictionary *petDict in aNSArray)
     {
@@ -76,6 +75,7 @@
             [_localArray addObject: [TamagochiPet newInstanceAndInitWithDictionary:petDict] ] ;
         }
     }
+    [PetRanking saveToDataBase];
 
     
     //Finally, sort the ranking by level of each pet...
@@ -123,7 +123,7 @@
 {
 
     TamagochiPet *pet;
-    if ([_localArray count] >= position)
+    if ([_localArray count] > position)
     {
         pet = [_localArray objectAtIndex:position];
     }
@@ -145,6 +145,85 @@
     
     _localArray = [NSMutableArray arrayWithArray:sortedArray];
 }
+
+
+-(void)dropAll
+{
+    [self deleteDataBase];
+    [_localArray removeAllObjects];
+}
+
+-(PetRanking *)loadFromDataBase
+{
+    [_localArray removeAllObjects];
+    
+    NSManagedObjectContext *context = [[TamagochiPersistenceHelper sharedInstance] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"TamagochiPet" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setFetchLimit:200];
+    [fetchRequest setReturnsObjectsAsFaults:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"level" ascending:NO];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    
+    if (fetchedObjects != nil)
+    {
+        NSUInteger count = [fetchedObjects count]; // May be 0 if the object has been deleted.
+        if (count)
+        {
+            for ( TamagochiPet *pet in fetchedObjects)
+            {
+                [pet configureWithTag:[pet getTag]];
+                [self addPet:pet];
+            }
+        }
+    }
+    else
+    {
+        // Deal with error.
+        NSLog(@"Error on TamagochiPet --> +(void)loadFromDataBaseByUniqueCode:");
+    }
+    return self;
+
+    
+}
+
+-(void)deleteDataBase
+{
+    NSManagedObjectContext *context = [[TamagochiPersistenceHelper sharedInstance] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"TamagochiPet" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+    NSError * error = nil;
+    NSArray * pets = [context executeFetchRequest:fetchRequest error:&error];
+    //error handling goes here
+    for (NSManagedObject * pet in pets) {
+        [context deleteObject:pet]; }
+    NSError *saveError = nil;
+    if (![context save:&saveError])
+    { //Guardamos los cambios en el contexto.
+        NSLog([NSString stringWithFormat:@"Error, couldn't delete: %@", [saveError localizedDescription]], nil);
+        [context rollback];
+    }
+}
+
++(void)saveToDataBase
+{
+    NSManagedObjectContext *context = [[TamagochiPersistenceHelper sharedInstance] managedObjectContext];
+
+    NSError *saveError = nil;
+    if (![context save:&saveError])
+    { //Guardamos los cambios en el contexto.
+        NSLog([NSString stringWithFormat:@"Error, couldn't delete: %@", [saveError localizedDescription]], nil);
+        [context rollback];
+    }
+}
+
+
 
 
 @end

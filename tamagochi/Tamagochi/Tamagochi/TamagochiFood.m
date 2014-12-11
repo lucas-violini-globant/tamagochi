@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Lucas. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "TamagochiFood.h"
 
-@interface TamagochiFood : NSObject
+@interface TamagochiFood ()
 
 @property (nonatomic, strong) NSString *foodImageName;
 @property (nonatomic, strong) NSString *foodName;

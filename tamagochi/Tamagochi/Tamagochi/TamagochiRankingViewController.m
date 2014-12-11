@@ -14,51 +14,53 @@
 
 @interface TamagochiRankingViewController ()
 
+@property int rankingCount;
 
 @end
 
 @implementation TamagochiRankingViewController
 
+@synthesize managedObjectContext = _managedObjectContext;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
-
-
-    
-    /*
-     TamagochiNetworking *tn = [[TamagochiNetworking alloc] init];
-     //BOOL result = [tn downloadPetFromServer];
-    
-    TamagochiRankingViewController * __weak weakerSelf = self;
-    
-    [tn downloadPetsArrayFromServerWithSuccess:^{[weakerSelf petRankingDownloadSuccess];}
-                                 failure:^{[weakerSelf petRankingDownloadFailure];}];
-     */
-    
     [_tablaRanking registerNib:[UINib nibWithNibName:@"TamagochiRankingTableViewCell" bundle:[NSBundle mainBundle]]
         forCellReuseIdentifier:@"cellIdRanking"];
     
+    
+    NSLog(@"Starting ranking's GET from server",nil);
+    TamagochiNetworking *tn = [[TamagochiNetworking alloc] init];
+    TamagochiRankingViewController * __weak weakerSelf = self;
+    [[PetRanking sharedInstance] loadFromDataBase];
+    [self petRankingDownloadSuccess];
+//    [tn downloadPetsArrayFromServerWithSuccess:^{[weakerSelf petRankingDownloadSuccess];}
+//                                       failure:^{[weakerSelf petRankingDownloadFailure];}];
+    
+    
+    
     [_tablaRanking reloadData];
+    
+}
+
+
+-(void)petRankingDownloadFailure
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error downloading the ranking" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+    [alert show];
     
 }
 
 -(void)petRankingDownloadSuccess
 {
-    [_tablaRanking registerNib:[UINib nibWithNibName:@"TamagochiRankingTableViewCell" bundle:[NSBundle mainBundle]]
-       forCellReuseIdentifier:@"cellIdRanking"];
+    //[_tablaRanking registerNib:[UINib nibWithNibName:@"TamagochiRankingTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"cellIdRanking"];
+    
+    self.rankingCount = [[PetRanking sharedInstance] count];
     
     [_tablaRanking reloadData];
     
 }
-
--(void)petRankingDownloadFailure
-{
-     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error downloading the ranking" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
-    [alert show];
-    
-}
-
 
 
 - (void)didReceiveMemoryWarning {
@@ -68,21 +70,12 @@
 
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self)
-    {
-        //_foodCollection = [[TamagochiFoodCollection alloc] init];
-    }
-    return self;
-}
-
-
 //Delegate: Implemento el protocolo de UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[PetRanking sharedInstance] count];
+    
+    return self.rankingCount;
+    //return [[PetRanking sharedInstance] count];
 }
 
 

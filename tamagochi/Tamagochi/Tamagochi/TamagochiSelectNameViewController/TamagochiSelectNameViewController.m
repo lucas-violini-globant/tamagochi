@@ -51,23 +51,22 @@
 
 - (IBAction)switchToStatusScreen:(id)sender {
     
-    //Singleton: Obtengo la instancia de TamagochiPet y le paso el tag, para que se setee solo
-    [[TamagochiPet sharedInstance] setTag:self.petTag];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"screen2Passed"];
     
+    [[TamagochiPet sharedInstance] configureWithTag:self.petTag];
     [[TamagochiPet sharedInstance] setName:self.petName];
     
-    //TamagochiStatusViewController *home = [[TamagochiStatusViewController alloc] initWithNibName:@"TamagochiStatusViewController" bundle:nil petName:self.petName tagSelected:self.petTag];
     TamagochiStatusViewController *home = [[TamagochiStatusViewController alloc] initWithNibName:@"TamagochiStatusViewController" bundle:nil];    
     [self.navigationController pushViewController:home animated:YES];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil petName:(NSString *)aString
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-        [self setPetName:aString];
+        self.petName = [[TamagochiPet sharedInstance] getName];
     }
     return self;
 }

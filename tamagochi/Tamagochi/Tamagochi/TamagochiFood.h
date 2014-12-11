@@ -6,10 +6,7 @@
 //  Copyright (c) 2014 Lucas. All rights reserved.
 //
 
-#ifndef Tamagochi_TamagochiFood_h
-#define Tamagochi_TamagochiFood_h
-
-#endif
+#import <Foundation/Foundation.h>
 
 @interface TamagochiFood : NSObject
 

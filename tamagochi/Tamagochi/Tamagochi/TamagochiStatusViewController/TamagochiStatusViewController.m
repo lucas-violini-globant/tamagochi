@@ -6,17 +6,12 @@
 //  Copyright (c) 2014 Lucas. All rights reserved.
 //
 
-#import "TamagochiStatusViewController.h"
-#import "TamagochiFoodSelectionViewController.h"
-#import "TamagochiPet.h"
-#import "TamagochiNetworking.h"
-#import <Parse/Parse.h>
-#import "TamagochiRankingViewController.h"
 
+#import "TamagochiStatusViewController.h"
 
 @interface TamagochiStatusViewController ()
 
-//@property (nonatomic,strong) NSString *petName;
+
 @property int imageTag;
 
 @property (strong, nonatomic) IBOutlet UIImageView *petImage;
@@ -31,30 +26,53 @@
 
 @property (strong , nonatomic) TamagochiFood* foodSelected;
 
-
+@property (strong, strong) NSTimer *fetchRankingTimer;
 
 @end
 
+
+
 @implementation TamagochiStatusViewController
 
-- (IBAction)sendEmail:(id)sender {
+CLLocationManager *locationManager = nil;
+
+
+#pragma mark - Metodos comunes de View Controller
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
     
-    NSString *subject = @"Titulo del email";
-    NSString *message = @"Mensaje del email";
-    NSArray *recipients = [[NSArray alloc] initWithObjects:@"lucas.violini@globant.com", nil];
-    MFMailComposeViewController *composer = [[MFMailComposeViewController alloc] init];
-    composer.mailComposeDelegate = self;
-    [composer setSubject:subject];
-    [composer setMessageBody:message isHTML:NO];
-    [composer setToRecipients:recipients] ;
-    [self presentViewController:composer animated:NO completion:nil];
+    NSString *imageName = [[TamagochiPet sharedInstance] getImage];
+    self.petImage.image = [UIImage imageNamed:imageName];
+    self.petNameLabel.text = [[TamagochiPet sharedInstance] getName];
+    [self startUpdates];
     
-    
-}
-- (IBAction)btnTestUpdate:(id)sender {
-    [self uploadStatusToServer];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    UIBarButtonItem *emailButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(sendEmail:)];
+    self.navigationItem.rightBarButtonItem = emailButton;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(petStatusChanged)
+                                                 name:@"PET_STATUS_CHANGED" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(petStatusChangedToNormal)
+                                                 name:@"PET_STATUS_CHANGED_NORMAL" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(levelPassed)
+                                                 name:@"LEVEL_PASSED" object:nil];
+    
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+#pragma mark - Metodo protocolo Mail Composer
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
     
@@ -84,33 +102,53 @@
 }
 
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-
-    NSString *imageName = [[TamagochiPet sharedInstance] getImage];
-    self.petImage.image = [UIImage imageNamed:imageName];
-    self.petNameLabel.text = [[TamagochiPet sharedInstance] getName];
-    
-}
-
--(void)viewWillAppear:(BOOL)animated
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil petName:(NSString *)aString tagSelected:(int)anInt
+//Obsolete implementation (init with parameters containing pet's data)
 {
-    [super viewWillAppear:animated];
-    UIBarButtonItem *emailButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(sendEmail:)];
-    self.navigationItem.rightBarButtonItem = emailButton;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(petStatusChanged)
-                                                 name:@"PET_STATUS_CHANGED" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(petStatusChangedToNormal)
-                                                 name:@"PET_STATUS_CHANGED_NORMAL" object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(levelPassed)
-                                                 name:@"LEVEL_PASSED" object:nil];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        TamagochiPet *pet = [TamagochiPet sharedInstance];
+        [pet configureWithTag:anInt];
+        [pet setName:aString];
+        self.imageTag = anInt;
+        self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moverComida:)];
+    }
     
-
+    return self;
 }
 
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        self.imageTag = [[TamagochiPet sharedInstance] getTag];
+        self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moverComida:)];
+        
+        
+    }
+    
+    return self;
+    
+}
+
+
+#pragma mark - Click en envio de email (nav controller)
+- (IBAction)sendEmail:(id)sender {
+    
+    TamagochiContactsViewController *contactsVC = [[TamagochiContactsViewController alloc] initWithNibName:@"TamagochiContactsViewController" bundle:nil];
+    [self.navigationController pushViewController:contactsVC animated:YES];
+    
+}
+
+
+- (IBAction)btnTestUpdate:(id)sender {
+    [self uploadStatusToServer];
+}
 
 
 -(void)levelChanged
@@ -126,6 +164,7 @@
     [tn uploadServerWithPetInformation];
 }
 
+#pragma mark - Cambios de estado de mascota
 -(void)petStatusChanged
 {
     //NSLog(@"Method inoked: TamagochiStatusViewController -> petStatusChanged");
@@ -149,11 +188,36 @@
     self.petImage.image = [UIImage imageNamed:[pet getImage ] ];
 }
 
+
+
+-(void)levelPassed
+{
+    UIAlertView *alerta = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Level passed!!" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
+    [alerta show];
+    
+    PFPush *push = [[PFPush alloc] init];
+    [push setChannel:@"PeleaDeMascotas"];
+    TamagochiPet *pet= [TamagochiPet sharedInstance];
+    NSString *level = [NSString stringWithFormat:@"%d",[pet getLevel] ];
+    NSString *energy = [NSString stringWithFormat:@"%0.0f",[pet getEnergy] ];
+    NSString *experience = [NSString stringWithFormat:@"%0.0f",[pet getExperience] ];
+    NSString *name = [pet getName];
+    NSString *code = [pet getUniqueCode];
+    NSNumber *petType = [NSNumber numberWithInt:[pet getTag]];
+    NSDictionary *notif = [[NSDictionary alloc] initWithObjects:@[code,name,level,experience,energy,petType]
+                                                        forKeys:@[@"code",@"name",@"level",@"experience",@"energy",@"pet_type"]];
+    
+    [push setData: notif];
+    [push sendPushInBackground];
+    [self uploadStatusToServer];
+}
+
+
+#pragma mark - Boton hacer ejercicio
 - (IBAction)clickExercising:(id)sender
 {
     TamagochiPet *pet =[TamagochiPet sharedInstance];
-    NSString *msg = [NSString stringWithFormat:@"%0.0f",[pet getEnergy]];
-    //NSLog(msg);
+
     
     if ([pet canBeExercised])
         {
@@ -179,7 +243,7 @@
 }
 
 
-
+#pragma mark - Timer tick
 -(void)tick:(NSTimer *)timer
 {
     TamagochiPet *pet =[TamagochiPet sharedInstance];
@@ -188,29 +252,24 @@
         [pet exercise];
         [self animateExercisingPet];
         self.energyBar.progress = [pet getEnergy] / 100 ;
-        //NSString *msg = [NSString stringWithFormat:@"%0.0f",[pet getEnergy]];
-        //NSLog(msg);
     }
     else
     {
         //No se puede ejercitar mas, detengo el timer
-        //NSLog(@"The pet is exhausted!!");
-        
+        [self.btnExercise setTitle:@"Start Exercise" forState:UIControlStateNormal];
         if(self.exerciseTimer && [self.exerciseTimer isValid])
         {
             [self.exerciseTimer invalidate];
             self.exerciseTimer = nil;
         }
+        
     }
 }
 
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
+#pragma mark - Animacion de mascota
 
 -(void)animateFeedingPet
 {
@@ -242,29 +301,6 @@
     self.petImage.image = [UIImage imageNamed:[[TamagochiPet sharedInstance] getImage ]  ];
 }
 
--(void)levelPassed
-{
-    UIAlertView *alerta = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Level passed!!" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
-    [alerta show];
-    
-    // Send a notification to all devices subscribed to the "Giants" channel.
-    PFPush *push = [[PFPush alloc] init];
-    [push setChannel:@"PeleaDeMascotas"];
-    TamagochiPet *pet= [TamagochiPet sharedInstance];
-    NSString *level = [NSString stringWithFormat:@"%d",[pet getLevel] ];
-    NSString *energy = [NSString stringWithFormat:@"%0.0f",[pet getEnergy] ];
-    NSString *experience = [NSString stringWithFormat:@"%0.0f",[pet getExperience] ];
-    NSString *name = [pet getName];
-    NSString *code = [pet getUniqueCode];
-    NSNumber *petType = [NSNumber numberWithInt:[pet getTag]];
-    NSDictionary *notif = [[NSDictionary alloc] initWithObjects:@[code,name,level,experience,energy,petType]
-                                  forKeys:@[@"code",@"name",@"level",@"experience",@"energy",@"pet_type"]];
-    
-    [push setData: notif];
-    [push sendPushInBackground];
-}
-
-
 -(void)animateExercisingPet
 {
     TamagochiPet *tama = [TamagochiPet sharedInstance];
@@ -273,6 +309,13 @@
     [self.petImage setAnimationDuration:0.3];
     [self.petImage startAnimating];
 }
+
+- (IBAction)uploadManually:(id)sender {
+    [self uploadStatusToServer];
+}
+
+
+
 
 -(void)changeEnergyBarTo:(float)energyAmount
 {
@@ -308,10 +351,10 @@
                                             TamagochiPet *pet = [TamagochiPet sharedInstance];
                                             if ([pet canBeFed])
                                             {
-                                                NSLog([NSString stringWithFormat:@"Energia antes de comida con energia %f: %f",[self.foodSelected getEnergy],[pet getEnergy]]);
+                                                NSLog([NSString stringWithFormat:@"Energia antes de comida con energia %f: %f",[self.foodSelected getEnergy],[pet getEnergy]], nil);
 
                                                 [pet eatFood:self.foodSelected];
-                                                NSLog([NSString stringWithFormat:@"Energia despues de comida con energia %f: %f",[self.foodSelected getEnergy],[pet getEnergy]]);
+                                                NSLog([NSString stringWithFormat:@"Energia despues de comida con energia %f: %f",[self.foodSelected getEnergy],[pet getEnergy]],nil);
                                                     [UIView animateWithDuration:0.5
                                                                           delay:0.0
                                                                         options:UIViewAnimationOptionBeginFromCurrentState
@@ -341,120 +384,6 @@
 }
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil petName:(NSString *)aString tagSelected:(int)anInt
-//Obsolete implementation (init with parameters containing pet's data)
-{
-
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self)
-    {
-        TamagochiPet *pet = [TamagochiPet sharedInstance];
-        [pet setName:aString];
-        [pet setTag:anInt];
-        [pet setName:aString];
-        self.imageTag = anInt;
-        self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moverComida:)];
-
-
-    }
-    
-    return self;
-    
-}
-
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self)
-    {
-        self.imageTag = [[TamagochiPet sharedInstance] getTag];
-        self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moverComida:)];
-        
-        
-    }
-    
-    return self;
-    
-}
-
-
--(NSString *)getImageNameByTag:(long)tag
-{
-    NSString *imageName = @"";
-    
-    switch (tag) {
-        case 0:
-            imageName = @"ciervo_comiendo_1";
-            break;
-        case 1:
-            imageName = @"gato_comiendo_1";
-            break;
-        case 2:
-            imageName = @"jirafa_comiendo_1";
-            break;
-        case 3:
-            imageName = @"leon_comiendo_1";
-            break;
-        default:
-            imageName = @"";
-            break;
-    }
-    return imageName;
-    
-}
-
-
--(NSArray *)getFeedingImageArrayForCurrentPet
-{
-    return [self getFeedingImageArrayByTag:self.imageTag];
-}
-
-
-
--(NSArray *)getFeedingImageArrayByTag:(long)tag
-{
-    NSArray * arreglo;
-    
-    switch (tag) {
-        case 0:
-            arreglo = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"ciervo_comiendo_1"],
-                                                       [UIImage imageNamed:@"ciervo_comiendo_2"],
-                                                       [UIImage imageNamed:@"ciervo_comiendo_3"],
-                                                       [UIImage imageNamed:@"ciervo_comiendo_4"],
-                                                        nil];
-            break;
-        case 1:
-            arreglo = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"gato_comiendo_1"],
-                                                        [UIImage imageNamed:@"gato_comiendo_2"],
-                                                        [UIImage imageNamed:@"gato_comiendo_3"],
-                                                        [UIImage imageNamed:@"gato_comiendo_4"],
-                                                        nil];
-            break;
-        case 2:
-            arreglo = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"jirafa_comiendo_1"],
-                                                        [UIImage imageNamed:@"jirafa_comiendo_2"],
-                                                        [UIImage imageNamed:@"jirafa_comiendo_3"],
-                                                        [UIImage imageNamed:@"jirafa_comiendo_4"],
-                                                        nil];
-            break;
-        case 3:
-            arreglo = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"leon_comiendo_1"],
-                                                        [UIImage imageNamed:@"leon_comiendo_2"],
-                                                        [UIImage imageNamed:@"leon_comiendo_3"],
-                                                        [UIImage imageNamed:@"leon_comiendo_4"],
-                                                        nil];
-            break;
-        default:
-            arreglo = [[NSArray alloc] initWithObjects:nil];
-            break;
-    }
-    return arreglo;
-    
-}
-
-
 
 
 //Pasa a la pantalla de seleccion de comida
@@ -466,9 +395,9 @@
 }
 
 
-
-//Delegate: Implemento el metodo del protocolo FoodProtocol
-//Se invoca cuando se ha seleccionado una comida
+#pragma mark - Protocolo de comida FoodProtocol
+//--------------------------------------------------------------------------------------------
+//Delegate: Implemento el metodo del protocolo FoodProtocol. Se invoca cuando se ha seleccionado una comida
 -(id)foodSelected:(TamagochiFood *)foodObject
 {
     self.foodImage.image = [UIImage imageNamed:[foodObject getImageName]];
@@ -477,48 +406,66 @@
     return self;
 }
 
+
+#pragma mark - Otros
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    CLLocation *newLocation = [locations lastObject];
+    //CLLocation *oldLocation;
+    NSDate* eventDate = newLocation.timestamp;
+    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    if (abs(howRecent) < 10.0) // Updates de menos de 10 segundos
+    {
+        [manager stopUpdatingLocation]; // Detener el tracking y utilizar la location theLocation = newLocation;
+        NSLog(@"Coordenadas: %f, %f",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
+        [[TamagochiPet sharedInstance] setLatitude:(float)newLocation.coordinate.latitude];
+        [[TamagochiPet sharedInstance] setLongitude:(float)newLocation.coordinate.longitude];
+    }
+}
+
+
+- (void)startUpdates
+{
+    NSLog(@"Starting location update");
+    if (nil == locationManager)
+    {
+        locationManager = [[CLLocationManager alloc] init]; locationManager.delegate = self;
+    }
+    locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters; //kCLLocationAccuracyKilometer; // Presición
+    locationManager.distanceFilter = 10; // Distancia mínima de updates
+    [locationManager startUpdatingLocation];
+    NSLog(@"Location update line passed");
+    
+}
+
+
+
+
+
 - (IBAction)goToRanking:(id)sender
 {
+    TamagochiRankingViewController* mapScreen = [[TamagochiRankingViewController alloc] initWithNibName:@"TamagochiRankingViewController" bundle:nil];
+    [self.navigationController pushViewController:mapScreen animated:YES];
     
-    TamagochiNetworking *tn = [[TamagochiNetworking alloc] init];
-    //BOOL result = [tn downloadPetFromServer];
-    
-    TamagochiStatusViewController * __weak weakerSelf = self;
-    
-    [tn downloadPetsArrayFromServerWithSuccess:^{[weakerSelf petRankingDownloadSuccess];}
-                                       failure:^{[weakerSelf petRankingDownloadFailure];}];
-    
-    
-
-
 }
 
 
--(void)petRankingDownloadSuccess
+
+
+
+- (IBAction)goToMap:(id)sender
 {
-    TamagochiRankingViewController* rankingScreen = [[TamagochiRankingViewController alloc] initWithNibName:@"TamagochiRankingViewController" bundle:nil];
-        
-    [self.navigationController pushViewController:rankingScreen animated:YES];
-    
-}
-
--(void)petRankingDownloadFailure
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error downloading the ranking" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
-    [alert show];
-    
+    TamagochiMapViewController* mapScreen = [[TamagochiMapViewController alloc] initWithNibName:@"TamagochiMapViewController" bundle:nil];
+    [mapScreen displayOnePet:[TamagochiPet sharedInstance]];
+    [self.navigationController pushViewController:mapScreen animated:YES];
 }
 
 
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
+
+
 
 @end
